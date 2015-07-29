@@ -9,6 +9,8 @@ class User(models.Model):
     name = models.CharField(max_length=50)
     # A user can have email.. Or not
     email = models.EmailField(blank=True, null=True)
+    def __str__(self):
+        return self.name
 
 class Timeslot(models.Model):
     # Defines the start time to represent Morning, afternoon and evening
@@ -20,9 +22,9 @@ class Timeslot(models.Model):
     MORNING_AFTERNOON_EVENING_TIME = 1
     PRECISE_TIME_TIME = 2
     TIME_TYPE_CHOICES = (
-        (WHOLE_DAY_TIME, 'Whole Day Time'),
-        (MORNING_AFTERNOON_EVENING_TIME, 'Morning Afternoon Evening Time'),
-        (PRECISE_TIME_TIME, 'Precise Time Time')
+        (WHOLE_DAY_TIME, '全天'),
+        (MORNING_AFTERNOON_EVENING_TIME, '早中晚'),
+        (PRECISE_TIME_TIME, '精确时间')
     )
     time_type = models.IntegerField(choices=TIME_TYPE_CHOICES, default=WHOLE_DAY_TIME)
 
@@ -30,10 +32,10 @@ class Timeslot(models.Model):
     date = models.DateField()
 
     # A Timeslot can have a start time field
-    start_time = models.TimeField()
+    start_time = models.TimeField(blank=True, null=True)
 
     # A Timeslot can have an end time
-    end_time = models.TimeField()
+    end_time = models.TimeField(blank=True, null=True)
 
     # get the string represent the time (only time but not date)
     def get_time_str(self):
@@ -48,6 +50,8 @@ class Timeslot(models.Model):
                 return "晚上"
         elif self.time_type == self.PRECISE_TIME_TIME:
             return self.start_time.strftime("%-I:%M %p") + self.end_time.strftime("%-I:%M %p")
+    def __str__(self):
+        return self.date.strftime("%y/%m/%d")+" "+self.get_time_str()
 
 
 class Event(models.Model):
@@ -65,18 +69,6 @@ class Event(models.Model):
     attendees = models.ManyToManyField(User
                                        , related_name="attended_events")
 
-    # An event time will also have a mode, can either be a whole day (WDE),
-    # morning/afternoon/evening event(MAEE) or a precise time event(PTE)
-    # WHOLE_DAY_EVENT = 'WDE'
-    # MORNING_AFTERNOON_EVENING_EVENT = 'MAEE'
-    # PRECISE_TIME_EVENT = 'PTE'
-    # EVENT_TYPE_CHOICES = (
-    #     (WHOLE_DAY_EVENT, 'Whole Day Event'),
-    #     (MORNING_AFTERNOON_EVENING_EVENT, 'Morning Afternoon Evening Event'),
-    #     (PRECISE_TIME_EVENT, 'Precise Time Event')
-    # )
-    # event_type = models.CharField(max_length=10, choices=EVENT_TYPE_CHOICES, default=WHOLE_DAY_EVENT)
-
     # An event will have a list of time, depends on the type of event
     timeslots = models.ManyToManyField(Timeslot)
 
@@ -88,6 +80,18 @@ class Event(models.Model):
 
     # An event can have a description
     description = models.CharField(max_length=200, blank=True, null=True)
+
+    # An event time will also have a mode, can either be a whole day (WDE),
+    # morning/afternoon/evening event(MAEE) or a precise time event(PTE)
+    # WHOLE_DAY_EVENT = 'WDE'
+    # MORNING_AFTERNOON_EVENING_EVENT = 'MAEE'
+    # PRECISE_TIME_EVENT = 'PTE'
+    # EVENT_TYPE_CHOICES = (
+    #     (WHOLE_DAY_EVENT, 'Whole Day Event'),
+    #     (MORNING_AFTERNOON_EVENING_EVENT, 'Morning Afternoon Evening Event'),
+    #     (PRECISE_TIME_EVENT, 'Precise Time Event')
+    # )
+    # event_type = models.CharField(max_length=10, choices=EVENT_TYPE_CHOICES, default=WHOLE_DAY_EVENT)
 
 
 
