@@ -1,16 +1,5 @@
-@font-face {
-    font-family: HYQiHei;
-    src: local('HYQiHei.ttf');
-    font-weight:400;
-}
-@font-face {
-    font-family: Kunlunxiyuan;
-    src: local('Kunlunxiyuan.ttf');
-    font-weight:400;
-}
-
-body,h1 {
-    font-family: "HYQiHei";
+body, h1 {
+    font-family: "Microsoft YaHei", "STXihei";
     background-color: #fff;
     overflow-x: hidden;
 }
@@ -29,4 +18,99 @@ body,h1 {
     border-color: #888888;
     border-style: solid;
     padding: 6px;
+}
+
+#eventTitle, #eventTitleCreate {
+    border: 0px;
+    width: 100%;
+    padding: 6px;
+    font-size: 1.4em;
+    color: #000;
+    line-height: 40px;
+    border-width: 0px 0px 1px 0px;
+    border-color: #888888;
+    border-style: solid;
+
+}
+
+#eventTitle {
+    color: #888;
+}
+
+#eventTitleCreate {
+    width: 100%;
+    color: #388E3C;
+}
+
+#eventTitleCreate::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #f44336;
+}
+
+#eventTitleCreate:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #f44336;
+    opacity: 1;
+}
+
+#eventTitleCreate::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #f44336;
+    opacity: 1;
+}
+
+#eventTitleCreate:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: #f44336;
+}
+
+#planALink {
+    text-align: center;
+    position: fixed;
+    background-color: #e2e2e2;
+    color: #888;
+    top: 0px;
+    padding: 0px 6px 6px 6px;
+    right: 6px;
+    cursor: pointer;
+    border-radius: 0px 0px 3px 3px;
+}
+
+#planALink:hover {
+    color: #000;
+}
+
+#whatToDo {
+    color: #fff;
+    float: left;
+    background-color: #888888;
+    padding: 4px;
+    border-radius: 0px 3px 3px 0px;
+    margin: 2px;
+}
+
+.datepicker-inline, .table-condensed {
+    width: 100% !important;
+}
+
+.datepicker table tr td {
+    padding: 4px !important;
+}
+
+.datepicker table {
+    border-spacing: 2px !important;
+    border-collapse: separate;
+}
+
+.datepicker table tr td.today {
+    background-color: #e2e2e2 !important;
+    background-image: none !important;
+}
+
+.datepicker table tr td.active {
+    background-color: #03a9f4 !important;
+    background-image: none !important;
+}
+#dateCount {
+  float:right;
 }

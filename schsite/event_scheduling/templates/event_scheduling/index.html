@@ -1,6 +1,6 @@
 {% extends "event_scheduling/base_site.html" %}
 {% block body %}
-    <div class="container">
+    <div class="container" style="max-width:640px;">
         <div class="row">
             <div class="col-md-6">
                 <h1 class="page-title">聚吧 <strong>J</strong>vba</h1>
@@ -11,14 +11,23 @@
 
                     <div style="text-align:center">
                         {# TODO: the href needs to be resolved #}
-                        <a href="/create" class="btn btn-lg btn-success" style="padding-left:8px; padding-right:8px;">
-                            新建时间 {# Seriously, wtf is this supposed to mean #}
+                        <a href="{% url 'event_scheduling:create_date'%}" class="btn btn-lg btn-success" style="padding-left:8px; padding-right:8px;">
+                            新建事件 {# Seriously, wtf is this supposed to mean #}
                         </a>
                         <br><br>
                     </div>
                     免费，无需注册，不用下载～
 
                 </div>
+                <br>
+                <br>
+                <strong>聚吧是什么？</strong>
+                <ol id="promoListTwo">
+                    <li>为你们的事件取一个名字并设置日期</li>
+                    <li>把地址分享给别人</li>
+                    <li>朋友们在可以的时间上点击选择</li>
+                    <li>你来选择最佳日期</li>
+                </ol>
 
             </div>
             <div class="col-md-6">

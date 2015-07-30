@@ -1,0 +1,59 @@
+{% extends "event_scheduling/base_site.html" %}
+{% load staticfiles %}
+{% block body %}
+    <div class="container" id="homeContainer">
+
+        <div class="row">
+            <div class="col-xs-12" style="padding-left:4px; padding-right:4px; margin-top:6px; margin-bottom:6px;">
+                <input type="text" placeholder="点击输入事件标题" id="eventTitleCreate"
+                       style="display: inline-block;">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-7" style="text-align:left;padding-top:4px; padding-bottom:6px;">
+                <div id="whatToDo">▲ 取个名字</div>
+            </div>
+            <div class="col-xs-5" style="text-align:right;padding-top:4px; padding-bottom:6px;">
+
+                <button id="allDoneCreate" class="btn btn-material-green-100" disabled="" style="margin:0px;">
+                    继续
+                </button>
+                <!-- <div id="eventUrl" class="panel" style="display:none;">
+                  Your unique event url:<br/>
+                  <a href="" id="planUrl" ></a><br/>
+                  Visit it now!
+
+                  </div> -->
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading" id="pickerHeader">
+                        时间
+                        <div id="dateCount"></div>
+                    </div>
+                    <div id="datepicker"></div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <a id="planALink" href="{% url 'event_scheduling:index' %}">聚吧 <strong>J</strong>vba
+        {#        <small style="font-size:0.7em; color:#888888;">出品</small>#}
+    </a>
+
+{% endblock %}
+
+{% block additionaljs %}
+    <script src="{% static 'event_scheduling/js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'event_scheduling/js/bootstrap-datepicker.zh-CN.min.js' %}"></script>
+    <script src="{% static 'event_scheduling/js/fastclick.js' %}"></script>
+    <script src="{% static 'event_scheduling/js/velocity.min.js' %}"></script>
+    <script src="{% static 'event_scheduling/js/create_date.js' %}"></script>
+
+{% endblock %}

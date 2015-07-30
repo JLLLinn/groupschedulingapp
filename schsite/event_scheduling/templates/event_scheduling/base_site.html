@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'event_scheduling/css/roboto.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'event_scheduling/css/mprogress.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'event_scheduling/css/snackbar.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'event_scheduling/css/bootstrap-datepicker3.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'event_scheduling/css/style.css' %}" />
   </head>
   <body>
@@ -25,5 +26,7 @@
     <script src="{% static 'event_scheduling/js/ripples.min.js' %}"></script>
     <script src="{% static 'event_scheduling/js/mprogress.min.js' %}"></script>
     <script src="{% static 'event_scheduling/js/snackbar.min.js' %}"></script>
+
+    {% block additionaljs %}{% endblock %}
   </body>
 </html>
