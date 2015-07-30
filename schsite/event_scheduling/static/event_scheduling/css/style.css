@@ -1,0 +1,32 @@
+@font-face {
+    font-family: HYQiHei;
+    src: local('HYQiHei.ttf');
+    font-weight:400;
+}
+@font-face {
+    font-family: Kunlunxiyuan;
+    src: local('Kunlunxiyuan.ttf');
+    font-weight:400;
+}
+
+body,h1 {
+    font-family: "HYQiHei";
+    background-color: #fff;
+    overflow-x: hidden;
+}
+
+#promoList {
+    list-style-type: none;
+
+    font-size: 1.2em;
+    padding: 0px;
+    margin: 0px;
+}
+
+.page-title {
+    margin-top: 4px;
+    border-width: 0px 0px 1px 0px;
+    border-color: #888888;
+    border-style: solid;
+    padding: 6px;
+}
