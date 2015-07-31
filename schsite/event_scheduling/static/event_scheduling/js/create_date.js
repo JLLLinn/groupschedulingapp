@@ -1,6 +1,8 @@
 /**
  * Created by jilin on 7/30/2015.
  */
+var MAX_TITLE_LENGTH = 40;
+var MIN_TITLE_LENGTH = 3;
 var dates = []; //this is for saving the current dates
 var mprogress = new Mprogress();
 var intObj = {
@@ -28,8 +30,17 @@ function init() {
     initDatePicker();
 }
 var initEventTitle = function () {
-    $("#eventTitleCreate").fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
-    $("#eventTitleCreate").focus();
+    var $eventTitleCreate_id = $("#eventTitleCreate");
+    $eventTitleCreate_id.fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
+    $eventTitleCreate_id.on("keyup", function () {
+        checkState();
+        if ($(this).val().length >= 3) {
+            $(this).css("color", "#388E3C");
+        }
+        else {
+            $(this).css("color", "#f44336");
+        }
+    });
 };
 
 function initDatePicker() {
@@ -45,8 +56,8 @@ function initDatePicker() {
         e.stopPropagation(); // <--- here
     }).on("changeDate", function (e) {
         dates = e.dates;
-        updateDatesCount(e.dates); //THis could possibly be disabled
-        //checkState(plan_id);
+        //updateDatesCount(e.dates); //THis could possibly be disabled
+        checkState();
     });
 }
 function showLoader() {
@@ -67,6 +78,52 @@ function updateDatesCount(dates) {
     }
 }
 
+function checkState() {
+    var titleProblems = false;
+    var dateProblems = false;
+    var message = "";
+    if (dates.length <= 0) {
+        message = "▼ 选择天数";
+        dateProblems = true;
+    } else {
+        var title_length = $("#eventTitleCreate").val().length;
+        if (title_length == 0) {
+            message = "▲ 取个名字";
+            titleProblems = true;
+        }
+        else if (title_length < MIN_TITLE_LENGTH) {
+            message = "▲ 名字有点儿短。。";
+            titleProblems = true;
+        }
+        else if (title_length >= MAX_TITLE_LENGTH) {
+            message = "▲ 名字太长了。。";
+            titleProblems = true;
+        }
+    }
+    var allDoneCreate_id = $("#allDoneCreate");
+    if ((titleProblems) || (dateProblems)) {
+        $("#whatToDo").text(message);
+        allDoneCreate_id.prop("disabled", true);
+    } else if ((!titleProblems) && (!dateProblems)) {
+        // $("#whatToDo").html("&#9654; Tap next when done");
+        $("#whatToDo").text("选择了 "+dates.length + " 天");
+        //$("#whatToDo").hide();
+        //$("#eventUrl").show();
+        allDoneCreate_id.prop("disabled", false);
+        allDoneCreate_id.off();
+        allDoneCreate_id.on("click", function () {
+            //doSave(plan_id);
+            //$("#eventUrl").show();
+            //  $(this).hide();
+            //  $("#whatToDo").hide();
+        });
+        //doSave(plan_id);
+    }
+    //else {
+    //    $("#whatToDo").show();
+    //    //  $("#eventUrl").hide();
+    //}
+}
 //function localStorageInit() {
 //    getNewData();
 //    //TODO, get a new user id and event id and save here
