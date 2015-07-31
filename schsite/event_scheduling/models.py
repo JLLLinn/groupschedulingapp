@@ -1,5 +1,6 @@
-from django.db import models
 from datetime import time
+
+from django.db import models
 
 
 # Create your models here.
@@ -9,8 +10,10 @@ class User(models.Model):
     name = models.CharField(max_length=50)
     # A user can have email.. Or not
     email = models.EmailField(blank=True, null=True)
+
     def __str__(self):
         return self.name
+
 
 class Timeslot(models.Model):
     # Defines the start time to represent Morning, afternoon and evening
@@ -50,30 +53,31 @@ class Timeslot(models.Model):
                 return "晚上"
         elif self.time_type == self.PRECISE_TIME_TIME:
             return self.start_time.strftime("%-I:%M %p") + self.end_time.strftime("%-I:%M %p")
+
     def __str__(self):
-        return self.date.strftime("%y/%m/%d")+" "+self.get_time_str()
+        return self.date.strftime("%y/%m/%d") + " " + self.get_time_str()
 
 
 class Event(models.Model):
     """
     The event model that stores the organizer information,
     """
-    # An Event will have an organizer, it can be blank or null, which means it has no organizer
-    organizer = models.ForeignKey(User
-                                  , blank=True
-                                  , null=True
-                                  , on_delete=models.SET_NULL
-                                  , related_name="organized_events")
-
-    # An Event will have a list of person that are attending, allowing null and blank initially, or whatever
-    attendees = models.ManyToManyField(User
-                                       , related_name="attended_events")
+    # # An Event will have an organizer, it can be blank or null, which means it has no organizer
+    # organizer = models.ForeignKey(User
+    #                               , blank=True
+    #                               , null=True
+    #                               , on_delete=models.SET_NULL
+    #                               , related_name="organized_events")
+    #
+    # # An Event will have a list of person that are attending, allowing null and blank initially, or whatever
+    # attendees = models.ManyToManyField(User
+    #                                    , related_name="attended_events")
 
     # An event will have a list of time, depends on the type of event
     timeslots = models.ManyToManyField(Timeslot)
 
     # An event will have a name
-    name=models.CharField(max_length=50,blank=True, null=True)
+    name = models.CharField(max_length=50, blank=True, null=True)
 
     # An event can have a location
     location = models.CharField(max_length=50, blank=True, null=True)
@@ -94,5 +98,23 @@ class Event(models.Model):
     # event_type = models.CharField(max_length=10, choices=EVENT_TYPE_CHOICES, default=WHOLE_DAY_EVENT)
 
 
-
+class EventUserTimeslots(models.Model):
+    """
+    This is the model that connects the three models: User, Timeslot and Event
+    """
+    user = models.ForeignKey(User
+                             , null=True
+                             , on_delete=models.SET_NULL
+                             , related_name="related_events_timeslots")
+    timeslot = models.ForeignKey(Timeslot
+                                 , blank=True
+                                 , null=True
+                                 , on_delete=models.SET_NULL
+                                 , related_name="related_events_users")
+    event = models.ForeignKey(Event
+                              , null=True
+                              , on_delete=models.SET_NULL
+                              , related_name="related_timeslots_users")
+    # if the user is an organizer
+    is_organizer = models.BooleanField()
 

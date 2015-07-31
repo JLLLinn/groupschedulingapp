@@ -3,10 +3,18 @@ body, h1 {
     background-color: #fff;
     overflow-x: hidden;
 }
+/*can or cannot use this to set the cursor for disabled button */
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+        pointer-events: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #00B7FF;
+}
 
 #promoList {
     list-style-type: none;
-
     font-size: 1.2em;
     padding: 0px;
     margin: 0px;
@@ -111,6 +119,7 @@ body, h1 {
     background-color: #03a9f4 !important;
     background-image: none !important;
 }
+
 #dateCount {
-  float:right;
+    float: right;
 }

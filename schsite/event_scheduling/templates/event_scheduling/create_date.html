@@ -50,6 +50,10 @@
 {% endblock %}
 
 {% block additionaljs %}
+    <script src="{% static 'event_scheduling/js/csrfJqueryUtil.js' %}"></script>
+    <script>
+        var add_whole_day_url = "{% url 'event_scheduling:add_whole_day' %}";
+    </script>
     <script src="{% static 'event_scheduling/js/bootstrap-datepicker.min.js' %}"></script>
     <script src="{% static 'event_scheduling/js/bootstrap-datepicker.zh-CN.min.js' %}"></script>
     <script src="{% static 'event_scheduling/js/fastclick.js' %}"></script>

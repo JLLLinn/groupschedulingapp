@@ -11,11 +11,9 @@ var intObj = {
 };
 var indeterminateProgress = new Mprogress(intObj);
 $(function () {
-
     showLoader();
     init();
     endLoader();
-
 });
 
 
@@ -28,6 +26,14 @@ function init() {
     );
     initEventTitle();
     initDatePicker();
+    //$("#allDoneCreate").off();
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
 }
 var initEventTitle = function () {
     var $eventTitleCreate_id = $("#eventTitleCreate");
@@ -56,9 +62,25 @@ function initDatePicker() {
         e.stopPropagation(); // <--- here
     }).on("changeDate", function (e) {
         dates = e.dates;
+        //console.log(dates);
         //updateDatesCount(e.dates); //THis could possibly be disabled
         checkState();
     });
+
+}
+
+
+function ajaxSubmitForm() {
+    showLoader();
+    var title = $('#eventTitleCreate').val();
+    var obj = {
+        "event_title": title,
+        "dates": JSON.stringify(dates)
+    }
+    $.post(add_whole_day_url, obj, function (data) {
+        alert("done");
+        endLoader();
+    })
 }
 function showLoader() {
     indeterminateProgress.start();
@@ -67,16 +89,7 @@ function showLoader() {
 function endLoader() {
     indeterminateProgress.end();
 }
-function updateDatesCount(dates) {
-    if (dates.length > 0) {
-        $("#dateCount").text("选择了 " + dates.length + " 天");
-        $("#pickerHeader").css("backgroundColor", "#4caf50");
-    } else {
-        $("#dateCount").text("尚未选择");
-        $("#pickerHeader").css("backgroundColor", "#f44336");
 
-    }
-}
 
 function checkState() {
     var titleProblems = false;
@@ -103,15 +116,19 @@ function checkState() {
     var allDoneCreate_id = $("#allDoneCreate");
     if ((titleProblems) || (dateProblems)) {
         $("#whatToDo").text(message);
+        allDoneCreate_id.off();
         allDoneCreate_id.prop("disabled", true);
+
     } else if ((!titleProblems) && (!dateProblems)) {
         // $("#whatToDo").html("&#9654; Tap next when done");
-        $("#whatToDo").text("选择了 "+dates.length + " 天");
+        $("#whatToDo").text("选择了 " + dates.length + " 天");
         //$("#whatToDo").hide();
         //$("#eventUrl").show();
         allDoneCreate_id.prop("disabled", false);
         allDoneCreate_id.off();
         allDoneCreate_id.on("click", function () {
+            alert("clicked");
+            ajaxSubmitForm();
             //doSave(plan_id);
             //$("#eventUrl").show();
             //  $(this).hide();
@@ -139,4 +156,14 @@ function checkState() {
 //            initPlan(data.plan_id);
 //        }
 //    });
+//}
+//function updateDatesCount(dates) {
+//    if (dates.length > 0) {
+//        $("#dateCount").text("选择了 " + dates.length + " 天");
+//        $("#pickerHeader").css("backgroundColor", "#4caf50");
+//    } else {
+//        $("#dateCount").text("尚未选择");
+//        $("#pickerHeader").css("backgroundColor", "#f44336");
+//
+//    }
 //}
