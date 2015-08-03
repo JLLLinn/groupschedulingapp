@@ -54,6 +54,10 @@ class Timeslot(models.Model):
         elif self.time_type == self.PRECISE_TIME_TIME:
             return self.start_time.strftime("%-I:%M %p") + self.end_time.strftime("%-I:%M %p")
 
+    # get the string representation of the date part
+    def get_date_str(self):
+        return self.date.strftime("%Y/%m/%d")
+
     def __str__(self):
         return self.date.strftime("%y/%m/%d") + " " + self.get_time_str()
 
@@ -85,17 +89,24 @@ class Event(models.Model):
     # An event can have a description
     description = models.CharField(max_length=200, blank=True, null=True)
 
-    # An event time will also have a mode, can either be a whole day (WDE),
-    # morning/afternoon/evening event(MAEE) or a precise time event(PTE)
-    # WHOLE_DAY_EVENT = 'WDE'
-    # MORNING_AFTERNOON_EVENING_EVENT = 'MAEE'
-    # PRECISE_TIME_EVENT = 'PTE'
-    # EVENT_TYPE_CHOICES = (
-    #     (WHOLE_DAY_EVENT, 'Whole Day Event'),
-    #     (MORNING_AFTERNOON_EVENING_EVENT, 'Morning Afternoon Evening Event'),
-    #     (PRECISE_TIME_EVENT, 'Precise Time Event')
-    # )
-    # event_type = models.CharField(max_length=10, choices=EVENT_TYPE_CHOICES, default=WHOLE_DAY_EVENT)
+    # get all timeslots in the order of first date then start time
+    def get_timeslots_ordered(self):
+        return self.timeslots.order_by('date', 'start_time')
+
+    def __str__(self):
+        return self.name
+
+        # An event time will also have a mode, can either be a whole day (WDE),
+        # morning/afternoon/evening event(MAEE) or a precise time event(PTE)
+        # WHOLE_DAY_EVENT = 'WDE'
+        # MORNING_AFTERNOON_EVENING_EVENT = 'MAEE'
+        # PRECISE_TIME_EVENT = 'PTE'
+        # EVENT_TYPE_CHOICES = (
+        #     (WHOLE_DAY_EVENT, 'Whole Day Event'),
+        #     (MORNING_AFTERNOON_EVENING_EVENT, 'Morning Afternoon Evening Event'),
+        #     (PRECISE_TIME_EVENT, 'Precise Time Event')
+        # )
+        # event_type = models.CharField(max_length=10, choices=EVENT_TYPE_CHOICES, default=WHOLE_DAY_EVENT)
 
 
 class EventUserTimeslots(models.Model):
@@ -106,15 +117,11 @@ class EventUserTimeslots(models.Model):
                              , null=True
                              , on_delete=models.SET_NULL
                              , related_name="related_events_timeslots")
-    timeslot = models.ForeignKey(Timeslot
-                                 , blank=True
-                                 , null=True
-                                 , on_delete=models.SET_NULL
-                                 , related_name="related_events_users")
+    display_user_name = models.CharField(max_length=50, blank=True, null=True)
+    timeslots = models.ManyToManyField(Timeslot)
     event = models.ForeignKey(Event
                               , null=True
                               , on_delete=models.SET_NULL
                               , related_name="related_timeslots_users")
     # if the user is an organizer
     is_organizer = models.BooleanField()
-

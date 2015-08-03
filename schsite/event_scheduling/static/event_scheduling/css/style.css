@@ -3,9 +3,12 @@ body, h1 {
     background-color: #fff;
     overflow-x: hidden;
 }
+#homeContainer {
+    margin-top: 10px;
+}
 /*can or cannot use this to set the cursor for disabled button */
 .btn.disabled, .btn[disabled], fieldset[disabled] .btn {
-        pointer-events: none;
+    pointer-events: none;
 }
 
 a:hover {
@@ -28,7 +31,7 @@ a:hover {
     padding: 6px;
 }
 
-#eventTitle, #eventTitleCreate {
+#eventTitle, .titleCreate {
     border: 0px;
     width: 100%;
     padding: 6px;
@@ -45,29 +48,29 @@ a:hover {
     color: #888;
 }
 
-#eventTitleCreate {
+.titleCreate {
     width: 100%;
     color: #388E3C;
 }
 
-#eventTitleCreate::-webkit-input-placeholder {
+.titleCreate::-webkit-input-placeholder {
     /* WebKit browsers */
     color: #f44336;
 }
 
-#eventTitleCreate:-moz-placeholder {
+.titleCreate:-moz-placeholder {
     /* Mozilla Firefox 4 to 18 */
     color: #f44336;
     opacity: 1;
 }
 
-#eventTitleCreate::-moz-placeholder {
+.titleCreate::-moz-placeholder {
     /* Mozilla Firefox 19+ */
     color: #f44336;
     opacity: 1;
 }
 
-#eventTitleCreate:-ms-input-placeholder {
+.titleCreate:-ms-input-placeholder {
     /* Internet Explorer 10+ */
     color: #f44336;
 }

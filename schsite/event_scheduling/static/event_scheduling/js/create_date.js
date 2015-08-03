@@ -1,9 +1,9 @@
 /**
  * Created by jilin on 7/30/2015.
  */
-var MAX_TITLE_LENGTH = 40;
-var MIN_TITLE_LENGTH = 3;
-var dates = []; //this is for saving the current dates
+
+var dates; //this is for saving the current dates
+var date_selected_count = 0;
 var mprogress = new Mprogress();
 var intObj = {
     template: 3,
@@ -26,6 +26,7 @@ function init() {
     );
     initEventTitle();
     initDatePicker();
+    initNameCreate();
     //$("#allDoneCreate").off();
     $.ajaxSetup({
         beforeSend: function (xhr, settings) {
@@ -40,7 +41,19 @@ var initEventTitle = function () {
     $eventTitleCreate_id.fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
     $eventTitleCreate_id.on("keyup", function () {
         checkState();
-        if ($(this).val().length >= 3) {
+        if ($(this).val().length >= MIN_TITLE_LENGTH) {
+            $(this).css("color", "#388E3C");
+        }
+        else {
+            $(this).css("color", "#f44336");
+        }
+    });
+};
+var initNameCreate = function () {
+    var $organizerNameCreate_id = $("#organizerNameCreate");
+    $organizerNameCreate_id.on("keyup", function () {
+        checkState();
+        if ($(this).val().length >= 0) {
             $(this).css("color", "#388E3C");
         }
         else {
@@ -53,16 +66,19 @@ function initDatePicker() {
     var d = new Date();
     //datepicker modified so it doesn't close on clicking outside (mousedown)
     $("#datepicker").datepicker({
+        format: 'mm/dd/yyyy',
         language: "zh-CN",
         multidate: true,
         todayHighlight: true,
         startDate: d,
         autoclose: false,
+        multidateSeparator: DATE_STR_SPLITTER
     }).click(function (e) {
         e.stopPropagation(); // <--- here
     }).on("changeDate", function (e) {
-        dates = e.dates;
-        //console.log(dates);
+        dates = $("#datepicker").datepicker('getFormattedDate');
+        date_selected_count = e.dates.length;
+
         //updateDatesCount(e.dates); //THis could possibly be disabled
         checkState();
     });
@@ -72,15 +88,22 @@ function initDatePicker() {
 
 function ajaxSubmitForm() {
     showLoader();
+
     var title = $('#eventTitleCreate').val();
+    var organizer_name = $('#organizerNameCreate').val()
     var obj = {
         "event_title": title,
-        "dates": JSON.stringify(dates)
+        "dates": dates,
+        "organizer_name": organizer_name,
+
     }
     $.post(add_whole_day_url, obj, function (data) {
-        alert("done");
+        console.log(data)
+        if (typeof(Storage) !== "undefined") {
+            localStorage.setItem(data['event_hashid'], data['eventusertimeslots_hashid']);
+        }
         endLoader();
-    })
+    }, 'json')
 }
 function showLoader() {
     indeterminateProgress.start();
@@ -94,13 +117,14 @@ function endLoader() {
 function checkState() {
     var titleProblems = false;
     var dateProblems = false;
+    var nameProblems = false;
     var message = "";
-    if (dates.length <= 0) {
+    if (date_selected_count <= 0) {
         message = "▼ 选择天数";
         dateProblems = true;
     } else {
         var title_length = $("#eventTitleCreate").val().length;
-        if (title_length == 0) {
+        if (title_length <= 0) {
             message = "▲ 取个名字";
             titleProblems = true;
         }
@@ -111,23 +135,28 @@ function checkState() {
         else if (title_length >= MAX_TITLE_LENGTH) {
             message = "▲ 名字太长了。。";
             titleProblems = true;
+        } else {
+            var name_length = $("#organizerNameCreate").val().length;
+            if (name_length <= 0) {
+                message = "◥ 您将显示给朋友的名字";
+                nameProblems = true;
+            }
         }
     }
+
     var allDoneCreate_id = $("#allDoneCreate");
-    if ((titleProblems) || (dateProblems)) {
+    if ((titleProblems) || (dateProblems) || (nameProblems)) {
         $("#whatToDo").text(message);
         allDoneCreate_id.off();
         allDoneCreate_id.prop("disabled", true);
-
     } else if ((!titleProblems) && (!dateProblems)) {
         // $("#whatToDo").html("&#9654; Tap next when done");
-        $("#whatToDo").text("选择了 " + dates.length + " 天");
+        $("#whatToDo").text("选择了 " + date_selected_count + " 天");
         //$("#whatToDo").hide();
         //$("#eventUrl").show();
         allDoneCreate_id.prop("disabled", false);
         allDoneCreate_id.off();
         allDoneCreate_id.on("click", function () {
-            alert("clicked");
             ajaxSubmitForm();
             //doSave(plan_id);
             //$("#eventUrl").show();
@@ -136,10 +165,10 @@ function checkState() {
         });
         //doSave(plan_id);
     }
-    //else {
-    //    $("#whatToDo").show();
-    //    //  $("#eventUrl").hide();
-    //}
+//else {
+//    $("#whatToDo").show();
+//    //  $("#eventUrl").hide();
+//}
 }
 //function localStorageInit() {
 //    getNewData();

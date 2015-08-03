@@ -1,0 +1,96 @@
+{% extends "event_scheduling/base_site.html" %}
+{% load staticfiles %}
+{% block body %}
+    <div class="container" id="homeContainer" style="visibility: visible;">
+        <div class="row">
+            <div class="col-xs-12" style="padding-left:4px; padding-right:4px; margin-top:6px; margin-bottom:6px;">
+                <div id="eventTitle">未命名</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" style="padding-left:4px; padding-right:4px; margin-top:6px; margin-bottom:6px;">
+
+            <div id="whatToDo" style="display:none;">&#9660; Set your name</div>
+            <button id="cantGo" class="btn btn-sm btn-warning" style="display:none;">Can't go</button>
+            <button id="allDone" class="btn btn-sm btn-success" style="display:none;">Done</button>
+            <button id="edit" class="btn btn-sm btn-info" style="display:none;">Edit</button>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-3 shadow-z-2" style="padding-left:4px; padding-right:0px; ">
+            <table id="leftNames">
+                <tr>
+                    <td id="firstMonth"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="yourName" placeholder="Your name"/>
+                </tr>
+
+            </table>
+        </div>
+        <div class="col-xs-9" style="padding-left:4px; padding-right:4px;">
+            <div id="rightScroller">
+                <table id="rightDates">
+                    <tr id="dateInserter"></tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8" style="">
+            <div class="" style="display:none;" id="linkMessage">
+
+
+                <div id="urlMessage"><strong>What now?</strong> Add your name and then share this page with people -
+                    Copy & paste the link into email or chat.
+                </div>
+
+                <!-- <div style="float:right; width:10%">
+                <i class="mdi-content-clear" style="margin-top:12px; margin-left:6px; text-align:center;" id="closeIcon"></i>
+                </div> -->
+                <!-- </div> -->
+
+            </div>
+        </div>
+        <div class="col-xs-4" style="">
+            <button class="btn btn-sm btn-success" id="shareLink" style="">Grab link</button>
+        </div>
+    </div>
+
+    <a id="planALink" href="{% url 'event_scheduling:index' %}">聚吧 <strong>J</strong>vba
+        {#        <small style="font-size:0.7em; color:#888888;">出品</small>#}
+    </a>
+
+{% endblock %}
+
+{% block additionaljs %}
+    <script>
+        var event_hid = "{{ event_hid }}"
+        var event_name =
+                "{{ event.name }}"
+        var dates = [
+            {% for timeslot in event.get_timeslots_ordered %}
+                {
+                    "timeslot_key":{{ timeslot.pk }},
+                    "date": "{{ timeslot.get_date_str }}",
+                    "time": "{{ timeslot.get_time_str }}",
+                    "time_type": "{{ timeslot.time_type }}"
+                },
+            {% endfor %}
+        ]
+
+
+    </script>
+    <script src="{% static 'event_scheduling/js/csrfJqueryUtil.js' %}"></script>
+    <script src="{% static 'event_scheduling/js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'event_scheduling/js/bootstrap-datepicker.zh-CN.min.js' %}"></script>
+    <script src="{% static 'event_scheduling/js/fastclick.js' %}"></script>
+    <script src="{% static 'event_scheduling/js/velocity.min.js' %}"></script>
+    <script src="{% static 'event_scheduling/js/moment-with-locales.min.js' %}"></script>
+    <script src="{% static 'event_scheduling/js/plan_detail.js' %}"></script>
+
+{% endblock %}

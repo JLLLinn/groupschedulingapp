@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UFr.ee</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://ufr.ee/"/>
+    <meta property="og:title" content="UFr.ee"/>
+    <meta property="og:description" content="Sort out what day to meet"/>
+    <meta property="og:image" content="/images/ufree_screenshot.png"/>
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@daveganly">
+    <meta name="twitter:creator" content="@daveganly">
+    <meta name="twitter:title" content="UFr.ee">
+    <meta name="twitter:description" content="Sort out what day to meet">
+    <meta name="twitter:image" content="/images/ufree_screenshot.png">
+
+    <link rel="icon" href="/images/ufree.png" type="image/x-icon">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material-fullpalette.min.css'/>
+    <link rel='stylesheet'
+          href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/ripples.min.css'/>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/stylesheets/mprogress.min.css'/>
+    <link rel='stylesheet' href='/stylesheets/bootstrap-datepicker.min.css'/>
+    <link rel='stylesheet' href='/stylesheets/snackbar.min.css'/>
+
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Share+Tech+Mono' rel='stylesheet' type='text/css'>
+
+
+    <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/ripples.min.js"></script>
+
+
+    <script type="text/javascript" src="/javascripts/mprogress.min.js"></script>
+    <script type="text/javascript" src="/javascripts/velocity.min.js"></script>
+    <script type="text/javascript" src="/javascripts/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="/javascripts/bootstrap-datepicker.en-GB.min.js"></script>
+    <script type="text/javascript" src="/javascripts/snackbar.min.js"></script>
+    <script type="text/javascript" src="/javascripts/fastclick.js"></script>
+
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/material.min.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+
+</div>
+<div id="loaderDiv" style="width:100%; margin:0px;padding:0px; z-index:51;height:5px;">&nbsp;</div>
+
+
+<div class="container" id="homeContainer" style="visibility:hidden;">
+    <div class="row">
+        <div class="col-xs-12" style="padding-left:4px; padding-right:4px; margin-top:6px; margin-bottom:6px;">
+            <div id="eventTitle">&nbsp;</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" style="padding-left:4px; padding-right:4px; margin-top:6px; margin-bottom:6px;">
+
+            <div id="whatToDo" style="display:none;">&#9660; Set your name</div>
+            <button id="cantGo" class="btn btn-sm btn-warning" style="display:none;">Can't go</button>
+            <button id="allDone" class="btn btn-sm btn-success" style="display:none;">Done</button>
+            <button id="edit" class="btn btn-sm btn-info" style="display:none;">Edit</button>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3 shadow-z-2" style="padding-left:4px; padding-right:0px; ">
+            <table id="leftNames">
+                <tr>
+                    <td id="firstMonth"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="yourName" placeholder="Your name"/>
+                </tr>
+
+            </table>
+        </div>
+        <div class="col-xs-9" style="padding-left:4px; padding-right:4px;">
+            <div id="rightScroller">
+                <table id="rightDates">
+                    <tr id="dateInserter"></tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8" style="">
+            <div class="" style="display:none;" id="linkMessage">
+
+
+                <div id="urlMessage"><strong>What now?</strong> Add your name and then share this page with people -
+                    Copy & paste the link into email or chat.
+                </div>
+
+                <!-- <div style="float:right; width:10%">
+                <i class="mdi-content-clear" style="margin-top:12px; margin-left:6px; text-align:center;" id="closeIcon"></i>
+                </div> -->
+                <!-- </div> -->
+
+            </div>
+        </div>
+        <div class="col-xs-4" style="">
+            <button class="btn btn-sm btn-success" id="shareLink" style="">Grab link</button>
+        </div>
+    </div>
+</div>
+
+
+<div id="planALink">
+    <small style="font-size:0.7em; color:#888888;">Made with</small>
+    <strong>U</strong>F<span class="kern">r.</span>ee
+</div>
+
+
+<script type="text/javascript" src="/javascripts/moment.js"></script>
+<script type="text/javascript">
+    var isCreate = true;
+</script>
+<!-- <script type="text/javascript" src="/javascripts/plan.js"></script> -->
+<script type="text/javascript" src="/javascripts/state.js"></script>
+
+</body>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-65221920-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+</html>

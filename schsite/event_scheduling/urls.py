@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^create-date$', views.create_date, name='create_date'),
     url(r'^add/whole-day$', views.add_whole_day, name='add_whole_day'),
+    url(r'^plan/(?P<hashid>[\w]+)/',views.get_plan, name='fetch_plan')
 ]
