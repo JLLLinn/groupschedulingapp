@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1fe1bd6e-6364-4f45-89a4-b1a7c54e4318" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/event_scheduling/hashids.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/plan_detail.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/temp.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/event_scheduling/utils.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dictionaries/jilin.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.gitignore" afterPath="$PROJECT_DIR$/../.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/admin.py" afterPath="$PROJECT_DIR$/event_scheduling/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/base_site.html" afterPath="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/base_site.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/create_date.html" afterPath="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/create_date.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/create_date.js" afterPath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/create_date.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/models.py" afterPath="$PROJECT_DIR$/event_scheduling/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/schsite.iml" afterPath="$PROJECT_DIR$/.idea/schsite.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schsite/settings.py" afterPath="$PROJECT_DIR$/schsite/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/css/style.css" afterPath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/urls.py" afterPath="$PROJECT_DIR$/event_scheduling/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schsite/urls.py" afterPath="$PROJECT_DIR$/schsite/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/views.py" afterPath="$PROJECT_DIR$/event_scheduling/views.py" />
-    </list>
+    <list default="true" id="1fe1bd6e-6364-4f45-89a4-b1a7c54e4318" name="Default" comment="" />
     <ignored path="schsite.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
