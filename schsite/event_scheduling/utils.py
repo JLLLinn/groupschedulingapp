@@ -28,3 +28,13 @@ def init_whole_day_event(event_title, dates, organizer_name):
     eut = EventUserTimeslots.objects.create(display_user_name=organizer_name, event=event, is_organizer=True)
     eut.timeslots.add(*date_objs)
     return event.pk, eut.pk
+
+def get_euts(event_id, self_eut_id = None):
+    """
+    Get eventUserTimeslots entries by event id
+    :param event_id: the event id
+    :param self_eut_id: if yes, then will put this entry under the "self" section of the returning array, other wise treat all of them the same
+    :return:a list
+    """
+    return None
+

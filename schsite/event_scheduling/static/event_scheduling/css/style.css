@@ -3,9 +3,11 @@ body, h1 {
     background-color: #fff;
     overflow-x: hidden;
 }
+
 #homeContainer {
     margin-top: 10px;
 }
+
 /*can or cannot use this to set the cursor for disabled button */
 .btn.disabled, .btn[disabled], fieldset[disabled] .btn {
     pointer-events: none;
@@ -91,6 +93,16 @@ a:hover {
     color: #000;
 }
 
+#yourName {
+    width: 98%;
+    border-style: solid;
+    border-color: #ff0000;
+    border-width: 0px 0px 1px 0px;
+    padding: 2px;
+    margin-right: 4px;
+    height: 45px;
+}
+
 #whatToDo {
     color: #fff;
     float: left;
@@ -122,7 +134,84 @@ a:hover {
     background-color: #03a9f4 !important;
     background-image: none !important;
 }
+col:first-child {background: #F5F5F5;}
+col:nth-child(2n+3) {background: #F5F5F5;}
+
+#leftNames, #rightDates {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#rightDates {
+    width: 100%;
+    text-align: center;
+}
+
+#rightDates td {
+    min-width: 30px;
+}
+
+#leftNames td {
+    width: 100%;
+}
+
+#leftNames, #rightDates th, td {
+
+    height: 48px;
+    vertical-align: middle;
+
+}
+
+.tdDateNo {
+    background-color: #FDD6DB !important;
+}
+
+.tdDate {
+    background-color: #e2e2e2;
+}
+
+.tdDateChecked {
+    background-color: #C9FACD;
+}
+
+#firstMonth {
+    text-align: right;
+    padding-right: 4px;
+}
+
+.monthSeperator {
+    /*background-color:#BBE7ED;*/
+}
+
+#cantGo {
+    float: right;
+}
+
+#allDone, #cantGo, #edit {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    float: right;
+}
+
+.tdIcon {
+    opacity: 0.4;
+}
+#shareLink {
+  margin-top:48px;
+  float:right;
+}
+
+.highestCol {
+    border-style: inset;
+    border-width: 1px;
+    border-color: green;
+}
 
 #dateCount {
     float: right;
+}
+#urlMessage {
+  margin-top:32px;
+  font-size:1em;
+  padding:3px;
 }

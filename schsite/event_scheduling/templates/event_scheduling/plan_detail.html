@@ -7,59 +7,59 @@
                 <div id="eventTitle">未命名</div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12" style="padding-left:4px; padding-right:4px; margin-top:6px; margin-bottom:6px;">
+        <div class="row">
+            <div class="col-xs-12" style="padding-left:4px; padding-right:4px; margin-top:6px; margin-bottom:6px;">
 
-            <div id="whatToDo" style="display:none;">&#9660; Set your name</div>
-            <button id="cantGo" class="btn btn-sm btn-warning" style="display:none;">Can't go</button>
-            <button id="allDone" class="btn btn-sm btn-success" style="display:none;">Done</button>
-            <button id="edit" class="btn btn-sm btn-info" style="display:none;">Edit</button>
+                <div id="whatToDo" style="display:none;">&#9660; Set your name</div>
+                <button id="cantGo" class="btn btn-sm btn-warning" style="display:none;">Can't go</button>
+                <button id="allDone" class="btn btn-sm btn-success" style="display:none;">Done</button>
+                <button id="edit" class="btn btn-sm btn-info" style="display:none;">Edit</button>
 
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-xs-3 shadow-z-2" style="padding-left:4px; padding-right:0px; ">
-            <table id="leftNames">
-                <tr>
-                    <td id="firstMonth"></td>
-                </tr>
-                <tr>
-                    <td><input type="text" id="yourName" placeholder="Your name"/>
-                </tr>
+        <div class="row">
+            <div class="col-xs-3 shadow-z-2" style="padding-left:4px; padding-right:0px; ">
+                <table id="leftNames">
+                    <tr>
+                        <td id="firstMonth"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="yourName" placeholder="你的名字"/>
+                    </tr>
 
-            </table>
-        </div>
-        <div class="col-xs-9" style="padding-left:4px; padding-right:4px;">
-            <div id="rightScroller">
-                <table id="rightDates">
-                    <tr id="dateInserter"></tr>
                 </table>
             </div>
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-8" style="">
-            <div class="" style="display:none;" id="linkMessage">
-
-
-                <div id="urlMessage"><strong>What now?</strong> Add your name and then share this page with people -
-                    Copy & paste the link into email or chat.
+            <div class="col-xs-9" style="padding-left:4px; padding-right:4px;">
+                <div id="rightScroller">
+                    <table id="rightDates">
+                        <tr id="dateInserter"></tr>
+                    </table>
                 </div>
-
-                <!-- <div style="float:right; width:10%">
-                <i class="mdi-content-clear" style="margin-top:12px; margin-left:6px; text-align:center;" id="closeIcon"></i>
-                </div> -->
-                <!-- </div> -->
 
             </div>
         </div>
-        <div class="col-xs-4" style="">
-            <button class="btn btn-sm btn-success" id="shareLink" style="">Grab link</button>
+        <div class="row">
+            <div class="col-xs-8" style="">
+                <div class="" style="display:none; padding-left:4px;" id="linkMessage">
+
+
+                    <div id="urlMessage"><strong>现在做什么？</strong> 复制本页链接或者点击“复制链接”，然后分享给朋友。收藏本页，重新进入时就可以看到朋友们的投票了～
+                    </div>
+
+                    <!-- <div style="float:right; width:10%">
+                    <i class="mdi-content-clear" style="margin-top:12px; margin-left:6px; text-align:center;" id="closeIcon"></i>
+                    </div> -->
+                    <!-- </div> -->
+
+                </div>
+            </div>
+            <div class="col-xs-4" style="padding-right:4px;">
+                <button class="btn btn-sm btn-success" id="shareLink" style="">Grab link</button>
+            </div>
         </div>
     </div>
+
 
     <a id="planALink" href="{% url 'event_scheduling:index' %}">聚吧 <strong>J</strong>vba
         {#        <small style="font-size:0.7em; color:#888888;">出品</small>#}

@@ -1,8 +1,12 @@
 import datetime
-from django.core.urlresolvers import reverse
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, Http404, JsonResponse
 import logging
+
+from django.core.urlresolvers import reverse
+
+from django.shortcuts import render, get_object_or_404
+
+from django.http import Http404, JsonResponse
+
 from event_scheduling.models import Event
 from event_scheduling.utils import init_whole_day_event
 from event_scheduling.hashids import Hashids
@@ -31,11 +35,11 @@ def create_date(request):
     return render(request, 'event_scheduling/create_date.html', context_obj)
 
 
-def get_plan(request, hashid):
-    event_primary_keys = hashids.decode(hashid)
+def get_plan(request, event_hid):
+    event_primary_keys = hashids.decode(event_hid)
     if len(event_primary_keys) >= 1:
         event = get_object_or_404(Event, pk=event_primary_keys[0])
-    return render(request, 'event_scheduling/plan_detail.html', {'event':event, 'event_hid':hashid})
+    return render(request, 'event_scheduling/plan_detail.html', {'event': event, 'event_hid': event_hid})
 
 
 def add_whole_day(request):
@@ -58,7 +62,7 @@ def add_whole_day(request):
         for date_str in date_strs:
             dates.append(datetime.datetime.strptime(date_str, "%m/%d/%Y").date())
         event_primary_key, eventusertimeslots_primary_key = init_whole_day_event(title, dates,
-                                                                                                   organizer_name)
+                                                                                 organizer_name)
         event_hashid = hashids.encode(event_primary_key)
         eventusertimeslots_hashid = hashids.encode(eventusertimeslots_primary_key)
         response_obj = {
@@ -67,5 +71,34 @@ def add_whole_day(request):
             'url': reverse("event_scheduling:fetch_plan", args=(event_hashid,))
         }
         return JsonResponse(response_obj)
+    else:
+        raise Http404("Oops, 这里啥都木有。。。")
+
+
+def get_euts_for_event(request, event_hid):
+    """
+    This receive the post request and returns eventUserTimeslots entries accordingly
+    :param request:
+    :param event_hid: hashedid of events
+    :return: return HTTP response, idealy JSON, of the eut entries
+    """
+    if request.method == 'POST' and request.is_ajax():
+        event_primary_keys = hashids.decode(event_hid)
+        if len(event_primary_keys) >= 1:
+            event_primary_key = event_primary_keys[0]
+            eut_hid = request.POST.get('eut_hid', False)
+            if (eut_hid):
+                # It is a returning user
+                eut_primary_keys = hashids.decode(event_hid)
+                if len(eut_primary_keys) >= 1:
+                    eut_primary_key = eut_primary_keys[0]
+                else:
+                    raise Http404("Oops, smart guy/gal, your localstorage seems to be changed :)")
+            else:
+                # It is a new user, I will give you all the eut informations
+                # TODO
+                return None
+        else:
+            raise Http404("Oops, 这里啥都木有。。。")
     else:
         raise Http404("Oops, 这里啥都木有。。。")
