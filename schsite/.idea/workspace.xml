@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1fe1bd6e-6364-4f45-89a4-b1a7c54e4318" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/models.py" afterPath="$PROJECT_DIR$/event_scheduling/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/plan_detail.html" afterPath="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/plan_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.js" afterPath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/utils.py" afterPath="$PROJECT_DIR$/event_scheduling/utils.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/views.py" afterPath="$PROJECT_DIR$/event_scheduling/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="1fe1bd6e-6364-4f45-89a4-b1a7c54e4318" name="Default" comment="" />
     <ignored path="schsite.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
