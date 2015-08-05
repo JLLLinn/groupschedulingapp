@@ -69,6 +69,7 @@
 
 {% block additionaljs %}
     <script>
+        var get_eut_url = "{%  url 'event_scheduling:get_euts_for_event'  event_hid %}"
         var event_hid = "{{ event_hid }}"
         var event_name =
                 "{{ event.name }}"

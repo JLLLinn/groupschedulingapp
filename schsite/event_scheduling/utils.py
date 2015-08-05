@@ -34,7 +34,31 @@ def get_euts(event_id, self_eut_id = None):
     Get eventUserTimeslots entries by event id
     :param event_id: the event id
     :param self_eut_id: if yes, then will put this entry under the "self" section of the returning array, other wise treat all of them the same
-    :return:a list
+    :return:a list, or None if cannot find and eut on that event
     """
-    return None
+    euts = EventUserTimeslots.objects.filter(event__pk=event_id)
+    normal_euts = []
+    self_euts = []
+    organizer_euts = []
+    for eut in euts:
+        eut_entry = {
+            'timeslots_id': list(eut.timeslots.values_list('pk', flat=True)),
+            'display_user_name': eut.display_user_name,
+            'is_organizer': eut.is_organizer
+        }
+        if self_eut_id and eut.pk == self_eut_id:
+            self_euts.append(eut_entry)
+        elif eut.is_organizer:
+            organizer_euts.append(eut_entry)
+        else:
+            normal_euts.append(eut_entry)
+    if len(euts) == 0:
+        return None
+    ret = {
+        'normal_euts':normal_euts,
+        'self_euts':self_euts,
+        'organizer_euts':organizer_euts
+    }
+    return ret
+
 

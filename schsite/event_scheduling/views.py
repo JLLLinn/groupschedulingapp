@@ -8,7 +8,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import Http404, JsonResponse
 
 from event_scheduling.models import Event
-from event_scheduling.utils import init_whole_day_event
+from event_scheduling.utils import init_whole_day_event, get_euts
 from event_scheduling.hashids import Hashids
 
 DATE_STR_SPLITTER = ","
@@ -86,18 +86,22 @@ def get_euts_for_event(request, event_hid):
         event_primary_keys = hashids.decode(event_hid)
         if len(event_primary_keys) >= 1:
             event_primary_key = event_primary_keys[0]
-            eut_hid = request.POST.get('eut_hid', False)
-            if (eut_hid):
+            self_eut_hid = request.POST.get('eut_hid', False)
+            if (self_eut_hid):
                 # It is a returning user
-                eut_primary_keys = hashids.decode(event_hid)
-                if len(eut_primary_keys) >= 1:
-                    eut_primary_key = eut_primary_keys[0]
+                self_eut_primary_keys = hashids.decode(self_eut_hid)
+                if len(self_eut_primary_keys) >= 1:
+                    self_eut_primary_key = self_eut_primary_keys[0]
                 else:
                     raise Http404("Oops, smart guy/gal, your localstorage seems to be changed :)")
+                    return
             else:
-                # It is a new user, I will give you all the eut informations
-                # TODO
-                return None
+                self_eut_primary_key = None
+            euts = get_euts(event_primary_key,self_eut_primary_key)
+            if euts:
+                return JsonResponse(euts)
+            else:
+                raise Http404("Oops, 没有任何时间被选择")
         else:
             raise Http404("Oops, 这里啥都木有。。。")
     else:

@@ -114,6 +114,7 @@ class EventUserTimeslots(models.Model):
     This is the model that connects the three models: User, Timeslot and Event
     """
     user = models.ForeignKey(User
+                             , blank=True
                              , null=True
                              , on_delete=models.SET_NULL
                              , related_name="related_events_timeslots")
