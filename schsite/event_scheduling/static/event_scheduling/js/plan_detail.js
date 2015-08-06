@@ -7,9 +7,14 @@ var STATE_MODE_NEW_USER_NO_STORAGE = 2;
 var STATE_MODE_USER_UNDEFINED = -1;
 
 var STATUS_EDIT = 0;
+var STATUS_ALL_DONE = 1;
+var STATUS_CANT_GO = 2;
 
+var MIN_NAME_LENGTH = 3;
 var MIN_CELL_WIDTH = 50;
 var moment_dates = [];
+
+var euts_global = [];
 var state = {
     mode: STATE_MODE_USER_UNDEFINED,
     yourName: "",
@@ -54,7 +59,7 @@ function tryRenderStatus(status_code) {
     cantGo.hide();
     done.hide();
     whatToDo.hide();
-    yourNameDisable(yourName);
+    //yourNameDisable(yourName);
     whatToDoManagement();
 
     switch (status_code) {
@@ -67,8 +72,32 @@ function tryRenderStatus(status_code) {
             }
             yourNameEnable(yourName);
             break;
+        case STATUS_CANT_GO:
+            if (state.yourName.length >= MIN_NAME_LENGTH) {
+                edit.show();
+                hideChecks();
+                yourNameDisable(yourName);
+            } else {
+                cantGo.show();
+                $("#whatToDo").fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
+
+            }
+            break;
+        case STATUS_ALL_DONE:
+            if (state.yourName.length >= MIN_NAME_LENGTH) {
+                edit.show();
+                hideChecks();
+                yourNameDisable(yourName);
+            } else {
+                done.show();
+                $("#whatToDo").fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
+
+            }
+
+            break;
         default:
             console.error("Unrecognized status_code");
+            break;
     }
 }
 
@@ -130,60 +159,39 @@ function initSelfRow(self_euts) {
 }
 function initUIHandlers() {
     $("#yourName").on("keyup", function () {
-            whatToDoManagement();
-            state.yourName = $(this).val();
-            nameUpdate($(this));
-        }
-    );
+        whatToDoManagement();
+        state.yourName = $(this).val();
+        nameUpdate($(this));
+    });
     $("#edit").on("click", function () {
-            state.status = 1;
-            //updateStateClientServer(true);
-        }
-    )
+        tryRenderStatus(STATUS_EDIT);
+    });
     $("#shareLink").on("click", function () {
-            prompt("Copy the link!", window.location.href);
-        }
-    );
+        prompt("Copy the link!", window.location.href);
+    });
     $("#allDone").on("click", function () {
-            if (state.yourName.length > 2) {
-                //state.status = 2;
-                //updateStateClientServer(true);
-            }
-            else {
-                $("#whatToDo").fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
-
-            }
-        }
-    )
+        tryRenderStatus(STATUS_ALL_DONE);
+    });
     $("#cantGo").on("click", function () {
-            if (state.yourName.length > 2) {
-                //state.status = 3;
-                //updateStateClientServer(true);
-            }
-            else {
-                $("#whatToDo").fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
-            }
-        }
-    )
+        tryRenderStatus(STATUS_CANT_GO);
+    });
     $(".datesCheck").on("click", function () {
-            if (!$(this).is(":checked")) {
-                $("#tdWithCheckdate_" + $(this).attr("dateNumber")).removeClass("tdDateChecked");
-                $("#tdWithCheckdate_" + $(this).attr("dateNumber")).addClass("tdDateNo");
-            } else {
-                $("#tdWithCheckdate_" + $(this).attr("dateNumber")).addClass("tdDateChecked");
-                $("#tdWithCheckdate_" + $(this).attr("dateNumber")).removeClass("tdDateNo");
-            }
-            calcWinner();
-            collateChecks();
-            console.log(state.yesDates);
-            whatToDoManagement();
-            //updateStateClientServer(true);
+        if (!$(this).is(":checked")) {
+            $("#tdWithCheckdate_" + $(this).attr("dateNumber")).removeClass("tdDateChecked");
+            $("#tdWithCheckdate_" + $(this).attr("dateNumber")).addClass("tdDateNo");
+        } else {
+            $("#tdWithCheckdate_" + $(this).attr("dateNumber")).addClass("tdDateChecked");
+            $("#tdWithCheckdate_" + $(this).attr("dateNumber")).removeClass("tdDateNo");
         }
-    );
+        calcWinner();
+        collateChecks();
+        //console.log(state.yesDates);
+        whatToDoManagement();
+        tryRenderStatus(STATUS_EDIT);
+    });
     $("#planALink").on("click", function () {
-            window.open("http://" + location.host);
-        }
-    );
+        window.open("http://" + location.host);
+    });
 }
 /*
  This function runs through the self row and set the yesDates
@@ -198,7 +206,7 @@ function collateChecks() {
 }
 
 function nameUpdate(nameEl) {
-    if (state.yourName.length > 2) {
+    if (state.yourName.length >= MIN_NAME_LENGTH) {
         if (nameEl.val() == "") {
             nameEl.val(state.yourName);
         }
@@ -251,9 +259,6 @@ function collateChecks() {
             $("#tdWithCheckdate_" + $(this).attr("dateNumber")).addClass("tdDateChecked");
         }
     );
-
-}
-function renderDynamics(status) {
 
 }
 function calcWinner() {
@@ -340,6 +345,7 @@ function initEuts() {
         obj['eut_hid'] = state.eut_hid;
     }
     $.post(get_eut_url, obj, function (euts) {
+        euts_global = euts;
         initEutRows(euts);
         $.material.init();
         initUIHandlers();
@@ -385,7 +391,8 @@ function initDatesLayout() {
 
         }
     }
-    $("#rightDates").prepend(cols);
+    var $rightDates = $("#rightDates");
+    $rightDates.prepend(cols);
     for (i = 0; i < moment_dates.length; i++) {
         //add month header seperator
 
@@ -415,30 +422,34 @@ function initDatesLayout() {
         tr += "<td style='text-align:center;' class='tdDate thisUserCheck' id='tdWithCheckdate_" + dates[i]['timeslot_key'] + "'><div class='checkbox'><label><input type='checkbox' class='datesCheck' dateNumber='" + dates[i]['timeslot_key'] + "'/></label></div></td>";
     }
     tr += "</tr>";
-    $("#rightDates").append(tr);
+    $rightDates.append(tr);
 
 
     var tdWidth = $(".tdDate").last().width();
     if (tdWidth < MIN_CELL_WIDTH) {
-        $("#rightScroller").css("width", "100%");
-        $("#rightScroller").css("overflow-x", "scroll");
+        var $rightScroller=$("#rightScroller");
+        $rightScroller.css("width", "100%");
+        $rightScroller.css("overflow-x", "scroll");
 
         var newWidther = moment_dates.length * MIN_CELL_WIDTH;
-        $("#rightDates").css("width", newWidther + "px");
+        $rightDates.css("width", newWidther + "px");
     }
 
 }
 function whatToDoManagement() {
     var whatToDo = $("#whatToDo");
-     if (state.yourName.length <= 2){
-         whatToDo.text("input your name");
-         whatToDo.show();
-     } else if(state.yesDates.length == 0){
-         whatToDo.text("select dates or choose can't go");
-         whatToDo.show();
-     } else {
-          whatToDo.hide();
-     }
+    if(state.yourName.length == 0){
+        whatToDo.text("▼ 输入名字");
+        whatToDo.show();
+    } else if (!(state.yourName.length >= MIN_NAME_LENGTH)) {
+        whatToDo.text("▼ 名字长度需要大于"+MIN_NAME_LENGTH.toString());
+        whatToDo.show();
+    } else if (state.yesDates.length == 0) {
+        whatToDo.text("▼ 选择日期或选择不能去");
+        whatToDo.show();
+    } else {
+        whatToDo.hide();
+    }
 }
 function showLoader() {
     indeterminateProgress.start();
