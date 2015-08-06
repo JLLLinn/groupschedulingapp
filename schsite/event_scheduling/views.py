@@ -1,19 +1,21 @@
 import datetime
+import json
 import logging
 
 from django.core.urlresolvers import reverse
 
 from django.shortcuts import render, get_object_or_404
 
-from django.http import Http404, JsonResponse
+from django.http import Http404, JsonResponse, HttpResponse
 
 from event_scheduling.models import Event
-from event_scheduling.utils import init_whole_day_event, get_euts
+from event_scheduling.utils import init_whole_day_event, get_euts, save_eut_to_model
 from event_scheduling.hashids import Hashids
 
 DATE_STR_SPLITTER = ","
-MAX_TITLE_LENGTH = 40;
-MIN_TITLE_LENGTH = 3;
+MAX_TITLE_LENGTH = 40
+MIN_TITLE_LENGTH = 3
+MIN_NAME_LENGTH = 2
 SALT = "jiaxin_event_scheduling"
 
 logger = logging.getLogger(__name__)
@@ -30,6 +32,7 @@ def create_date(request):
         "DATE_STR_SPLITTER": DATE_STR_SPLITTER,
         "MAX_TITLE_LENGTH": MAX_TITLE_LENGTH,
         "MIN_TITLE_LENGTH": MIN_TITLE_LENGTH,
+        "MIN_NAME_LENGTH": MIN_NAME_LENGTH,
 
     }
     return render(request, 'event_scheduling/create_date.html', context_obj)
@@ -39,7 +42,16 @@ def get_plan(request, event_hid):
     event_primary_keys = hashids.decode(event_hid)
     if len(event_primary_keys) >= 1:
         event = get_object_or_404(Event, pk=event_primary_keys[0])
-    return render(request, 'event_scheduling/plan_detail.html', {'event': event, 'event_hid': event_hid})
+        context_obj = {
+            "event": event,
+            "event_hid": event_hid,
+            "MIN_NAME_LENGTH": MIN_NAME_LENGTH,
+            "MIN_CELL_WIDTH": 80,
+
+        }
+        return render(request, 'event_scheduling/plan_detail.html', context_obj)
+    else:
+        raise Http404("Oops, 这里啥都木有。。。")
 
 
 def add_whole_day(request):
@@ -56,7 +68,6 @@ def add_whole_day(request):
         organizer_name = request.POST.get('organizer_name', False)
         if not (title and date_raw_post and organizer_name):
             raise Http404("Oops, 这里啥都木有。。。")
-            return
         date_strs = date_raw_post.split(DATE_STR_SPLITTER)
         dates = []
         for date_str in date_strs:
@@ -75,29 +86,52 @@ def add_whole_day(request):
         raise Http404("Oops, 这里啥都木有。。。")
 
 
+def save_eut(request):
+    if request.method == 'POST' and request.is_ajax():
+        eut_hid = request.POST.get('eut_hid', False)
+        timeslots = request.POST.get('timeslots', False)
+        display_user_name = request.POST.get('display_user_name', False)
+        event_hid = request.POST.get('event_hid', False)
+        is_organizer = request.POST.get('is_organizer', False)
+
+        timeslots = json.loads(timeslots) if timeslots else []
+        eut_pk = hashids.decode(eut_hid)[0] if eut_hid else False
+        event_pk = hashids.decode(event_hid)[0] if event_hid else False
+
+        print(is_organizer)
+        print(type(is_organizer))
+        eut_id = save_eut_to_model(display_user_name, timeslots, event_pk, is_organizer, eut_pk=eut_pk)
+        if eut_id:
+            return HttpResponse(hashids.encode(eut_id))
+        else:
+            raise Http404("Failed")
+    else:
+        raise Http404("Oops, 这里啥都木有。。。")
+
+
 def get_euts_for_event(request, event_hid):
     """
     This receive the post request and returns eventUserTimeslots entries accordingly
     :param request:
-    :param event_hid: hashedid of events
-    :return: return HTTP response, idealy JSON, of the eut entries
+    :param event_hid: hashed id of events
+    :return: return HTTP response, ideally JSON, of the eut entries
     """
     if request.method == 'POST' and request.is_ajax():
         event_primary_keys = hashids.decode(event_hid)
         if len(event_primary_keys) >= 1:
             event_primary_key = event_primary_keys[0]
             self_eut_hid = request.POST.get('eut_hid', False)
-            if (self_eut_hid):
+            if self_eut_hid:
                 # It is a returning user
                 self_eut_primary_keys = hashids.decode(self_eut_hid)
                 if len(self_eut_primary_keys) >= 1:
                     self_eut_primary_key = self_eut_primary_keys[0]
                 else:
-                    raise Http404("Oops, smart guy/gal, your localstorage seems to be changed :)")
-                    return
+                    raise Http404(
+                        "Oops, smart guy/gal, your localstorage seems to be changed :) <br> Well,you can choose to delete that row and proceed or restore what you changed :P ")
             else:
                 self_eut_primary_key = None
-            euts = get_euts(event_primary_key,self_eut_primary_key)
+            euts = get_euts(event_primary_key, self_eut_primary_key)
             if euts:
                 return JsonResponse(euts)
             else:

@@ -10,8 +10,8 @@ var STATUS_EDIT = 0;
 var STATUS_ALL_DONE = 1;
 var STATUS_CANT_GO = 2;
 
-var MIN_NAME_LENGTH = 3;
-var MIN_CELL_WIDTH = 50;
+
+
 var moment_dates = [];
 
 var euts_global = [];
@@ -27,7 +27,7 @@ $(function () {
         template: 3,
         parent: '#loaderDiv'// this option will insert bar HTML into this parent Element
     });
-    //showLoader();
+    showLoader();
     init();
 
 });
@@ -48,7 +48,10 @@ function init() {
     initEuts();
 
 }
-
+/*
+ Try to render the UI based on the status code given
+ Return true if successful, else false
+ */
 function tryRenderStatus(status_code) {
     var cantGo = $("#cantGo");
     var edit = $("#edit");
@@ -61,7 +64,7 @@ function tryRenderStatus(status_code) {
     whatToDo.hide();
     //yourNameDisable(yourName);
     whatToDoManagement();
-
+    var ret = false;
     switch (status_code) {
         case STATUS_EDIT:
             showChecks();
@@ -71,15 +74,19 @@ function tryRenderStatus(status_code) {
                 done.show();
             }
             yourNameEnable(yourName);
+            ret = true;
             break;
         case STATUS_CANT_GO:
             if (state.yourName.length >= MIN_NAME_LENGTH) {
+                whatToDo.hide();//because it will show up there to ask you add days
                 edit.show();
                 hideChecks();
                 yourNameDisable(yourName);
+                ret = true;
             } else {
                 cantGo.show();
                 $("#whatToDo").fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
+                ret = false;
 
             }
             break;
@@ -88,17 +95,20 @@ function tryRenderStatus(status_code) {
                 edit.show();
                 hideChecks();
                 yourNameDisable(yourName);
+                ret = true;
             } else {
                 done.show();
                 $("#whatToDo").fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
-
+                ret = false;
             }
 
             break;
         default:
             console.error("Unrecognized status_code");
+            ret = false;
             break;
     }
+    return ret;
 }
 
 function hideChecks() {
@@ -141,17 +151,17 @@ function yourNameEnable(yourName) {
 function initSelfRow(self_euts) {
     $(".thisUserCheck").addClass("tdDateNo");
     if (self_euts.length > 0) {
-        self_eut = self_euts[0];
+        state.mode = STATE_MODE_RETURN_NORMAL_USER;
+        var self_eut = self_euts[0];
         state.yourName = self_eut['display_user_name'];
         state.yesDates = self_eut['timeslots_id'];
+        state.is_organizer = self_eut['is_organizer'];
         nameUpdate($("#yourName"));
-        if (state.mode == STATE_MODE_RETURN_NORMAL_USER) {
-            var self_eut_timeslots_ids = self_eut['timeslots_id'];
-            for (i = 0; i < self_eut_timeslots_ids.length; i++) {
-                $(".datesCheck[dateNumber=" + self_eut_timeslots_ids[i] + "]").prop("checked", true);
-                $("#tdWithCheckdate_" + self_eut_timeslots_ids[i]).removeClass("tdDateNo");
-                $("#tdWithCheckdate_" + self_eut_timeslots_ids[i]).addClass("tdDateChecked");
-            }
+        var self_eut_timeslots_ids = self_eut['timeslots_id'];
+        for (var i = 0; i < self_eut_timeslots_ids.length; i++) {
+            $(".datesCheck[dateNumber=" + self_eut_timeslots_ids[i] + "]").prop("checked", true);
+            $("#tdWithCheckdate_" + self_eut_timeslots_ids[i]).removeClass("tdDateNo");
+            $("#tdWithCheckdate_" + self_eut_timeslots_ids[i]).addClass("tdDateChecked");
         }
     } else {
         state.mode = STATE_MODE_NEW_USER;
@@ -164,16 +174,23 @@ function initUIHandlers() {
         nameUpdate($(this));
     });
     $("#edit").on("click", function () {
-        tryRenderStatus(STATUS_EDIT);
+        if (tryRenderStatus(STATUS_EDIT)) {
+            submitSelfStateToServer();
+        }
     });
     $("#shareLink").on("click", function () {
         prompt("Copy the link!", window.location.href);
     });
     $("#allDone").on("click", function () {
-        tryRenderStatus(STATUS_ALL_DONE);
+        if (tryRenderStatus(STATUS_ALL_DONE)) {
+            submitSelfStateToServer();
+        }
+
+
     });
     $("#cantGo").on("click", function () {
         tryRenderStatus(STATUS_CANT_GO);
+        submitSelfStateToServer();
     });
     $(".datesCheck").on("click", function () {
         if (!$(this).is(":checked")) {
@@ -193,6 +210,39 @@ function initUIHandlers() {
         window.open("http://" + location.host);
     });
 }
+
+function submitSelfStateToServer() {
+    //fetch the eut_hid from the self_eut
+    showLoader();
+    var obj = {
+        'timeslots': JSON.stringify(state.yesDates),
+        'display_user_name': state.yourName,
+        'event_hid': event_hid,
+    };
+    if ((state.mode == STATE_MODE_NEW_USER) || (state.mode == STATE_MODE_NEW_USER_NO_STORAGE)) {
+        //create a new user
+        obj['is_organizer'] = false;
+    } else if (state.mode == STATE_MODE_RETURN_NORMAL_USER) {
+        //update an existing user
+        obj['eut_hid'] = state.eut_hid;
+        obj['is_organizer'] = state.is_organizer;
+    } else if (state.mode == STATE_MODE_USER_UNDEFINED) {
+        console.log("undefined state, do not post");
+        return;
+    } else {
+        console.error("Unrecognized state, do not post")
+        return;
+    }
+    $.post(save_eut_url, obj, function (response) {
+        console.log(response);
+        if (state.mode == STATE_MODE_NEW_USER) {
+            localStorage.setItem(event_hid, response);
+        }
+        endLoader();
+    });
+
+}
+
 /*
  This function runs through the self row and set the yesDates
  */
@@ -247,20 +297,20 @@ function initOthersRows(eut) {
     calcWinner();
 }
 
-function collateChecks() {
-    state.yesDates = [];
-    $(".datesCheck").each(function (i) {
-            $("#tdWithCheckdate_" + $(this).attr("dateNumber")).removeClass("tdDateChecked");
-            //    console.log(    $("#tdWithCheckdate_" + $(this).attr("dateNumber")).addClass("tdDateNo"));
-        }
-    );
-    $(".datesCheck:checked").each(function (i) {
-            state.yesDates.push($(this).attr("dateNumber"));
-            $("#tdWithCheckdate_" + $(this).attr("dateNumber")).addClass("tdDateChecked");
-        }
-    );
+/*function collateChecks() {
+ state.yesDates = [];
+ $(".datesCheck").each(function (i) {
+ $("#tdWithCheckdate_" + $(this).attr("dateNumber")).removeClass("tdDateChecked");
+ //    console.log(    $("#tdWithCheckdate_" + $(this).attr("dateNumber")).addClass("tdDateNo"));
+ }
+ );
+ $(".datesCheck:checked").each(function (i) {
+ state.yesDates.push($(this).attr("dateNumber"));
+ $("#tdWithCheckdate_" + $(this).attr("dateNumber")).addClass("tdDateChecked");
+ }
+ );
 
-}
+ }*/
 function calcWinner() {
     var trScores = [];
     $("#rightDates").find('tr').each(function (i, el) {
@@ -349,7 +399,8 @@ function initEuts() {
         initEutRows(euts);
         $.material.init();
         initUIHandlers();
-        tryRenderStatus(STATUS_EDIT);
+        tryRenderStatus(STATUS_CANT_GO);//Instead of all done status, this is actually only for not showing the whattodo reminder
+        endLoader();
     }, 'json')
 }
 function initMoment() {
@@ -427,7 +478,7 @@ function initDatesLayout() {
 
     var tdWidth = $(".tdDate").last().width();
     if (tdWidth < MIN_CELL_WIDTH) {
-        var $rightScroller=$("#rightScroller");
+        var $rightScroller = $("#rightScroller");
         $rightScroller.css("width", "100%");
         $rightScroller.css("overflow-x", "scroll");
 
@@ -438,11 +489,11 @@ function initDatesLayout() {
 }
 function whatToDoManagement() {
     var whatToDo = $("#whatToDo");
-    if(state.yourName.length == 0){
+    if (state.yourName.length == 0) {
         whatToDo.text("▼ 输入名字");
         whatToDo.show();
     } else if (!(state.yourName.length >= MIN_NAME_LENGTH)) {
-        whatToDo.text("▼ 名字长度需要大于"+MIN_NAME_LENGTH.toString());
+        whatToDo.text("▼ 名字长度需要大于" + MIN_NAME_LENGTH.toString());
         whatToDo.show();
     } else if (state.yesDates.length == 0) {
         whatToDo.text("▼ 选择日期或选择不能去");

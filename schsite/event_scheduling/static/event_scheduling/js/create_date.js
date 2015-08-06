@@ -90,18 +90,19 @@ function ajaxSubmitForm() {
     showLoader();
 
     var title = $('#eventTitleCreate').val();
-    var organizer_name = $('#organizerNameCreate').val()
+    var organizer_name = $('#organizerNameCreate').val();
     var obj = {
         "event_title": title,
         "dates": dates,
-        "organizer_name": organizer_name,
+        "organizer_name": organizer_name
 
-    }
+    };
     $.post(add_whole_day_url, obj, function (data) {
-        console.log(data)
+        console.log(data);
         if (typeof(Storage) !== "undefined") {
             localStorage.setItem(data['event_hashid'], data['eventusertimeslots_hashid']);
         }
+        window.location.href = data['url'];
         endLoader();
     }, 'json')
 }
@@ -137,7 +138,7 @@ function checkState() {
             titleProblems = true;
         } else {
             var name_length = $("#organizerNameCreate").val().length;
-            if (name_length <= 0) {
+            if (name_length <= MIN_NAME_LENGTH) {
                 message = "◥ 您将显示给朋友的名字";
                 nameProblems = true;
             }
@@ -172,7 +173,6 @@ function checkState() {
 }
 //function localStorageInit() {
 //    getNewData();
-//    //TODO, get a new user id and event id and save here
 //}
 
 //function getNewData() {

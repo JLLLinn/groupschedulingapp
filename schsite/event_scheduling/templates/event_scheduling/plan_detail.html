@@ -19,7 +19,7 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-3 shadow-z-2" style="padding-left:4px; padding-right:0px; ">
+            <div class="col-xs-3 shadow-z-2" style="padding-left:4px; padding-right:0; ">
                 <table id="leftNames">
                     <tr>
                         <td id="firstMonth"></td>
@@ -69,10 +69,13 @@
 
 {% block additionaljs %}
     <script>
-        var get_eut_url = "{%  url 'event_scheduling:get_euts_for_event'  event_hid %}"
-        var event_hid = "{{ event_hid }}"
+        var get_eut_url = "{%  url 'event_scheduling:get_euts_for_event'  event_hid %}";
+        var save_eut_url = "{% url 'event_scheduling:save_eut' %}";
+        var event_hid = "{{ event_hid }}";
+        var MIN_NAME_LENGTH = {{ MIN_NAME_LENGTH }};
+        var MIN_CELL_WIDTH = {{ MIN_CELL_WIDTH }};
         var event_name =
-                "{{ event.name }}"
+                "{{ event.name }}";
         var dates = [
             {% for timeslot in event.get_timeslots_ordered %}
                 {
