@@ -19,7 +19,7 @@ var state = {
     mode: STATE_MODE_USER_UNDEFINED,
     yourName: "",
     yesDates: []
-}
+};
 
 var indeterminateProgress;
 $(function () {
@@ -85,7 +85,7 @@ function tryRenderStatus(status_code) {
                 ret = true;
             } else {
                 cantGo.show();
-                $("#whatToDo").fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
+                blinkSomething(whatToDo);
                 ret = false;
 
             }
@@ -98,7 +98,7 @@ function tryRenderStatus(status_code) {
                 ret = true;
             } else {
                 done.show();
-                $("#whatToDo").fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
+                blinkSomething(whatToDo);
                 ret = false;
             }
 
@@ -123,7 +123,7 @@ function hideChecks() {
 function renderIcons() {
     var yesIcon = "<i class='mdi-action-done selfIcons tdIcon'></i>";
     var noIcon = "<i class='mdi-content-clear selfIcons tdIcon'></i>";
-    $(".thisUserCheck").each(function (i) {
+    $(".thisUserCheck").each(function () {
         if ($(this).hasClass("tdDateNo")) {
             $(this).append(noIcon);
         }
@@ -160,8 +160,9 @@ function initSelfRow(self_euts) {
         var self_eut_timeslots_ids = self_eut['timeslots_id'];
         for (var i = 0; i < self_eut_timeslots_ids.length; i++) {
             $(".datesCheck[dateNumber=" + self_eut_timeslots_ids[i] + "]").prop("checked", true);
-            $("#tdWithCheckdate_" + self_eut_timeslots_ids[i]).removeClass("tdDateNo");
-            $("#tdWithCheckdate_" + self_eut_timeslots_ids[i]).addClass("tdDateChecked");
+            var $td = $("#tdWithCheckdate_" + self_eut_timeslots_ids[i]);
+            $td.removeClass("tdDateNo");
+            $td.addClass("tdDateChecked");
         }
     } else {
         state.mode = STATE_MODE_NEW_USER;
@@ -179,7 +180,7 @@ function initUIHandlers() {
         }
     });
     $("#shareLink").on("click", function () {
-        prompt("Copy the link!", window.location.href);
+        prompt("复制链接八～", window.location.href);
     });
     $("#allDone").on("click", function () {
         if (tryRenderStatus(STATUS_ALL_DONE)) {
@@ -193,12 +194,13 @@ function initUIHandlers() {
         submitSelfStateToServer();
     });
     $(".datesCheck").on("click", function () {
+        var $td = $("#tdWithCheckdate_" + $(this).attr("dateNumber"));
         if (!$(this).is(":checked")) {
-            $("#tdWithCheckdate_" + $(this).attr("dateNumber")).removeClass("tdDateChecked");
-            $("#tdWithCheckdate_" + $(this).attr("dateNumber")).addClass("tdDateNo");
+            $td.removeClass("tdDateChecked");
+            $td.addClass("tdDateNo");
         } else {
-            $("#tdWithCheckdate_" + $(this).attr("dateNumber")).addClass("tdDateChecked");
-            $("#tdWithCheckdate_" + $(this).attr("dateNumber")).removeClass("tdDateNo");
+            $td.addClass("tdDateChecked");
+            $td.removeClass("tdDateNo");
         }
         calcWinner();
         collateChecks();
@@ -217,7 +219,7 @@ function submitSelfStateToServer() {
     var obj = {
         'timeslots': JSON.stringify(state.yesDates),
         'display_user_name': state.yourName,
-        'event_hid': event_hid,
+        'event_hid': event_hid
     };
     if ((state.mode == STATE_MODE_NEW_USER) || (state.mode == STATE_MODE_NEW_USER_NO_STORAGE)) {
         //create a new user
@@ -230,7 +232,7 @@ function submitSelfStateToServer() {
         console.log("undefined state, do not post");
         return;
     } else {
-        console.error("Unrecognized state, do not post")
+        console.error("Unrecognized state, do not post");
         return;
     }
     $.post(save_eut_url, obj, function (response) {
@@ -248,7 +250,7 @@ function submitSelfStateToServer() {
  */
 function collateChecks() {
     state.yesDates = [];
-    $(".datesCheck:checked").each(function (i) {
+    $(".datesCheck:checked").each(function () {
             state.yesDates.push($(this).attr("dateNumber"));
         }
     );
@@ -294,7 +296,6 @@ function initOthersRows(eut) {
     }
     tr += "</tr>";
     $("#rightDates").append(tr);
-    calcWinner();
 }
 
 /*function collateChecks() {
@@ -350,8 +351,6 @@ function calcWinner() {
 
     }
 
-    var i = wCount.indexOf(Math.max.apply(Math, wCount));
-
     var maxIndexes = arrayAllMaxIndexes(wCount);
 
     $("col").removeClass("highestCol");
@@ -400,6 +399,7 @@ function initEuts() {
         $.material.init();
         initUIHandlers();
         tryRenderStatus(STATUS_CANT_GO);//Instead of all done status, this is actually only for not showing the whattodo reminder
+        calcWinner();
         endLoader();
     }, 'json')
 }
@@ -446,17 +446,17 @@ function initDatesLayout() {
     $rightDates.prepend(cols);
     for (i = 0; i < moment_dates.length; i++) {
         //add month header seperator
-
+        var $dateInserter = $("#dateInserter");
         if (i > 0) {
             if (moment_dates[i].month() != moment_dates[i - 1].month()) {
                 //new month
                 var newMonth = moment_dates[i].format("MMMM") + "<br/>" + moment_dates[i].format("YYYY");
-                $("#dateInserter").append("<td class='monthSeperator'>" + newMonth + "</td>");
+                $dateInserter.append("<td class='monthSeperator'>" + newMonth + "</td>");
             }
 
         }
         var ms = moment_dates[i].format("ddd") + "<br/>" + moment_dates[i].format("Do");
-        $("#dateInserter").append("<td>" + ms + "</td>");
+        $dateInserter.append("<td>" + ms + "</td>");
     }
 
     var tr = "<tr>";
@@ -477,13 +477,22 @@ function initDatesLayout() {
 
 
     var tdWidth = $(".tdDate").last().width();
-    if (tdWidth < MIN_CELL_WIDTH) {
+    console.log("tdWidth:"+tdWidth);
+    /*if (tdWidth < (MIN_CELL_WIDTH+20)) {
+        console.log("Stretch Mode");
         var $rightScroller = $("#rightScroller");
         $rightScroller.css("width", "100%");
         $rightScroller.css("overflow-x", "scroll");
 
-        var newWidther = moment_dates.length * MIN_CELL_WIDTH;
+        var newWidther = moment_dates.length * (MIN_CELL_WIDTH+20);
         $rightDates.css("width", newWidther + "px");
+    }*/
+    if (tdWidth <= MIN_CELL_WIDTH) {
+        console.log("Stretch Mode");
+        //should show indicator here
+        var $rightScroller = $("#rightScroller");
+        $rightScroller.css("width", "100%");
+        $rightScroller.css("overflow-x", "scroll");
     }
 
 }
@@ -493,7 +502,7 @@ function whatToDoManagement() {
         whatToDo.text("▼ 输入名字");
         whatToDo.show();
     } else if (!(state.yourName.length >= MIN_NAME_LENGTH)) {
-        whatToDo.text("▼ 名字长度需要大于" + MIN_NAME_LENGTH.toString());
+        whatToDo.text("▼ 名字长度需要大于 " + MIN_NAME_LENGTH.toString());
         whatToDo.show();
     } else if (state.yesDates.length == 0) {
         whatToDo.text("▼ 选择日期或选择不能去");
@@ -508,4 +517,8 @@ function showLoader() {
 
 function endLoader() {
     indeterminateProgress.end();
+}
+
+function blinkSomething($el) {
+    $el.velocity("fadeIn", {duration: 200}).velocity("fadeOut", {duration: 200}).velocity("fadeIn", {duration: 200}).velocity("fadeOut", {duration: 200}).velocity("fadeIn", {duration: 200});
 }

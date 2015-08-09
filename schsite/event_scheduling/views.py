@@ -13,6 +13,7 @@ from event_scheduling.utils import init_whole_day_event, get_euts, save_eut_to_m
 from event_scheduling.hashids import Hashids
 
 DATE_STR_SPLITTER = ","
+MIN_CELL_WIDTH = 50
 MAX_TITLE_LENGTH = 40
 MIN_TITLE_LENGTH = 3
 MIN_NAME_LENGTH = 2
@@ -46,7 +47,7 @@ def get_plan(request, event_hid):
             "event": event,
             "event_hid": event_hid,
             "MIN_NAME_LENGTH": MIN_NAME_LENGTH,
-            "MIN_CELL_WIDTH": 80,
+            "MIN_CELL_WIDTH": MIN_CELL_WIDTH,
 
         }
         return render(request, 'event_scheduling/plan_detail.html', context_obj)

@@ -35,10 +35,12 @@ function init() {
             }
         }
     });
+    checkState();
 }
 var initEventTitle = function () {
     var $eventTitleCreate_id = $("#eventTitleCreate");
-    $eventTitleCreate_id.fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
+    blinkSomething($eventTitleCreate_id);
+    //$eventTitleCreate_id.fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
     $eventTitleCreate_id.on("keyup", function () {
         checkState();
         if ($(this).val().length >= MIN_TITLE_LENGTH) {
@@ -78,8 +80,6 @@ function initDatePicker() {
     }).on("changeDate", function (e) {
         dates = $("#datepicker").datepicker('getFormattedDate');
         date_selected_count = e.dates.length;
-
-        //updateDatesCount(e.dates); //THis could possibly be disabled
         checkState();
     });
 
@@ -120,79 +120,48 @@ function checkState() {
     var dateProblems = false;
     var nameProblems = false;
     var message = "";
-    if (date_selected_count <= 0) {
+    var title_length = $("#eventTitleCreate").val().length;
+    if (title_length <= 0) {
+        message = "▲ 取个名字";
+        titleProblems = true;
+    }
+    else if (title_length < MIN_TITLE_LENGTH) {
+        message = "▲ 名字有点儿短。。";
+        titleProblems = true;
+    }
+    else if (title_length >= MAX_TITLE_LENGTH) {
+        message = "▲ 名字太长了。。";
+        titleProblems = true;
+    } else if ($("#organizerNameCreate").val().length <= MIN_NAME_LENGTH) {
+        message = "◥ 您将显示给朋友的名字";
+        nameProblems = true;
+
+    } else if (date_selected_count <= 0) {
         message = "▼ 选择天数";
         dateProblems = true;
-    } else {
-        var title_length = $("#eventTitleCreate").val().length;
-        if (title_length <= 0) {
-            message = "▲ 取个名字";
-            titleProblems = true;
-        }
-        else if (title_length < MIN_TITLE_LENGTH) {
-            message = "▲ 名字有点儿短。。";
-            titleProblems = true;
-        }
-        else if (title_length >= MAX_TITLE_LENGTH) {
-            message = "▲ 名字太长了。。";
-            titleProblems = true;
-        } else {
-            var name_length = $("#organizerNameCreate").val().length;
-            if (name_length <= MIN_NAME_LENGTH) {
-                message = "◥ 您将显示给朋友的名字";
-                nameProblems = true;
-            }
-        }
     }
+
 
     var allDoneCreate_id = $("#allDoneCreate");
     if ((titleProblems) || (dateProblems) || (nameProblems)) {
-        $("#whatToDo").text(message);
+        var $whatToDo = $("#whatToDo");
+        $whatToDo.text(message);
         allDoneCreate_id.off();
-        allDoneCreate_id.prop("disabled", true);
+        //allDoneCreate_id.prop("disabled", true);
+        allDoneCreate_id.on("click", function () {
+            blinkSomething($whatToDo);
+        });
     } else if ((!titleProblems) && (!dateProblems)) {
         // $("#whatToDo").html("&#9654; Tap next when done");
         $("#whatToDo").text("选择了 " + date_selected_count + " 天");
-        //$("#whatToDo").hide();
-        //$("#eventUrl").show();
         allDoneCreate_id.prop("disabled", false);
         allDoneCreate_id.off();
         allDoneCreate_id.on("click", function () {
             ajaxSubmitForm();
-            //doSave(plan_id);
-            //$("#eventUrl").show();
-            //  $(this).hide();
-            //  $("#whatToDo").hide();
         });
-        //doSave(plan_id);
     }
-//else {
-//    $("#whatToDo").show();
-//    //  $("#eventUrl").hide();
-//}
 }
-//function localStorageInit() {
-//    getNewData();
-//}
 
-//function getNewData() {
-//    $.getJSON("/new", function (data) {
-//        if (data.user_id) {
-//            localStorage.setItem("planAuserId", data.user_id);
-//            var plans = [];
-//            plans[0] = data.plan_id;
-//            localStorage.setItem("planAplans", JSON.stringify(plans));
-//            initPlan(data.plan_id);
-//        }
-//    });
-//}
-//function updateDatesCount(dates) {
-//    if (dates.length > 0) {
-//        $("#dateCount").text("选择了 " + dates.length + " 天");
-//        $("#pickerHeader").css("backgroundColor", "#4caf50");
-//    } else {
-//        $("#dateCount").text("尚未选择");
-//        $("#pickerHeader").css("backgroundColor", "#f44336");
-//
-//    }
-//}
+function blinkSomething($el) {
+    $el.velocity("fadeIn", {duration: 200}).velocity("fadeOut", {duration: 200}).velocity("fadeIn", {duration: 200}).velocity("fadeOut", {duration: 200}).velocity("fadeIn", {duration: 200});
+}
