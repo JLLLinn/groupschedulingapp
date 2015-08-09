@@ -11,6 +11,7 @@ from django.http import Http404, JsonResponse, HttpResponse
 from event_scheduling.models import Event
 from event_scheduling.utils import init_whole_day_event, get_euts, save_eut_to_model
 from event_scheduling.hashids import Hashids
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 DATE_STR_SPLITTER = ","
 MIN_CELL_WIDTH = 50
@@ -27,6 +28,7 @@ hashids = Hashids(salt=SALT)
 def index(request):
     return render(request, 'event_scheduling/index.html')
 
+
 @ensure_csrf_cookie
 def create_date(request):
     context_obj = {
@@ -37,6 +39,7 @@ def create_date(request):
 
     }
     return render(request, 'event_scheduling/create_date.html', context_obj)
+
 
 @ensure_csrf_cookie
 def get_plan(request, event_hid):
