@@ -27,7 +27,7 @@ hashids = Hashids(salt=SALT)
 def index(request):
     return render(request, 'event_scheduling/index.html')
 
-
+@ensure_csrf_cookie
 def create_date(request):
     context_obj = {
         "DATE_STR_SPLITTER": DATE_STR_SPLITTER,
@@ -38,7 +38,7 @@ def create_date(request):
     }
     return render(request, 'event_scheduling/create_date.html', context_obj)
 
-
+@ensure_csrf_cookie
 def get_plan(request, event_hid):
     event_primary_keys = hashids.decode(event_hid)
     if len(event_primary_keys) >= 1:
