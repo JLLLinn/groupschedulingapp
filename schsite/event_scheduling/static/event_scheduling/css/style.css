@@ -215,3 +215,6 @@ col:nth-child(2n+3) {background: #F5F5F5;}
   font-size:1em;
   padding:3px;
 }
+input.datesCheck + *{
+    pointer-events: none;
+}

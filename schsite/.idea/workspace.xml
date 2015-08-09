@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1fe1bd6e-6364-4f45-89a4-b1a7c54e4318" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/create_date.js" afterPath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/create_date.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.js" afterPath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/css/style.css" afterPath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="schsite.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,11 +40,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="plan_detail.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="plan_detail.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.0">
-              <caret line="516" column="31" selection-start-line="516" selection-start-column="31" selection-end-line="516" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.93582886">
+              <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -53,8 +53,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="150" column="16" selection-start-line="150" selection-start-column="16" selection-end-line="150" selection-end-column="16" />
+            <state vertical-scroll-proportion="-120.55556">
+              <caret line="217" column="17" selection-start-line="217" selection-start-column="17" selection-end-line="217" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -96,10 +96,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="create_date.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="create_date.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/create_date.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38680926">
+            <state vertical-scroll-proportion="-9.111111">
               <caret line="111" column="33" selection-start-line="111" selection-start-column="33" selection-end-line="111" selection-end-column="33" />
               <folding />
             </state>
@@ -174,12 +174,12 @@
         <option value="$PROJECT_DIR$/event_scheduling/urls.py" />
         <option value="$PROJECT_DIR$/event_scheduling/utils.py" />
         <option value="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/plan_detail.html" />
-        <option value="$PROJECT_DIR$/event_scheduling/static/event_scheduling/css/style.css" />
         <option value="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/base_site.html" />
         <option value="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/create_date.html" />
         <option value="$PROJECT_DIR$/event_scheduling/views.py" />
-        <option value="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.js" />
         <option value="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/create_date.js" />
+        <option value="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.js" />
+        <option value="$PROJECT_DIR$/event_scheduling/static/event_scheduling/css/style.css" />
       </list>
     </option>
   </component>
@@ -1045,14 +1045,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="150" column="16" selection-start-line="150" selection-start-column="16" selection-end-line="150" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/event_scheduling/templates/event_scheduling/base_site.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1087,18 +1079,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.js">
+    <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/create_date.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.0">
-          <caret line="516" column="31" selection-start-line="516" selection-start-column="31" selection-end-line="516" selection-end-column="31" />
+        <state vertical-scroll-proportion="-9.111111">
+          <caret line="111" column="33" selection-start-line="111" selection-start-column="33" selection-end-line="111" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/create_date.js">
+    <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38680926">
-          <caret line="111" column="33" selection-start-line="111" selection-start-column="33" selection-end-line="111" selection-end-column="33" />
+        <state vertical-scroll-proportion="-120.55556">
+          <caret line="217" column="17" selection-start-line="217" selection-start-column="17" selection-end-line="217" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.93582886">
+          <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
           <folding />
         </state>
       </provider>
