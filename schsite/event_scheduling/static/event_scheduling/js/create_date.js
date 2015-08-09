@@ -109,6 +109,7 @@ function ajaxSubmitForm() {
 }
 function showLoader() {
     determinateProgress.start();
+    determinateProgress.set(0.7);
 }
 
 function endLoader() {
