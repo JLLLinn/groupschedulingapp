@@ -21,10 +21,10 @@ var state = {
     yesDates: []
 };
 
-var indeterminateProgress;
+var determinateProgress;
 $(function () {
-    indeterminateProgress = new Mprogress({
-        template: 3,
+    determinateProgress = new Mprogress({
+        template: 1,
         parent: '#loaderDiv'// this option will insert bar HTML into this parent Element
     });
     showLoader();
@@ -33,6 +33,7 @@ $(function () {
 });
 
 function init() {
+    FastClick.attach(document.body);
     initMoment();
     $.ajaxSetup({
         beforeSend: function (xhr, settings) {
@@ -512,11 +513,11 @@ function whatToDoManagement() {
     }
 }
 function showLoader() {
-    indeterminateProgress.start();
+    determinateProgress.start();
 }
 
 function endLoader() {
-    indeterminateProgress.end();
+    determinateProgress.end();
 }
 
 function blinkSomething($el) {

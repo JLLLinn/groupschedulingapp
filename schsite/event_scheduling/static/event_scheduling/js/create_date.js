@@ -6,10 +6,10 @@ var dates; //this is for saving the current dates
 var date_selected_count = 0;
 var mprogress = new Mprogress();
 var intObj = {
-    template: 3,
+    template: 1,
     parent: '#loaderDiv'// this option will insert bar HTML into this parent Element
 };
-var indeterminateProgress = new Mprogress(intObj);
+var determinateProgress = new Mprogress(intObj);
 $(function () {
     showLoader();
     init();
@@ -18,6 +18,7 @@ $(function () {
 
 
 function init() {
+    FastClick.attach(document.body);
     $.material.init();
     FastClick.attach(document.body);
     $("#planALink").on("click", function () {
@@ -102,16 +103,16 @@ function ajaxSubmitForm() {
         if (typeof(Storage) !== "undefined") {
             localStorage.setItem(data['event_hashid'], data['eventusertimeslots_hashid']);
         }
-        window.location.href = data['url'];
         endLoader();
+        window.location.href = data['url'];
     }, 'json')
 }
 function showLoader() {
-    indeterminateProgress.start();
+    determinateProgress.start();
 }
 
 function endLoader() {
-    indeterminateProgress.end();
+    determinateProgress.end();
 }
 
 
