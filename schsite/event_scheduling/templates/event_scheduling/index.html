@@ -1,32 +1,32 @@
 {% extends "event_scheduling/base_site.html" %}
 {% block body %}
-    <div class="container" style="max-width:640px;">
+    <div class="container-fluid" style="max-width:640px;">
         <div class="row">
             <div class="col-md-6">
-                <h1 class="page-title">聚吧 <strong>J</strong>vba</h1>
+                <h1 class="page-title" style="color:#000000;opacity: 0.87">聚吧 <strong>J</strong>vba</h1>
 
                 <div id="promoList">
                     {# TODO f**king refine the sentence please #}
-                    <span style="color:green; font-size:1.3em;">来聚吧，找你们的共同时间</span><br><br>
+                    <span class='light-bg-secondary' style="font-size:1.3em;">来聚吧，找你们的共同时间</span><br><br>
 
                     <div style="text-align:center">
                         {# TODO: the href needs to be resolved #}
-                        <a href="{% url 'event_scheduling:create_date'%}" class="btn btn-lg btn-success" style="padding-left:8px; padding-right:8px;">
+                        <a href="{% url 'event_scheduling:create_date'%}" class="btn btn-lg btn-material-pink" style="padding-left:8px; padding-right:8px;color:rgba(255,255,255,1)">
                             新建事件 {# Seriously, wtf is this supposed to mean #}
                         </a>
                         <br><br>
                     </div>
-                    免费，无需注册，不用下载～
+                    <span class="light-bg-secondary">完全免费，无需注册，不用下载～</span>
 
                 </div>
                 <br>
                 <br>
-                <strong>聚吧是什么？</strong>
-                <ol id="promoListTwo">
-                    <li>为你们的事件取一个名字并设置日期</li>
-                    <li>把地址分享给别人</li>
-                    <li>朋友们在可以的时间上点击选择</li>
-                    <li>你来选择最佳日期</li>
+                <strong class="light-bg-secondary">聚吧是什么？</strong>
+                <ol class="light-bg-secondary" id="promoListTwo">
+                    <li>为你们的事件取一个名字并设置供选择日期</li>
+                    <li>把地址分享给朋友们</li>
+                    <li>朋友们选择他们适合的时间</li>
+                    <li>找到共同时间，来一场聚会吧！</li>
                 </ol>
 
             </div>

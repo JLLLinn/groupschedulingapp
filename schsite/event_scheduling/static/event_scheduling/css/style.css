@@ -27,9 +27,7 @@ a:hover {
 
 .page-title {
     margin-top: 4px;
-    border-width: 0px 0px 1px 0px;
-    border-color: #888888;
-    border-style: solid;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
     padding: 6px;
 }
 
@@ -258,4 +256,39 @@ col.highestCol {
 input.datesCheck + * {
     pointer-events: none;
 }
+
+.light-bg-secondary {
+    color : #000000;
+    opacity: 0.54;
+}
+.light-bg-primary {
+    color : #000000;
+    opacity: 0.87;
+}
+.light-bg-disabled-hint {
+    color : #000000;
+    opacity: 0.38;
+}
+.light-bg-divider {
+    color : #000000;
+    opacity: 0.12;
+}
+
+.dark-bg-secondary {
+    color : #FFFFFF;
+    opacity: 0.70;
+}
+.dark-bg-primary {
+    color : #FFFFFF;
+    opacity: 1.0;
+}
+.dark-bg-disabled-hint {
+    color : #FFFFFF;
+    opacity: 0.30;
+}
+.dark-bg-divider {
+    color : #FFFFFF;
+    opacity: 0.12;
+}
+
 
