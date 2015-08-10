@@ -2,37 +2,37 @@
 {% load staticfiles %}
 {% block body %}
     <div class="container" id="homeContainer">
+        <br>
 
         <div class="row">
-            <div class="col-xs-8" style="padding-left:4px; padding-right:4px; margin-top:6px; margin-bottom:6px;">
-                <input type="text" placeholder="点击输入事件标题" id="eventTitleCreate" class="titleCreate"
-                       style="display: inline-block;">
+            <div class="col-xs-8">
+                <div class="" style=" margin-top:6px; margin-bottom:6px;">
+                    <input type="text" placeholder="点击输入事件标题" id="eventTitleCreate" class="titleCreate"
+                           style="display: inline-block;">
+                </div>
+                <div class="" style=" margin-top:6px; margin-bottom:6px;">
+                    <input type="text" placeholder="名字" id="organizerNameCreate" class="titleCreate"
+                           style="display: inline-block;">
+                </div>
             </div>
-            <div class="col-xs-4" style="padding-left:4px; padding-right:4px; margin-top:6px; margin-bottom:6px;">
-                <input type="text" placeholder="名字" id="organizerNameCreate" class="titleCreate"
-                       style="display: inline-block;">
+
+            <div class="col-xs-4">
+                <div class="" style="text-align:center;margin-top:6px; margin-bottom:6px;">
+
+                    <button id="allDoneCreate" class="btn btn-material-pink-a200"
+                            style="width:100%;float:right; height:72px;margin:0;padding-top: 0px;padding-bottom: 0px;">
+                         <span class="hidden-xs">继续</span> <i id="allDoneCreate" class="mdi-action-done"></i>
+                    </button>
+
+                </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-xs-8" style="text-align:left;padding-top:4px; padding-bottom:6px;">
-                <div id="whatToDo">&#9650; 取个名字</div>
-            </div>
-            <div class="col-xs-4" style="text-align:right;padding-top:4px; padding-bottom:6px;">
-
-                <button id="allDoneCreate" class="btn btn-success" style="margin:0px;">
-                    继续
-                </button>
-                <!-- <div id="eventUrl" class="panel" style="display:none;">
-                  Your unique event url:<br/>
-                  <a href="" id="planUrl" ></a><br/>
-                  Visit it now!
-
-                  </div> -->
-
-            </div>
-
+        <div class="" style="text-align:center;margin-top:6px; margin-bottom:6px;">
+            <div id="whatToDo" style="width:100%;">&#9650; 给活动取个名字</div>
         </div>
+        <br>
+        <br>
+
         <div class="row">
             <div class="col-xs-12">
                 <div class="panel panel-default">

@@ -1,7 +1,6 @@
-body, h1 {
-    font-family: "Microsoft YaHei", "STXihei";
-    background-color: #fff;
-    overflow-x: hidden;
+body,button {
+     font-family: "Microsoft YaHei", "STXihei", sans-serif;
+    background-color: #FFFFFF;
 }
 
 #homeContainer {
@@ -20,94 +19,101 @@ a:hover {
 
 #promoList {
     list-style-type: none;
-    font-size: 1.2em;
     padding: 0px;
     margin: 0px;
 }
 
 .page-title {
-    margin-top: 4px;
-    border-bottom: 1px solid rgba(0, 0, 0, .12);
-    padding: 6px;
+    font-family: "Microsoft YaHei", "STXihei", sans-serif;
+    margin-top: 0px;
+    /*border-bottom: 1px solid rgba(255, 255, 255, .12);*/
 }
 
 #eventTitle, .titleCreate {
     border: 0px;
     width: 100%;
-    padding: 6px;
-    font-size: 1.4em;
+    padding: 4px;
+    font-size: 1.2em;
     color: #000;
-    line-height: 40px;
     border-width: 0px 0px 1px 0px;
     border-color: #888888;
     border-style: solid;
+    background-color: inherit;
+    border-radius: 0px;
 
 }
 
 #eventTitle {
-    color: #888;
+    text-align: center;
+    color: #000000;
+    opacity: .87;
+
 }
 
 .titleCreate {
     width: 100%;
-    color: #388E3C;
 }
 
 .titleCreate::-webkit-input-placeholder {
     /* WebKit browsers */
-    color: #f44336;
+    color: rgba(0,0,0,.38);
 }
 
 .titleCreate:-moz-placeholder {
     /* Mozilla Firefox 4 to 18 */
-    color: #f44336;
-    opacity: 1;
+    color: rgba(0,0,0,.38);
 }
 
 .titleCreate::-moz-placeholder {
     /* Mozilla Firefox 19+ */
-    color: #f44336;
-    opacity: 1;
+    color: rgba(0,0,0,.38);
 }
 
 .titleCreate:-ms-input-placeholder {
     /* Internet Explorer 10+ */
-    color: #f44336;
+    color: rgba(0,0,0,.38);
 }
 
 #planALink {
     text-align: center;
     position: fixed;
-    background-color: #e2e2e2;
-    color: #888;
+    background-color: #ff80ab;
+    color: rgba(255, 255, 255,1.0);
     top: 0px;
-    padding: 0px 6px 6px 6px;
-    right: 6px;
+    padding: 0px 6px 4px 6px;
+    left: 6px;
     cursor: pointer;
     border-radius: 0px 0px 3px 3px;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+    transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #planALink:hover {
-    color: #000;
+    color: rgba(255, 255, 255,1.0);
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 }
 
 #yourName {
-    width: 98%;
+    width: 95%;
+    float: left;
+    overflow:hidden;
     border-style: solid;
     border-color: #ff0000;
     border-width: 0px 0px 1px 0px;
+    border-radius: 0;
     padding: 2px;
+    padding-right: 3px;
     margin-right: 4px;
     height: 45px;
 }
 
 #whatToDo {
-    color: #fff;
+    color: rgb(255,255,255);
     float: left;
-    background-color: #888888;
+    background-color: #ff80ab;
     padding: 4px;
-    border-radius: 0px 3px 3px 0px;
-    margin: 2px;
+    border-radius: 3px 3px 3px 3px;
+    height : 28px;
 }
 
 .datepicker-inline, .table-condensed {
@@ -124,12 +130,13 @@ a:hover {
 }
 
 .datepicker table tr td.today {
-    background-color: #e2e2e2 !important;
+    /*background-color: #e2e2e2 !important;*/
+    background-color: #c5cae9 !important;
     background-image: none !important;
 }
 
 .datepicker table tr td.active {
-    background-color: #03a9f4 !important;
+    background-color: #3f51b5 !important;
     background-image: none !important;
 }
 
@@ -165,22 +172,24 @@ col:nth-child(2n+3) {
     display:none;
 }
 .names:hover .delete-btn-span {
-    color: grey;
+    color: #ff80ab;
     display:block;
 }
 .names:hover .mdi-action-delete:hover {
-    color: green;
+    color: #ff4081;
 }
 
 
 .names .username-span {
-    color: green;
+    color: #000;
+    opacity: 0.87;
     display:block;
 }
 .names .delete-btn-span {
     display:none;
 }
 .names {
+    padding-left: 2px;
     overflow: hidden;
     white-space: nowrap;
 }
@@ -211,7 +220,7 @@ col:nth-child(2n+3) {
 
 #firstMonth {
     text-align: right;
-    padding-right: 4px;
+    padding-right: 6px;
 }
 
 .monthSeperator {
@@ -291,4 +300,11 @@ input.datesCheck + * {
     opacity: 0.12;
 }
 
+.btn-material-pink-a200:not(.btn-link):not(.btn-flat) {
+    background-color: #FF4081;
+    color: rgba(255,255,255,.84)
+}
+.btn-material-pink-a200:hover:not(.btn-link):not(.btn-flat) {
+  background-color: #FF80AB;
+}
 

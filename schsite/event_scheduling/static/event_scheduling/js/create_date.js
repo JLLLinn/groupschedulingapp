@@ -40,15 +40,15 @@ function init() {
 }
 var initEventTitle = function () {
     var $eventTitleCreate_id = $("#eventTitleCreate");
-    blinkSomething($eventTitleCreate_id);
+    blinkSomething($('#whatToDo'));
     //$eventTitleCreate_id.fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
     $eventTitleCreate_id.on("input paste", function () {
         checkState();
         if ($(this).val().length >= MIN_TITLE_LENGTH) {
-            $(this).css("color", "#388E3C");
+            $(this).css("color", "rgba(0,0,0,.87)");
         }
         else {
-            $(this).css("color", "#f44336");
+            $(this).css("color", "rgba(0,0,0,.38)");
         }
     });
 };
@@ -58,10 +58,10 @@ var initNameCreate = function () {
 
         checkState();
         if ($(this).val().length >= MIN_NAME_LENGTH) {
-            $(this).css("color", "#388E3C");
+            $(this).css("color", "rgba(0,0,0,.87)");
         }
         else {
-            $(this).css("color", "#f44336");
+            $(this).css("color", "rgba(0,0,0,.38)");
         }
     });
 };
@@ -126,27 +126,27 @@ function checkState() {
     var message = "";
     var title_length = $("#eventTitleCreate").val().length;
     if (title_length <= 0) {
-        message = "▲ 取个名字";
+        message = "▲ 给活动取个名字";
         titleProblems = true;
     }
     else if (title_length < MIN_TITLE_LENGTH) {
-        message = "▲ 名字有点儿短。。";
+        message = "▲ 活动的名字有点儿短。。";
         titleProblems = true;
     }
     else if (title_length >= MAX_TITLE_LENGTH) {
-        message = "▲ 名字太长了。。";
+        message = "▲ 活动的名字太长了。。";
         titleProblems = true;
     } else if ((nameLen = $("#organizerNameCreate").val().length) < MIN_NAME_LENGTH) {
         if(nameLen == 0){
-            message = "◥ 您将显示给朋友的名字";
+            message = "▲ 您将显示给朋友的名字";
         } else {
-            message = "◥ 您的名字需要"+MIN_NAME_LENGTH+"个字以上";
+            message = "▲ 您的名字需要 "+MIN_NAME_LENGTH+" 个字以上";
         }
 
         nameProblems = true;
 
     } else if (date_selected_count <= 0) {
-        message = "▼ 选择天数";
+        message = "▼ 选择可供朋友们选择的时间 ▼";
         dateProblems = true;
     }
 
@@ -158,7 +158,7 @@ function checkState() {
         allDoneCreate_id.off();
         //allDoneCreate_id.prop("disabled", true);
         allDoneCreate_id.on("click", function () {
-            blinkSomething($whatToDo);
+            blinkSomething($("#whatToDo"));
         });
     } else if ((!titleProblems) && (!dateProblems)) {
         // $("#whatToDo").html("&#9654; Tap next when done");

@@ -244,9 +244,12 @@ function submitSelfStateToServer() {
     }
     console.log(obj);
     $.post(save_eut_url, obj, function (response) {
+        alert("submitting to save");
         console.log(response);
         if (state.mode == STATE_MODE_NEW_USER) {
             localStorage.setItem(event_hid, response);
+            state.eut_hid = response;
+            state.mode = STATE_MODE_RETURN_NORMAL_USER;
         }
         endLoader();
     });
@@ -270,16 +273,18 @@ function nameUpdate(nameEl) {
         if (nameEl.val() == "") {
             nameEl.val(state.yourName);
         }
-        nameEl.css("borderColor", "green");
+        nameEl.css("borderColor", "#2e7b32");
+        nameEl.css("color", "rgba(0,0,0,.87)");
     }
     else {
-        nameEl.css("borderColor", "red");
+        nameEl.css("borderColor", "#f44336");
+        nameEl.css("color", "rgba(0,0,0,.38)");
     }
 
     whatToDoManagement();
 }
 function initOthersRows(eut) {
-    var username_span = "<span class='username-span'>" + eut['display_user_name'] + "</span>";
+    var username_span = "<span class='username-span'><i class='mdi-social-person-outline' style='opacity: .54;font-size: 1em;'></i> " + eut['display_user_name'] + "</span>";
     var delete_btn_span = "<span class='delete-btn-span text-center'><i class='mdi-action-delete'></i></span>";
     $("#leftNames").append("<tr><td class='names'>" + username_span + delete_btn_span + "</td></tr>");
     var tr = "<tr id='_tritem'>";
