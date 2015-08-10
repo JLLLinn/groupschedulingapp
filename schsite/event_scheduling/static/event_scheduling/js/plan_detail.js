@@ -11,7 +11,6 @@ var STATUS_ALL_DONE = 1;
 var STATUS_CANT_GO = 2;
 
 
-
 var moment_dates = [];
 
 var euts_global = [];
@@ -31,6 +30,7 @@ $(function () {
     init();
 
 });
+
 
 function init() {
     FastClick.attach(document.body);
@@ -170,15 +170,16 @@ function initSelfRow(self_euts) {
     }
 }
 function initUIHandlers() {
-    $("#yourName").on("keyup", function () {
+    $("#yourName").on("input paste", function () {
+        console.log("input paste");
         whatToDoManagement();
         state.yourName = $(this).val();
         nameUpdate($(this));
     });
+
     $("#edit").on("click", function () {
-        if (tryRenderStatus(STATUS_EDIT)) {
-            submitSelfStateToServer();
-        }
+        tryRenderStatus(STATUS_EDIT);
+
     });
     $("#shareLink").on("click", function () {
         prompt("复制链接八～", window.location.href);
@@ -191,8 +192,9 @@ function initUIHandlers() {
 
     });
     $("#cantGo").on("click", function () {
-        tryRenderStatus(STATUS_CANT_GO);
-        submitSelfStateToServer();
+        if (tryRenderStatus(STATUS_CANT_GO)) {
+            submitSelfStateToServer();
+        }
     });
     $(".datesCheck").on("click", function () {
         var $td = $("#tdWithCheckdate_" + $(this).attr("dateNumber"));
@@ -209,9 +211,13 @@ function initUIHandlers() {
         whatToDoManagement();
         tryRenderStatus(STATUS_EDIT);
     });
+    $(".mdi-action-delete").on('click', function () {
+        $('#myModal').modal('show');
+    });
     $("#planALink").on("click", function () {
         window.open("http://" + location.host);
     });
+
 }
 
 function submitSelfStateToServer() {
@@ -236,6 +242,7 @@ function submitSelfStateToServer() {
         console.error("Unrecognized state, do not post");
         return;
     }
+    console.log(obj);
     $.post(save_eut_url, obj, function (response) {
         console.log(response);
         if (state.mode == STATE_MODE_NEW_USER) {
@@ -272,7 +279,9 @@ function nameUpdate(nameEl) {
     whatToDoManagement();
 }
 function initOthersRows(eut) {
-    $("#leftNames").append("<tr><td id='_name'  style='color:black'>" + eut['display_user_name'] + "</td></trd>");
+    var username_span = "<span class='username-span'>" + eut['display_user_name'] + "</span>";
+    var delete_btn_span = "<span class='delete-btn-span text-center'><i class='mdi-action-delete'></i></span>";
+    $("#leftNames").append("<tr><td class='names'>" + username_span + delete_btn_span + "</td></tr>");
     var tr = "<tr id='_tritem'>";
     for (i = 0; i < moment_dates.length; i++) {
         if (i > 0) {
@@ -314,6 +323,7 @@ function initOthersRows(eut) {
 
  }*/
 function calcWinner() {
+    //$('#rightDates').velocity("fadeOut", {duration: 100});
     var trScores = [];
     $("#rightDates").find('tr').each(function (i, el) {
 
@@ -323,7 +333,9 @@ function calcWinner() {
                     if ($(this).hasClass("tdDateChecked")) {
                         thisTRScore.push(1);
                     }
-                    else {
+                    else if ($(this).hasClass("monthSeperator")) {
+                        thisTRScore.push(-1);
+                    } else {
                         thisTRScore.push(0);
                     }
                 }
@@ -337,7 +349,7 @@ function calcWinner() {
         }
     );
     trScores.shift();
-    console.log(trScores);
+    //console.log(trScores);
 
     var wCount = [];
 
@@ -356,13 +368,14 @@ function calcWinner() {
 
     $("col").removeClass("highestCol");
     for (u = 0; u < maxIndexes.length; u++) {
-        console.log(maxIndexes[u]);
+        //console.log(maxIndexes[u]);
         var x = maxIndexes[u] + 1;
-        console.log(x);
+        //console.log(x);
         var $highestCol = $("col:nth-child(" + x + ")");
         $highestCol.addClass("highestCol");
     }
-    console.log(wCount);
+    $('#rightDates').velocity("fadeIn", {duration: 200});
+    //console.log(wCount);
 }
 
 function getAllIndexes(arr, val) {
@@ -478,16 +491,16 @@ function initDatesLayout() {
 
 
     var tdWidth = $(".tdDate").last().width();
-    console.log("tdWidth:"+tdWidth);
+    console.log("tdWidth:" + tdWidth);
     /*if (tdWidth < (MIN_CELL_WIDTH+20)) {
-        console.log("Stretch Mode");
-        var $rightScroller = $("#rightScroller");
-        $rightScroller.css("width", "100%");
-        $rightScroller.css("overflow-x", "scroll");
+     console.log("Stretch Mode");
+     var $rightScroller = $("#rightScroller");
+     $rightScroller.css("width", "100%");
+     $rightScroller.css("overflow-x", "scroll");
 
-        var newWidther = moment_dates.length * (MIN_CELL_WIDTH+20);
-        $rightDates.css("width", newWidther + "px");
-    }*/
+     var newWidther = moment_dates.length * (MIN_CELL_WIDTH+20);
+     $rightDates.css("width", newWidther + "px");
+     }*/
     if (tdWidth <= MIN_CELL_WIDTH) {
         console.log("Stretch Mode");
         //should show indicator here

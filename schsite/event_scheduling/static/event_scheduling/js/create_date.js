@@ -18,7 +18,7 @@ $(function () {
 
 
 function init() {
-    FastClick.attach(document.body);
+    //FastClick.attach(document.body);
     $.material.init();
     FastClick.attach(document.body);
     $("#planALink").on("click", function () {
@@ -42,7 +42,7 @@ var initEventTitle = function () {
     var $eventTitleCreate_id = $("#eventTitleCreate");
     blinkSomething($eventTitleCreate_id);
     //$eventTitleCreate_id.fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
-    $eventTitleCreate_id.on("keyup", function () {
+    $eventTitleCreate_id.on("input paste", function () {
         checkState();
         if ($(this).val().length >= MIN_TITLE_LENGTH) {
             $(this).css("color", "#388E3C");
@@ -54,9 +54,10 @@ var initEventTitle = function () {
 };
 var initNameCreate = function () {
     var $organizerNameCreate_id = $("#organizerNameCreate");
-    $organizerNameCreate_id.on("keyup", function () {
+    $organizerNameCreate_id.on("input paste", function () {
+
         checkState();
-        if ($(this).val().length >= 0) {
+        if ($(this).val().length >= MIN_NAME_LENGTH) {
             $(this).css("color", "#388E3C");
         }
         else {
@@ -118,6 +119,7 @@ function endLoader() {
 
 
 function checkState() {
+
     var titleProblems = false;
     var dateProblems = false;
     var nameProblems = false;
@@ -134,8 +136,13 @@ function checkState() {
     else if (title_length >= MAX_TITLE_LENGTH) {
         message = "▲ 名字太长了。。";
         titleProblems = true;
-    } else if ($("#organizerNameCreate").val().length <= MIN_NAME_LENGTH) {
-        message = "◥ 您将显示给朋友的名字";
+    } else if ((nameLen = $("#organizerNameCreate").val().length) < MIN_NAME_LENGTH) {
+        if(nameLen == 0){
+            message = "◥ 您将显示给朋友的名字";
+        } else {
+            message = "◥ 您的名字需要"+MIN_NAME_LENGTH+"个字以上";
+        }
+
         nameProblems = true;
 
     } else if (date_selected_count <= 0) {

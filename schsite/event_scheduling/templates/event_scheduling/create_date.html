@@ -15,10 +15,10 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-7" style="text-align:left;padding-top:4px; padding-bottom:6px;">
+            <div class="col-xs-8" style="text-align:left;padding-top:4px; padding-bottom:6px;">
                 <div id="whatToDo">&#9650; 取个名字</div>
             </div>
-            <div class="col-xs-5" style="text-align:right;padding-top:4px; padding-bottom:6px;">
+            <div class="col-xs-4" style="text-align:right;padding-top:4px; padding-bottom:6px;">
 
                 <button id="allDoneCreate" class="btn btn-success" style="margin:0px;">
                     继续
@@ -47,9 +47,13 @@
 
 
     </div>
+    <div class="col-xs-12" id="loaderDiv"
+         style="width:100%; margin:0px; padding-left:0px; padding-right:0; z-index:51;height:3px; position:absolute; bottom:0px;">
+        &nbsp;</div>
     <a id="planALink" href="{% url 'event_scheduling:index' %}">聚吧 <strong>J</strong>vba
         {#        <small style="font-size:0.7em; color:#888888;">出品</small>#}
     </a>
+
 
 {% endblock %}
 

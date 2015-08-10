@@ -11,6 +11,8 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="聚吧">
+    <meta http-equiv="cleartype" content="on">
     {# TODO Needs to be traslated #}
     <title>{% block title %}{{ site_title|default:_('聚吧') }}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'event_scheduling/css/bootstrap.min.css' %}"/>
@@ -23,8 +25,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'event_scheduling/css/style.css' %}"/>
 </head>
 <body>
-<div id="loaderDiv" style="width:100%; margin:0px;padding:0px; z-index:51;height:5px;">&nbsp;</div>
+
 {% block body %}{% endblock %}
+
 <script src="{% static 'event_scheduling/js/jquery-1.11.3.min.js' %}"></script>
 <script src="{% static 'event_scheduling/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'event_scheduling/js/material.min.js' %}"></script>

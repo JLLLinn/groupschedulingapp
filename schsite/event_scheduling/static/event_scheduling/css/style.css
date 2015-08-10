@@ -134,12 +134,13 @@ a:hover {
     background-color: #03a9f4 !important;
     background-image: none !important;
 }
-col:first-child {background: #F5F5F5;}
-col:nth-child(2n+3) {background: #F5F5F5;}
 
-#leftNames, #rightDates {
-    width: 100%;
-    border-collapse: collapse;
+col:first-child {
+    background: #F5F5F5;
+}
+
+col:nth-child(2n+3) {
+    background: #F5F5F5;
 }
 
 #rightDates {
@@ -151,15 +152,51 @@ col:nth-child(2n+3) {background: #F5F5F5;}
     min-width: 50px;
 }
 
-#leftNames td {
+#leftNames, #rightDates {
     width: 100%;
+    border-collapse: collapse;
+
+}
+
+#leftNames {
+    table-layout: fixed;
+}
+
+
+.names:hover .username-span {
+    display:none;
+}
+.names:hover .delete-btn-span {
+    color: grey;
+    display:block;
+}
+.names:hover .mdi-action-delete:hover {
+    color: green;
+}
+
+
+.names .username-span {
+    color: green;
+    display:block;
+}
+.names .delete-btn-span {
+    display:none;
+}
+.names {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+
+#rightScroller, #leftNames {
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
 #leftNames, #rightDates th, td {
-
     height: 48px;
     vertical-align: middle;
-
 }
 
 .tdDateNo {
@@ -196,12 +233,13 @@ col:nth-child(2n+3) {background: #F5F5F5;}
 .tdIcon {
     opacity: 0.4;
 }
+
 #shareLink {
-  margin-top:48px;
-  float:right;
+    margin-top: 48px;
+    float: right;
 }
 
-.highestCol {
+col.highestCol {
     border-style: inset;
     border-width: 1px;
     border-color: green;
@@ -210,11 +248,14 @@ col:nth-child(2n+3) {background: #F5F5F5;}
 #dateCount {
     float: right;
 }
+
 #urlMessage {
-  margin-top:32px;
-  font-size:1em;
-  padding:3px;
+    margin-top: 32px;
+    font-size: 1em;
+    padding: 3px;
 }
-input.datesCheck + *{
+
+input.datesCheck + * {
     pointer-events: none;
 }
+
