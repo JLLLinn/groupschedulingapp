@@ -1,6 +1,10 @@
 {% extends "event_scheduling/base_site.html" %}
+{% load staticfiles %}
 {% block body %}
-    <div class="text-center" style="background-color: #3f51b5; box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);">
+    <div class="text-center"
+         style="background-color: #3f51b5;
+/*box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);*/
+         ">
         <br><br><br>
 
         <h3 class="page-title dark-bg-primary" style="">来聚吧，找咱们的共同时间</h3><br>
@@ -8,35 +12,43 @@
         <br><br><br>
     </div>
     <div class="container-fluid" style="max-width:640px;">
+        <div style="margin-top: -20px">
+            <button class="btn btn-fab btn-material-pink-A200 pull-right" style="width: 40px; height: 40px"><i class="mdi-content-send" style="font-size: 20px; top: -16px; right: 3px;"></i></button>
+        </div>
+        <br><br><br>
 
-
-
-                <br><br><br>
-
-
-                <div class="text-center" style="text-align:center">
-                    <a href="{% url 'event_scheduling:create_date' %}" class="btn btn-lg btn-material-pink-A200"
-                       style="padding-left:8px; padding-right:8px;color:rgba(255,255,255,1)">
-                        <i class="mdi-action-open-in-new" style="font-size:1em" ></i> 新建活动 {# Seriously, wtf is this supposed to mean #}
-                    </a>
-                    <br><br>
-                </div>
-                <span class="light-bg-secondary"></span>
-                <br>
-                <br>
-
-                <div class="col-xs-offset-1 col-xs-10">
-                    <strong class="light-bg-secondary"> &middot; 聚吧是什么&middot; </strong><br>
+        <div class="text-center" style="text-align:center">
+            <a href="{% url 'event_scheduling:create_date' %}" class="btn btn-lg btn-raised btn-material-pink-A200"
+               style="padding-left:8px; padding-right:8px;color:rgba(255,255,255,1)">
+                <i class="mdi-action-open-in-new" style="font-size:1em"></i> 新建活动
+                {# Seriously, wtf is this supposed to mean #}
+            </a>
+            <br><br>
+        </div>
+        <hr>
+        <br>
+        <div class="row">
+            <div class="col-xs-offset-1 col-xs-10 col-md-6 col-md-offset-3">
+                <strong class="light-bg-secondary"> &middot; 聚吧是什么&middot; </strong><br>
                     <span style="font-size: 0.87em; " class="light-bg-secondary">
-                        <i class="mdi-action-schedule" style="font-size:1.2em; color:#3f51b5;"></i> 为你们的活动取一个名字并设置供选择日期</br>
+                        <i class="mdi-action-schedule"
+                           style="font-size:1.2em; color:#3f51b5;"></i> 为活动取一个名字并设置供选择日期</br>
                         <i class="mdi-social-share" style="font-size:1.2em;color:#3f51b5;"></i> 把地址分享给朋友们</br>
                         <i class="mdi-social-people" style="font-size:1.2em;color:#3f51b5;"></i> 朋友们选择他们适合的时间</br>
                         <i class="mdi-social-mood" style="font-size:1.2em;color:#3f51b5;"></i> 找到共同时间，来一场聚会吧！</br>
                     </span>
-                </div>
-
-
+            </div>
         </div>
+        <br>
+
+        <div class="row">
+            <div class="text-center col-xs-offset-1 col-xs-10 col-md-6 col-md-offset-3 ">
+                <img alt="封面图片" class="shadow-z-2 img-responsive"
+                     src="{% static "event_scheduling/images/index-promo-img.PNG" %}">
+            </div>
+        </div>
+        <br><br><br><br><br>
+
     </div>
     <a id="planALink" href="{% url 'event_scheduling:index' %}">聚吧 <strong>J</strong>vba
         {#        <small style="font-size:0.7em; color:#888888;">出品</small>#}

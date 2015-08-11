@@ -1,6 +1,7 @@
 import logging
 from event_scheduling.hashids import Hashids
 from event_scheduling.models import Timeslot, Event, EventUserTimeslots
+from django.core.mail import send_mail
 
 __author__ = 'jiaxinlin'
 
@@ -98,3 +99,6 @@ def delete_eut_by_id(eut_id):
         return True
     except EventUserTimeslots.DoesNotExist:
         return False
+
+def send_email():
+    send_mail('Subject here', 'Here is the message.', 'admin@juba.com', ['craiglin1992@gmail.com'], fail_silently=False)

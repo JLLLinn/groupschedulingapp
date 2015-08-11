@@ -9,7 +9,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import Http404, JsonResponse, HttpResponse
 
 from event_scheduling.models import Event
-from event_scheduling.utils import init_whole_day_event, get_euts, save_eut_to_model, delete_eut_by_id
+from event_scheduling.utils import init_whole_day_event, get_euts, save_eut_to_model, delete_eut_by_id, send_email
 from event_scheduling.hashids import Hashids
 from django.views.decorators.csrf import ensure_csrf_cookie
 
@@ -168,3 +168,7 @@ def delete_eut(request):
             raise Http404("Oops, 找不到eut_hid。。。")
     else:
         raise Http404("Oops, 这里啥都木有。。。")
+
+def send_suggestion_mail(request):
+    send_email()
+    return HttpResponse("OK")

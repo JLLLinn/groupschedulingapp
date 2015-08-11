@@ -36,7 +36,7 @@ a:hover {
     font-size: 1.2em;
     color: #000;
     border-width: 0px 0px 1px 0px;
-    border-color: #888888;
+    border-color: rgba(0,0,0,.38);
     border-style: solid;
     background-color: inherit;
     border-radius: 0px;
@@ -348,4 +348,36 @@ input.datesCheck + * {
 
 .open > .dropdown-toggle.btn-material-pink-A200 {
     background-color: #ff4081;
+}
+
+
+
+.btn-material-pink-A100.btn-flat:not(.btn-link) {
+  color: #ff80ab;
+}
+.btn-material-pink-A100:not(.btn-link):not(.btn-flat) {
+  background-color: #ff80ab;
+  color: rgba(255, 255, 255, 0.84);
+}
+.btn-material-pink-A100:not(.btn-link):not(.btn-flat) {
+  background-color: #ff80ab;
+  color: rgba(255, 255, 255, 0.84);
+}
+.btn-material-pink-A100:hover:not(.btn-link):not(.btn-flat) {
+  background-color: #ff94b8;
+}
+.btn-material-pink-A100:active:not(.btn-link):not(.btn-flat) {
+  background-color: #ff9fbf;
+}
+.btn-material-pink-A100.active:not(.btn-link):not(.btn-flat) {
+  background-color: #ff9fbf;
+}
+.btn-material-pink-A100.btn-flat:hover:not(.btn-ink) {
+  background-color: rgba(255, 128, 171, 0.2);
+}
+.open > .dropdown-toggle.btn-material-pink-A100 {
+  background-color: #ff80ab;
+}
+.open > .dropdown-toggle.btn-material-pink-A100 {
+  background-color: #ff80ab;
 }
