@@ -13,13 +13,15 @@
     </div>
     <div class="container-fluid" style="max-width:640px;">
         <div style="margin-top: -20px">
-            <button class="btn btn-fab btn-material-pink-A200 pull-right" style="width: 40px; height: 40px"><i class="mdi-content-send" style="font-size: 20px; top: -16px; right: 3px;"></i></button>
+            <button id="send-suggestion-email-btn" class="btn btn-fab btn-material-pink-A200 pull-right"
+                    style="width: 40px; height: 40px"><i class="mdi-content-send"
+                                                         style="font-size: 20px; top: -16px; right: 3px;"></i></button>
         </div>
         <br><br><br>
 
         <div class="text-center" style="text-align:center">
             <a href="{% url 'event_scheduling:create_date' %}" class="btn btn-lg btn-raised btn-material-pink-A200"
-               style="padding-left:8px; padding-right:8px;color:rgba(255,255,255,1)">
+               style="color:rgba(255,255,255,1);width: 200px;height: 50px;padding-top: 13px;">
                 <i class="mdi-action-open-in-new" style="font-size:1em"></i> 新建活动
                 {# Seriously, wtf is this supposed to mean #}
             </a>
@@ -27,6 +29,7 @@
         </div>
         <hr>
         <br>
+
         <div class="row">
             <div class="col-xs-offset-1 col-xs-10 col-md-6 col-md-offset-3">
                 <strong class="light-bg-secondary"> &middot; 聚吧是什么&middot; </strong><br>
@@ -50,7 +53,32 @@
         <br><br><br><br><br>
 
     </div>
+    <div class="modal" id="myModal" style="vertical-align: middle">
+        <div class="modal-dialog" style="">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">想对我（聚吧的创造者）说什么？<br><small>直接在下框中输入点击发送。请记得写上您的联系方式</small></h4>
+                </div>
+                <div class="modal-body">
+                    <textarea id="suggestion-text" class="form-control" rows="2" id="comment" style="background-image: linear-gradient(#ff80ab,#ff80ab),linear-gradient(#d2d2d2,#d2d2d2);"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button id="confirm-btn" type="button" class="btn btn-material-pink-A200" data-dismiss="modal">确认
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     <a id="planALink" href="{% url 'event_scheduling:index' %}">聚吧 <strong>J</strong>vba
         {#        <small style="font-size:0.7em; color:#888888;">出品</small>#}
     </a>
+{% endblock %}
+
+{% block additionaljs %}
+    <script src="{% static 'event_scheduling/js/index.js' %}"></script>
+    <script>
+        var SEND_EMAIL_URL = "{% url 'event_scheduling:send_email' %}";
+    </script>
 {% endblock %}

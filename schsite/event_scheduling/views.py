@@ -8,10 +8,12 @@ from django.shortcuts import render, get_object_or_404
 
 from django.http import Http404, JsonResponse, HttpResponse
 
-from event_scheduling.models import Event
-from event_scheduling.utils import init_whole_day_event, get_euts, save_eut_to_model, delete_eut_by_id, send_email
-from event_scheduling.hashids import Hashids
 from django.views.decorators.csrf import ensure_csrf_cookie
+
+from event_scheduling import utils
+from event_scheduling.models import Event
+from event_scheduling.utils import init_whole_day_event, get_euts, save_eut_to_model, delete_eut_by_id
+from event_scheduling.hashids import Hashids
 
 DATE_STR_SPLITTER = ","
 MIN_CELL_WIDTH = 50
@@ -19,6 +21,8 @@ MAX_TITLE_LENGTH = 40
 MIN_TITLE_LENGTH = 3
 MIN_NAME_LENGTH = 2
 SALT = "jiaxin_event_scheduling"
+DEFAULT_FROM_EMAIL = 'noReply@'
+DEFAULT_TO_EMAILS = ['craiglin1992@gmail.com']
 
 logger = logging.getLogger(__name__)
 hashids = Hashids(salt=SALT)
@@ -169,6 +173,17 @@ def delete_eut(request):
     else:
         raise Http404("Oops, 这里啥都木有。。。")
 
-def send_suggestion_mail(request):
-    send_email()
-    return HttpResponse("OK")
+
+def send_email(request):
+    if request.method == 'POST' and request.is_ajax():
+        content = request.POST.get('content', False)
+        subject = request.POST.get('content', "No Subject")
+        from_email = request.POST.get('from_email', DEFAULT_FROM_EMAIL + request.META['HTTP_HOST'])
+        to_emails = DEFAULT_TO_EMAILS
+        if content:
+            utils.send_email(subject, content, from_email, to_emails)
+            return HttpResponse("OK")
+        else:
+            raise Http404("Oops, No Content")
+    else:
+        raise Http404("Oops, 这里啥都木有。。。")

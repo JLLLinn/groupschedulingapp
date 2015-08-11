@@ -21,7 +21,7 @@
 
                     <button id="allDoneCreate" class="btn btn-raise btn-material-pink-A200"
                             style="width:100%;float:right; height:72px;margin:0;padding-top: 0px;padding-bottom: 0px;">
-                         <span class="hidden-xs">继续</span> <i id="allDoneCreate" class="mdi-action-done"></i>
+                         <i id="allDoneCreate" class="mdi-action-done visible-xs"></i><span class="hidden-xs">继续</span>
                     </button>
 
                 </div>
@@ -58,10 +58,9 @@
 {% endblock %}
 
 {% block additionaljs %}
-    <script src="{% static 'event_scheduling/js/csrfJqueryUtil.js' %}"></script>
     <script>
         var add_whole_day_url = "{% url 'event_scheduling:add_whole_day' %}";
-        var DATE_STR_SPLITTER = "{{ DATE_STR_SPLITTER }}"
+        var DATE_STR_SPLITTER = "{{ DATE_STR_SPLITTER }}";
         var MAX_TITLE_LENGTH = {{ MAX_TITLE_LENGTH }};
         var MIN_TITLE_LENGTH = {{ MIN_TITLE_LENGTH }};
         var MIN_NAME_LENGTH ={{ MIN_NAME_LENGTH }};
