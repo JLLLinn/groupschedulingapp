@@ -212,14 +212,31 @@ function initUIHandlers() {
         tryRenderStatus(STATUS_EDIT);
     });
     $(".mdi-action-delete").on('click', function () {
-        $('#myModal').modal('show');
+        var $myModal = $('#myModal');
+        $myModal.find("#delete-display-name").text($(this).attr("data-eut-displayed-name"));
+        var $confirm_btn = $myModal.find("#confirm-btn");
+        //$confirm_btn.attr("data-eut-hid",($(this).attr("data-eut-hid")));
+        var eut_hid = $(this).attr("data-eut-hid");
+        $confirm_btn.off();
+        $confirm_btn.click({"eut_hid": eut_hid}, deleteEutByIdCallback);
+        $myModal.modal('show');
     });
     $("#planALink").on("click", function () {
         window.open("http://" + location.host);
     });
 
 }
-
+function deleteEutByIdCallback(event) {
+    showLoader();
+    var eut_hid = event.data.eut_hid
+    $.post(delete_eut_url, {"eut_hid": eut_hid}, function (response) {
+        endLoader();
+        $("tr[data-eut-hid='" + eut_hid + "']").velocity("slideUp", {duration: 200}).promise().done(function () {
+            $(this).remove();
+            calcWinner();
+        });
+    });
+}
 function submitSelfStateToServer() {
     //fetch the eut_hid from the self_eut
     showLoader();
@@ -244,7 +261,6 @@ function submitSelfStateToServer() {
     }
     console.log(obj);
     $.post(save_eut_url, obj, function (response) {
-        alert("submitting to save");
         console.log(response);
         if (state.mode == STATE_MODE_NEW_USER) {
             localStorage.setItem(event_hid, response);
@@ -284,10 +300,10 @@ function nameUpdate(nameEl) {
     whatToDoManagement();
 }
 function initOthersRows(eut) {
-    var username_span = "<span class='username-span'><i class='mdi-social-person-outline' style='opacity: .54;font-size: 1em;'></i> " + eut['display_user_name'] + "</span>";
-    var delete_btn_span = "<span class='delete-btn-span text-center'><i class='mdi-action-delete'></i></span>";
-    $("#leftNames").append("<tr><td class='names'>" + username_span + delete_btn_span + "</td></tr>");
-    var tr = "<tr id='_tritem'>";
+    var username_span = "<span class='username-span'><i class='mdi-social-person' style='opacity: .54;font-size: 1em;'></i> " + eut['display_user_name'] + "</span>";
+    var delete_btn_span = "<span class='delete-btn-span text-center'><i class='mdi-action-delete' data-eut-hid='" + eut['eut_hid'] + "' data-eut-displayed-name='" + eut['display_user_name'] + "'></i></span>";
+    $("#leftNames").append("<tr data-eut-hid='" + eut['eut_hid'] + "'><td class='names'>" + username_span + delete_btn_span + "</td></tr>");
+    var tr = "<tr data-eut-hid='" + eut['eut_hid'] + "'>";
     for (i = 0; i < moment_dates.length; i++) {
         if (i > 0) {
             if (moment_dates[i].month() != moment_dates[i - 1].month()) {
@@ -386,6 +402,9 @@ function calcWinner() {
 function getAllIndexes(arr, val) {
     var indexes = []
         , i = -1;
+    if (val == 0) {
+        return [];
+    }
     while ((i = arr.indexOf(val, i + 1)) != -1) {
         indexes.push(i);
     }

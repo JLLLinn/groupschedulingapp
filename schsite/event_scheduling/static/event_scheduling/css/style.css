@@ -1,5 +1,5 @@
-body,button {
-     font-family: "Microsoft YaHei", "STXihei", sans-serif;
+body, button {
+    font-family: "Microsoft YaHei", "STXihei", sans-serif;
     background-color: #FFFFFF;
 }
 
@@ -56,29 +56,29 @@ a:hover {
 
 .titleCreate::-webkit-input-placeholder {
     /* WebKit browsers */
-    color: rgba(0,0,0,.38);
+    color: rgba(0, 0, 0, .38);
 }
 
 .titleCreate:-moz-placeholder {
     /* Mozilla Firefox 4 to 18 */
-    color: rgba(0,0,0,.38);
+    color: rgba(0, 0, 0, .38);
 }
 
 .titleCreate::-moz-placeholder {
     /* Mozilla Firefox 19+ */
-    color: rgba(0,0,0,.38);
+    color: rgba(0, 0, 0, .38);
 }
 
 .titleCreate:-ms-input-placeholder {
     /* Internet Explorer 10+ */
-    color: rgba(0,0,0,.38);
+    color: rgba(0, 0, 0, .38);
 }
 
 #planALink {
     text-align: center;
     position: fixed;
     background-color: #ff80ab;
-    color: rgba(255, 255, 255,1.0);
+    color: rgba(255, 255, 255, 1.0);
     top: 0px;
     padding: 0px 6px 4px 6px;
     left: 6px;
@@ -89,14 +89,14 @@ a:hover {
 }
 
 #planALink:hover {
-    color: rgba(255, 255, 255,1.0);
+    color: rgba(255, 255, 255, 1.0);
     box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 }
 
 #yourName {
     width: 95%;
     float: left;
-    overflow:hidden;
+    overflow: hidden;
     border-style: solid;
     border-color: #ff0000;
     border-width: 0px 0px 1px 0px;
@@ -108,12 +108,12 @@ a:hover {
 }
 
 #whatToDo {
-    color: rgb(255,255,255);
+    color: rgb(255, 255, 255);
     float: left;
     background-color: #ff80ab;
     padding: 4px;
     border-radius: 3px 3px 3px 3px;
-    height : 28px;
+    height: 28px;
 }
 
 .datepicker-inline, .table-condensed {
@@ -167,34 +167,36 @@ col:nth-child(2n+3) {
     table-layout: fixed;
 }
 
-
 .names:hover .username-span {
-    display:none;
+    display: none;
 }
+
 .names:hover .delete-btn-span {
     color: #ff80ab;
-    display:block;
+    display: block;
 }
+
 .names:hover .mdi-action-delete:hover {
     color: #ff4081;
 }
 
-
 .names .username-span {
+    overflow: hidden;
+    width: 98%;
     color: #000;
     opacity: 0.87;
-    display:block;
+    display: block;
 }
+
 .names .delete-btn-span {
-    display:none;
+    display: none;
 }
+
 .names {
     padding-left: 2px;
     overflow: hidden;
     white-space: nowrap;
 }
-
-
 
 #rightScroller, #leftNames {
     overflow: hidden;
@@ -267,44 +269,83 @@ input.datesCheck + * {
 }
 
 .light-bg-secondary {
-    color : #000000;
+    color: #000000;
     opacity: 0.54;
 }
+
 .light-bg-primary {
-    color : #000000;
+    color: #000000;
     opacity: 0.87;
 }
+
 .light-bg-disabled-hint {
-    color : #000000;
+    color: #000000;
     opacity: 0.38;
 }
+
 .light-bg-divider {
-    color : #000000;
+    color: #000000;
     opacity: 0.12;
 }
 
 .dark-bg-secondary {
-    color : #FFFFFF;
+    color: #FFFFFF;
     opacity: 0.70;
 }
+
 .dark-bg-primary {
-    color : #FFFFFF;
+    color: #FFFFFF;
     opacity: 1.0;
 }
+
 .dark-bg-disabled-hint {
-    color : #FFFFFF;
+    color: #FFFFFF;
     opacity: 0.30;
 }
+
 .dark-bg-divider {
-    color : #FFFFFF;
+    color: #FFFFFF;
     opacity: 0.12;
 }
 
-.btn-material-pink-a200:not(.btn-link):not(.btn-flat) {
-    background-color: #FF4081;
-    color: rgba(255,255,255,.84)
-}
-.btn-material-pink-a200:hover:not(.btn-link):not(.btn-flat) {
-  background-color: #FF80AB;
+.btn-material-pink-A200.btn-flat:not(.btn-link) {
+    color: #ff4081;
 }
 
+.btn-material-pink-A200.btn-flat:not(.btn-link) {
+    color: #ff4081;
+}
+
+.btn-material-pink-A200:not(.btn-link):not(.btn-flat) {
+    background-color: #ff4081;
+    color: rgba(255, 255, 255, 1);
+}
+
+.btn-material-pink-A200:not(.btn-link):not(.btn-flat) {
+    background-color: #ff4081;
+    color: rgba(255, 255, 255, 1);
+}
+
+.btn-material-pink-A200:hover:not(.btn-link):not(.btn-flat) {
+    background-color: #ff548e;
+}
+
+.btn-material-pink-A200:active:not(.btn-link):not(.btn-flat) {
+    background-color: #ff5f95;
+}
+
+.btn-material-pink-A200.active:not(.btn-link):not(.btn-flat) {
+    background-color: #ff5f95;
+}
+
+.btn-material-pink-A200.btn-flat:hover:not(.btn-ink) {
+    background-color: rgba(255, 64, 129, 0.2);
+}
+
+.open > .dropdown-toggle.btn-material-pink-A200 {
+    background-color: #ff4081;
+}
+
+.open > .dropdown-toggle.btn-material-pink-A200 {
+    background-color: #ff4081;
+}

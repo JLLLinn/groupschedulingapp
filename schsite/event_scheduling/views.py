@@ -9,7 +9,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import Http404, JsonResponse, HttpResponse
 
 from event_scheduling.models import Event
-from event_scheduling.utils import init_whole_day_event, get_euts, save_eut_to_model
+from event_scheduling.utils import init_whole_day_event, get_euts, save_eut_to_model, delete_eut_by_id
 from event_scheduling.hashids import Hashids
 from django.views.decorators.csrf import ensure_csrf_cookie
 
@@ -135,12 +135,36 @@ def get_euts_for_event(request, event_hid):
                         "Oops, smart guy/gal, your localstorage seems to be changed :) <br> Well,you can choose to delete that row and proceed or restore what you changed :P ")
             else:
                 self_eut_primary_key = None
-            euts = get_euts(event_primary_key, self_eut_primary_key)
+            euts = get_euts(event_primary_key, SALT, self_eut_primary_key)
             if euts:
                 return JsonResponse(euts)
             else:
                 raise Http404("Oops, 没有任何时间被选择")
         else:
             raise Http404("Oops, 这里啥都木有。。。")
+    else:
+        raise Http404("Oops, 这里啥都木有。。。")
+
+
+def delete_eut(request):
+    """
+    This will delete the eut, by it's hid, using post
+    :param request: the request containing the post parameter "eut_hid"
+    :return: Http404 if anything goes wrong or hid not found, else return "success"
+    """
+    if request.method == 'POST' and request.is_ajax():
+        eut_hid = request.POST.get('eut_hid', False)
+        if eut_hid:
+            eut_hids = hashids.decode(eut_hid)
+            if len(eut_hids) >= 1:
+                eut_hid = eut_hids[0]
+                if delete_eut_by_id(eut_hid):
+                    return HttpResponse("success")
+                else:
+                    raise Http404("Oops, eut_hid错误。。。")
+            else:
+                raise Http404("Oops, eut_hid错误。。。")
+        else:
+            raise Http404("Oops, 找不到eut_hid。。。")
     else:
         raise Http404("Oops, 这里啥都木有。。。")

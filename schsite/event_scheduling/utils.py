@@ -1,5 +1,5 @@
 import logging
-
+from event_scheduling.hashids import Hashids
 from event_scheduling.models import Timeslot, Event, EventUserTimeslots
 
 __author__ = 'jiaxinlin'
@@ -31,19 +31,21 @@ def init_whole_day_event(event_title, dates, organizer_name):
     return event.pk, eut.pk
 
 
-def get_euts(event_id, self_eut_id=None):
+def get_euts(event_id, SALT, self_eut_id=None):
     """
     Get eventUserTimeslots entries by event id
     :param event_id: the event id
     :param self_eut_id: if yes, then will put this entry under the "self" section of the returning array, other wise treat all of them the same
     :return:a list, or None if cannot find and eut on that event
     """
+    hashids = Hashids(salt=SALT)
     euts = EventUserTimeslots.objects.filter(event__pk=event_id)
     normal_euts = []
     self_euts = []
     organizer_euts = []
     for eut in euts:
         eut_entry = {
+            'eut_hid': hashids.encode(eut.pk),
             'timeslots_id': list(eut.timeslots.values_list('pk', flat=True)),
             'display_user_name': eut.display_user_name,
             'is_organizer': eut.is_organizer
@@ -54,8 +56,8 @@ def get_euts(event_id, self_eut_id=None):
             organizer_euts.append(eut_entry)
         else:
             normal_euts.append(eut_entry)
-    if len(euts) == 0:
-        return None
+    # if len(euts) == 0:
+    #     return None
     ret = {
         'normal_euts': normal_euts,
         'self_euts': self_euts,
@@ -75,28 +77,6 @@ def save_eut_to_model(display_user_name, timeslots, event_pk, is_organizer, eut_
     :return: the eut_id updated or created if success and None/False if unsuccessful
     """
     timeslot_objs = Timeslot.objects.filter(pk__in=timeslots)
-    # if eut_pk:
-    #     # Meaning we are trying to update a eut
-    #     if EventUserTimeslots.objects.get(pk=eut_pk).update(timeslots=timeslot_objs,
-    #                                                         display_user_name=display_user_name) == 1:
-    #         return eut_pk
-    # elif event_pk:
-    #     # Meaning we are creating a eut
-    #     event_obj = Event.objects.get(pk=event_pk)
-    #     eut = EventUserTimeslots.objects.create(display_user_name=display_user_name, is_organizer=is_organizer,
-    #                                             event=event_obj)
-    #     eut.timeslots.add(*timeslot_objs)
-    #     return eut.pk
-    # else:
-    #     return None
-
-    # update_obj = {
-    #     'display_user_name': display_user_name,
-    #     'is_organizer': is_organizer
-    # }
-    # eut, created = EventUserTimeslots.objects.update_or_create(pk=eut_pk, event__pk=event_pk, defaults=update_obj)
-    # eut.timeslots.add(*timeslot_objs)
-    # return eut.pk
     try:
         # try get and update
         obj = EventUserTimeslots.objects.get(pk=eut_pk)
@@ -111,3 +91,10 @@ def save_eut_to_model(display_user_name, timeslots, event_pk, is_organizer, eut_
                                                 event=event_obj)
         obj.timeslots = timeslot_objs
         return obj.pk
+
+def delete_eut_by_id(eut_id):
+    try:
+        EventUserTimeslots.objects.get(pk=eut_id).delete()
+        return True
+    except EventUserTimeslots.DoesNotExist:
+        return False
