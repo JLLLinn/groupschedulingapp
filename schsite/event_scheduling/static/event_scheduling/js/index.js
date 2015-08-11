@@ -23,6 +23,8 @@ $(function () {
                 mail_sent = true;
                 console.log(response);
                 endLoader();
+                $("#myModal").modal('hide');
+                $.snackbar({content: "感谢您的留言：）"});
             });
         } else {
             $.snackbar({content: "发送的有点儿太多了。。"});
