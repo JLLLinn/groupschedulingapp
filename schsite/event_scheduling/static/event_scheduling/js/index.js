@@ -14,7 +14,6 @@ $(function () {
     });
     $("#send-suggestion-email-btn").on('click', function () {
         $("#myModal").modal('show');
-        showLoader();
     });
     $("#confirm-btn").on("click", function () {
 
