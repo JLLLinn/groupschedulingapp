@@ -1,5 +1,6 @@
 var mail_sent = false;
-$(function(){
+var determinateProgress;
+$(function () {
     $.ajaxSetup({
         beforeSend: function (xhr, settings) {
             if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
@@ -7,13 +8,33 @@ $(function(){
             }
         }
     });
-    $("#send-suggestion-email-btn").on('click', function(){
-       $("#myModal").modal('show');
+    determinateProgress = new Mprogress({
+        template: 1,
+        parent: '#loaderDiv'// this option will insert bar HTML into this parent Element
     });
-    $("#confirm-btn").on("click",function(){
-        $.post(SEND_EMAIL_URL, {"content":$("#suggestion-text").val()}, function(response){
-            alert(response);
-        });
+    $("#send-suggestion-email-btn").on('click', function () {
+        $("#myModal").modal('show');
+        showLoader();
+    });
+    $("#confirm-btn").on("click", function () {
+
+        if (!mail_sent) {
+            showLoader();
+            $.post(SEND_EMAIL_URL, {"content": $("#suggestion-text").val()}, function (response) {
+                mail_sent = true;
+                console.log(response);
+                endLoader();
+            });
+        } else {
+            $.snackbar({content: "发送的有点儿太多了。。"});
+        }
     });
 });
+function showLoader() {
+    determinateProgress.start();
+    determinateProgress.set(0.7);
+}
 
+function endLoader() {
+    determinateProgress.end();
+}

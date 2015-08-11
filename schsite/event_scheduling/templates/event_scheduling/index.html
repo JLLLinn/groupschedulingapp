@@ -54,20 +54,30 @@
 
     </div>
     <div class="modal" id="myModal" style="vertical-align: middle">
+
         <div class="modal-dialog" style="">
+
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">想对我（聚吧的创造者）说什么？<br><small>直接在下框中输入点击发送。请记得写上您的联系方式</small></h4>
+                    <h4 class="modal-title">想对我（聚吧的创造者）说什么？<br>
+                        <small>直接在下框中输入点击发送。请记得写上您的联系方式</small>
+                    </h4>
                 </div>
                 <div class="modal-body">
-                    <textarea id="suggestion-text" class="form-control" rows="2" id="comment" style="background-image: linear-gradient(#ff80ab,#ff80ab),linear-gradient(#d2d2d2,#d2d2d2);"></textarea>
+                    <textarea id="suggestion-text" class="form-control" rows="2" id="comment"
+                              style="background-image: linear-gradient(#ff80ab,#ff80ab),linear-gradient(#d2d2d2,#d2d2d2);"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button id="confirm-btn" type="button" class="btn btn-material-pink-A200" data-dismiss="modal">确认
+                    <button id="confirm-btn" type="button" class="btn btn-material-pink-A200">
+                        确认
                     </button>
                 </div>
+                <div class="col-xs-12" id="loaderDiv"
+                 style="width:100%; margin:0px; padding-left:0px; padding-right:0; z-index:51;height:3px; bottom:0px">
+                &nbsp;
+            </div>
             </div>
         </div>
     </div>
