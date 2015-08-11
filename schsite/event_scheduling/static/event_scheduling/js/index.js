@@ -24,6 +24,7 @@ $(function () {
                 console.log(response);
                 endLoader();
                 $("#myModal").modal('hide');
+                $("#suggestion-text").val("")
                 $.snackbar({content: "感谢您的留言：）"});
             });
         } else {
