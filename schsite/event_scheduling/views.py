@@ -29,6 +29,7 @@ hashids = Hashids(salt=SALT)
 
 
 # Create your views here.
+@ensure_csrf_cookie
 def index(request):
     return render(request, 'event_scheduling/index.html')
 
