@@ -1,5 +1,8 @@
 {% extends "event_scheduling/base_site.html" %}
 {% load staticfiles %}
+{% block additionalcss %}
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'event_scheduling/css/nouislider.min.css' %}"/>#}
+{% endblock %}
 {% block body %}
     <div class="container" id="homeContainer">
         <br>
@@ -19,11 +22,11 @@
             <div class="col-xs-4">
                 <div class="" style="text-align:center;margin-top:6px; margin-bottom:6px;">
                     <div class="col-xs-12" id="loaderDiv"
-         style="width:100%; margin:0px; padding-left:0px; padding-right:0; z-index:51;height:3px; margin-top: -3px">
-        &nbsp;</div>
+                         style="width:100%; margin:0px; padding-left:0px; padding-right:0; z-index:51;height:3px; margin-top: -3px">
+                        &nbsp;</div>
                     <button id="allDoneCreate" class="btn btn-raise btn-material-pink-A200"
                             style="width:100%;float:right; height:72px;margin:0;padding-top: 0px;padding-bottom: 0px;">
-                         <i id="allDoneCreate" class="mdi-action-done visible-xs"></i><span class="hidden-xs">继续</span>
+                        <i id="allDoneCreate" class="mdi-action-done visible-xs"></i><span class="hidden-xs">继续</span>
                     </button>
 
                 </div>
@@ -37,7 +40,7 @@
 
         <div class="row">
             <div class="col-xs-12">
-                <div class="panel panel-default">
+                <div class="date-picker-panel panel panel-default">
                     <div class="panel-heading" id="pickerHeader">
                         时间
                         <div id="dateCount"></div>
@@ -45,6 +48,25 @@
                     <div id="datepicker"></div>
                 </div>
             </div>
+        </div>
+
+        <div class="row text-center">
+            <div class="col-xs-4">
+                <button class="date-type-selector date-type-selector-unselected btn dark-bg-primary "
+                        data-time-type={{ TIME_TYPE_WHOLE_DAY_TIME }} style="">全天活动
+                </button>
+            </div>
+            <div class="col-xs-4">
+                <button class="date-type-selector date-type-selector-unselected btn dark-bg-primary"
+                        data-time-type={{ TIME_TYPE_MORNING_AFTERNOON_EVENING_TIME }} style="">早中晚
+                </button>
+            </div>
+            <div class="col-xs-4">
+                <button class="date-type-selector date-type-selector-unselected btn  dark-bg-primary "
+                        data-time-type={{ TIME_TYPE_PRECISE_TIME_TIME }} style="">精确时间
+                </button>
+            </div>
+
         </div>
 
 
@@ -60,11 +82,16 @@
         var MAX_TITLE_LENGTH = {{ MAX_TITLE_LENGTH }};
         var MIN_TITLE_LENGTH = {{ MIN_TITLE_LENGTH }};
         var MIN_NAME_LENGTH ={{ MIN_NAME_LENGTH }};
+        var TIME_TYPE_WHOLE_DAY_TIME = {{ TIME_TYPE_WHOLE_DAY_TIME }};
+        var TIME_TYPE_MORNING_AFTERNOON_EVENING_TIME = {{ TIME_TYPE_MORNING_AFTERNOON_EVENING_TIME }};
+        var TIME_TYPE_PRECISE_TIME_TIME = {{ TIME_TYPE_PRECISE_TIME_TIME }};
+
     </script>
     <script src="{% static 'event_scheduling/js/bootstrap-datepicker.min.js' %}"></script>
     <script src="{% static 'event_scheduling/js/bootstrap-datepicker.zh-CN.min.js' %}"></script>
     <script src="{% static 'event_scheduling/js/fastclick.js' %}"></script>
     <script src="{% static 'event_scheduling/js/velocity.min.js' %}"></script>
+    <script src="{% static 'event_scheduling/js/nouislider.min.js' %}"></script>
     <script src="{% static 'event_scheduling/js/create_date.js' %}"></script>
 
 {% endblock %}

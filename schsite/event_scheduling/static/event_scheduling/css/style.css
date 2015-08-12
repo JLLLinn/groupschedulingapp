@@ -296,13 +296,13 @@ input.datesCheck + * {
 }
 
 .dark-bg-secondary {
-    color: #FFFFFF;
-    opacity: 0.70;
+    color: #FFFFFF !important;
+    opacity: 0.70 !important;
 }
 
 .dark-bg-primary {
-    color: #FFFFFF;
-    opacity: 1.0;
+    color: #FFFFFF !important;
+    opacity: 1.0 !important;
 }
 
 .dark-bg-disabled-hint {
@@ -364,11 +364,11 @@ input.datesCheck + * {
 }
 .btn-material-pink-A100:not(.btn-link):not(.btn-flat) {
   background-color: #ff80ab;
-  color: rgba(255, 255, 255, 0.84);
+  color: rgba(255, 255, 255, 1);
 }
 .btn-material-pink-A100:not(.btn-link):not(.btn-flat) {
   background-color: #ff80ab;
-  color: rgba(255, 255, 255, 0.84);
+  color: rgba(255, 255, 255, 1);
 }
 .btn-material-pink-A100:hover:not(.btn-link):not(.btn-flat) {
   background-color: #ff94b8;
@@ -387,4 +387,37 @@ input.datesCheck + * {
 }
 .open > .dropdown-toggle.btn-material-pink-A100 {
   background-color: #ff80ab;
+}
+
+/*.noUi-handle{*/
+    /*width: 20px;*/
+    /*height: 20px;*/
+    /*top: -9px;*/
+    /*cursor: pointer;*/
+/*}*/
+
+.date-type-selector {
+
+    margin-top: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    width:100%;
+}
+
+.date-type-selector-unselected {
+    background-color: rgba(255, 128, 171, 0.2) !important;
+}
+.date-type-selector-unselected:hover {
+    background-color: #ff9fbf !important;
+}
+.date-type-selector-selected {
+    background-color: #ff80ab !important;
+}
+.date-type-selector-selected:hover {
+    background-color: #ff80ab !important;
+}
+
+
+.date-picker-panel{
+    margin-bottom: 15px;
 }

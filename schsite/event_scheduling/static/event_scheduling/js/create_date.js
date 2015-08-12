@@ -3,6 +3,7 @@
  */
 
 var dates; //this is for saving the current dates
+var time_type = false;
 var date_selected_count = 0;
 var mprogress = new Mprogress();
 var intObj = {
@@ -18,12 +19,13 @@ $(function () {
 
 
 function init() {
-    //FastClick.attach(document.body);
     $.material.init();
     FastClick.attach(document.body);
+    //initSlider();
     initEventTitle();
     initDatePicker();
     initNameCreate();
+    initDateTypeSelectors();
     //$("#allDoneCreate").off();
     $.ajaxSetup({
         beforeSend: function (xhr, settings) {
@@ -34,6 +36,31 @@ function init() {
     });
     checkState();
 }
+function initDateTypeSelectors() {
+    $(".date-type-selector").on('click', function () {
+        $(".date-type-selector").removeClass("date-type-selector-selected");
+        $(".date-type-selector").removeClass("date-type-selector-unselected");
+        $(".date-type-selector").not(this).addClass("date-type-selector-unselected");
+        $(this).addClass("date-type-selector-selected");
+        time_type = $(this).attr("data-time-type");
+    });
+
+    $(".date-type-selector[data-time-type=" + TIME_TYPE_WHOLE_DAY_TIME + "]").trigger("click");
+
+}
+//function initSlider() {
+//    var slider = document.getElementById('type-slider');
+//
+//    noUiSlider.create(slider, {
+//        start: 40,
+//        step: 50,
+//        connect: "lower",
+//        range: {
+//            min: 0,
+//            max: 100
+//        }
+//    });
+//}
 var initEventTitle = function () {
     var $eventTitleCreate_id = $("#eventTitleCreate");
     blinkSomething($('#whatToDo'));
@@ -92,8 +119,8 @@ function ajaxSubmitForm() {
     var obj = {
         "event_title": title,
         "dates": dates,
-        "organizer_name": organizer_name
-
+        "organizer_name": organizer_name,
+        "time_type" : time_type
     };
     $.post(add_whole_day_url, obj, function (data) {
         console.log(data);
@@ -133,10 +160,10 @@ function checkState() {
         message = "▲ 活动的名字太长了。。";
         titleProblems = true;
     } else if ((nameLen = $("#organizerNameCreate").val().length) < MIN_NAME_LENGTH) {
-        if(nameLen == 0){
+        if (nameLen == 0) {
             message = "▲ 您将显示给朋友的名字";
         } else {
-            message = "▲ 您的名字需要 "+MIN_NAME_LENGTH+" 个字以上";
+            message = "▲ 您的名字需要 " + MIN_NAME_LENGTH + " 个字以上";
         }
 
         nameProblems = true;

@@ -3,15 +3,13 @@ import json
 import logging
 
 from django.core.urlresolvers import reverse
-
 from django.shortcuts import render, get_object_or_404
-
 from django.http import Http404, JsonResponse, HttpResponse
 
 from django.views.decorators.csrf import ensure_csrf_cookie
 
 from event_scheduling import utils
-from event_scheduling.models import Event
+from event_scheduling.models import Event, Timeslot
 from event_scheduling.utils import init_whole_day_event, get_euts, save_eut_to_model, delete_eut_by_id
 from event_scheduling.hashids import Hashids
 
@@ -37,11 +35,13 @@ def index(request):
 @ensure_csrf_cookie
 def create_date(request):
     context_obj = {
+        "TIME_TYPE_WHOLE_DAY_TIME": Timeslot.WHOLE_DAY_TIME,
+        "TIME_TYPE_MORNING_AFTERNOON_EVENING_TIME": Timeslot.MORNING_AFTERNOON_EVENING_TIME,
+        "TIME_TYPE_PRECISE_TIME_TIME": Timeslot.PRECISE_TIME_TIME,
         "DATE_STR_SPLITTER": DATE_STR_SPLITTER,
         "MAX_TITLE_LENGTH": MAX_TITLE_LENGTH,
         "MIN_TITLE_LENGTH": MIN_TITLE_LENGTH,
         "MIN_NAME_LENGTH": MIN_NAME_LENGTH,
-
     }
     return render(request, 'event_scheduling/create_date.html', context_obj)
 
