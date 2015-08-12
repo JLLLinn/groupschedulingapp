@@ -7,7 +7,7 @@
          ">
         <br><br><br>
 
-        <h3 class="page-title dark-bg-primary" style="">来聚吧，找咱们的共同时间</h3><br>
+        <h3 class="page-title dark-bg-primary" style="">来被单儿，找共同时间</h3><br>
         <span class='dark-bg-secondary' style="font-size:1.2em;">完全免费 &middot; 无需注册 &middot; 不用下载</span>
         <br><br><br>
     </div>
@@ -32,7 +32,12 @@
 
         <div class="row">
             <div class="col-xs-offset-1 col-xs-10 col-md-6 col-md-offset-3">
-                <strong class="light-bg-secondary"> &middot; 聚吧是什么&middot; </strong><br>
+                <strong class="light-bg-secondary"> &middot; 被单儿是什么&middot; </strong><br>
+                  <span style="font-size: 0.87em; " class="light-bg-secondary">
+                        被单儿使用简洁的一步到位的方式，为你们的活动，聚会，咪挺（Meeting）寻找共同时间。
+                    </span>
+                <br><br>
+                 <strong class="light-bg-secondary"> &middot; 如何使用被单儿&middot; </strong><br>
                     <span style="font-size: 0.87em; " class="light-bg-secondary">
                         <i class="mdi-action-schedule"
                            style="font-size:1.2em; color:#3f51b5;"></i> 为活动取一个名字并设置供选择日期</br>
@@ -42,7 +47,7 @@
                     </span>
             </div>
         </div>
-        <br>
+        <br><br>
 
         <div class="row">
             <div class="text-center col-xs-offset-1 col-xs-10 col-md-6 col-md-offset-3 ">
@@ -60,7 +65,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">想对我（聚吧的创造者）说什么？<br>
+                    <h4 class="modal-title">想对我（被单儿的创造者）说什么？<br>
                         <small>直接在下框中输入点击发送。请记得写上您的联系方式</small>
                     </h4>
                 </div>
@@ -75,15 +80,12 @@
                     </button>
                 </div>
                 <div class="col-xs-12" id="loaderDiv"
-                 style="width:100%; margin:0px; padding-left:0px; padding-right:0; z-index:51;height:3px; bottom:0px">
-                &nbsp;
-            </div>
+                     style="width:100%; margin:0px; padding-left:0px; padding-right:0; z-index:51;height:3px; bottom:0px">
+                    &nbsp;
+                </div>
             </div>
         </div>
     </div>
-    <a id="planALink" href="{% url 'event_scheduling:index' %}">聚吧 <strong>J</strong>vba
-        {#        <small style="font-size:0.7em; color:#888888;">出品</small>#}
-    </a>
 {% endblock %}
 
 {% block additionaljs %}

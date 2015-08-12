@@ -4,7 +4,6 @@ body, button {
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4{
     font-family: "Microsoft YaHei", "STXihei", sans-serif;
 }
-
 #homeContainer {
     margin-top: 10px;
 }
@@ -31,12 +30,14 @@ a:hover {
     /*border-bottom: 1px solid rgba(255, 255, 255, .12);*/
 }
 
-#eventTitle, .titleCreate {
+#eventTitle {
+    text-align: center;
+    color: #000000;
+    opacity: .87;
     border: 0px;
     width: 100%;
     padding: 4px;
-    font-size: 1.2em;
-    color: #000;
+    font-size: 1.5em;
     border-width: 0px 0px 1px 0px;
     border-color: rgba(0,0,0,.38);
     border-style: solid;
@@ -45,10 +46,14 @@ a:hover {
 
 }
 
-#eventTitle {
-    text-align: center;
-    color: #000000;
-    opacity: .87;
+.titleCreate{
+    border: 0px;
+    width: 100%;
+    padding: 4px;
+    font-size: 1.2em;
+    color: #000;
+    background-color: inherit;
+    border-radius: 0px;
 
 }
 
@@ -251,7 +256,7 @@ col:nth-child(2n+3) {
 }
 
 col.highestCol {
-    border-style: inset;
+    border-style: ridge;
     border-width: 1px;
     border-color: green;
 }

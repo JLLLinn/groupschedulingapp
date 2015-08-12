@@ -182,7 +182,7 @@ function initUIHandlers() {
 
     });
     $("#shareLink").on("click", function () {
-        prompt("复制链接八～", window.location.href);
+        prompt("复制如下链接发给朋友让他们来选择时间：", window.location.href);
     });
     $("#allDone").on("click", function () {
         if (tryRenderStatus(STATUS_ALL_DONE)) {
@@ -220,9 +220,6 @@ function initUIHandlers() {
         $confirm_btn.off();
         $confirm_btn.click({"eut_hid": eut_hid}, deleteEutByIdCallback);
         $myModal.modal('show');
-    });
-    $("#planALink").on("click", function () {
-        window.open("http://" + location.host);
     });
 
 }

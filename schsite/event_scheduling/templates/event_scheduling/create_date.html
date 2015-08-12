@@ -7,18 +7,20 @@
         <div class="row">
             <div class="col-xs-8">
                 <div class="" style=" margin-top:6px; margin-bottom:6px;">
-                    <input type="text" placeholder="点击输入事件标题" id="eventTitleCreate" class="titleCreate"
-                           style="display: inline-block;">
+                    <input type="text" placeholder="点击输入事件标题" id="eventTitleCreate" class="form-control titleCreate"
+                           style="display: inline-block;background-image:  linear-gradient(#FF80AB,#FF80AB),linear-gradient(#d2d2d2,#d2d2d2)">
                 </div>
                 <div class="" style=" margin-top:6px; margin-bottom:6px;">
-                    <input type="text" placeholder="名字" id="organizerNameCreate" class="titleCreate"
-                           style="display: inline-block;">
+                    <input type="text" placeholder="名字" id="organizerNameCreate" class="form-control titleCreate"
+                           style="display: inline-block;background-image:  linear-gradient(#FF80AB,#FF80AB),linear-gradient(#d2d2d2,#d2d2d2)">
                 </div>
             </div>
 
             <div class="col-xs-4">
                 <div class="" style="text-align:center;margin-top:6px; margin-bottom:6px;">
-
+                    <div class="col-xs-12" id="loaderDiv"
+         style="width:100%; margin:0px; padding-left:0px; padding-right:0; z-index:51;height:3px; margin-top: -3px">
+        &nbsp;</div>
                     <button id="allDoneCreate" class="btn btn-raise btn-material-pink-A200"
                             style="width:100%;float:right; height:72px;margin:0;padding-top: 0px;padding-bottom: 0px;">
                          <i id="allDoneCreate" class="mdi-action-done visible-xs"></i><span class="hidden-xs">继续</span>
@@ -47,12 +49,6 @@
 
 
     </div>
-    <div class="col-xs-12" id="loaderDiv"
-         style="width:100%; margin:0px; padding-left:0px; padding-right:0; z-index:51;height:3px; position:absolute; bottom:0px;">
-        &nbsp;</div>
-    <a id="planALink" href="{% url 'event_scheduling:index' %}">聚吧 <strong>J</strong>vba
-        {#        <small style="font-size:0.7em; color:#888888;">出品</small>#}
-    </a>
 
 
 {% endblock %}

@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1fe1bd6e-6364-4f45-89a4-b1a7c54e4318" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/images/favicon.ico" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/images/index-promo-img.PNG" afterPath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/images/index-promo-img.PNG" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/base_site.html" afterPath="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/base_site.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/create_date.html" afterPath="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/create_date.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/create_date.js" afterPath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/create_date.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/index.html" afterPath="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/index.js" afterPath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/plan_detail.html" afterPath="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/plan_detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.js" afterPath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/css/style.css" afterPath="$PROJECT_DIR$/event_scheduling/static/event_scheduling/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event_scheduling/urls.py" afterPath="$PROJECT_DIR$/event_scheduling/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="schsite.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,18 +52,18 @@
       <file leaf-file-name="plan_detail.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.6923075">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="24" />
+            <state vertical-scroll-proportion="-6.8846154">
+              <caret line="222" column="7" selection-start-line="222" selection-start-column="7" selection-end-line="222" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54632586">
-              <caret line="21" column="98" selection-start-line="21" selection-start-column="98" selection-end-line="21" selection-end-column="98" />
+            <state vertical-scroll-proportion="-2.6538463">
+              <caret line="5" column="70" selection-start-line="5" selection-start-column="70" selection-end-line="5" selection-end-column="70" />
               <folding />
             </state>
           </provider>
@@ -63,8 +72,8 @@
       <file leaf-file-name="base_site.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/event_scheduling/templates/event_scheduling/base_site.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state vertical-scroll-proportion="-5.607143">
+              <caret line="30" column="16" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -82,22 +91,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/event_scheduling/utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/event_scheduling/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="58" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="58" />
-              <folding />
+              <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,8 +106,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1" column="30" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
+            <state vertical-scroll-proportion="-3.6538463">
+              <caret line="71" column="1" selection-start-line="71" selection-start-column="1" selection-end-line="71" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -115,24 +116,19 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/event_scheduling/templates/event_scheduling/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.464286">
-              <caret line="73" column="26" selection-start-line="73" selection-start-column="26" selection-end-line="73" selection-end-column="26" />
-              <folding>
-                <element signature="e#3777#3877#0#HTML" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="41.214287">
+              <caret line="9" column="62" selection-start-line="9" selection-start-column="62" selection-end-line="9" selection-end-column="62" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plan_detail.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="plan_detail.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/event_scheduling/templates/event_scheduling/plan_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.4074074">
-              <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="33" selection-end-column="22" />
-              <folding>
-                <element signature="e#707#756#0#HTML" expanded="true" />
-                <element signature="e#1345#1434#0#HTML" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.14788732">
+              <caret line="54" column="50" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -140,11 +136,23 @@
       <file leaf-file-name="create_date.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/event_scheduling/templates/event_scheduling/create_date.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.851852">
-              <caret line="48" column="10" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+            <state vertical-scroll-proportion="-4.071429">
+              <caret line="27" column="0" selection-start-line="26" selection-start-column="29" selection-end-line="27" selection-end-column="0" />
               <folding>
-                <element signature="e#1948#2068#0#HTML" expanded="true" />
+                <element signature="e#429#543#0#HTML" expanded="true" />
+                <element signature="e#784#898#0#HTML" expanded="true" />
+                <element signature="e#1137#1243#0#HTML" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create_date.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/create_date.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.8846154">
+              <caret line="22" column="36" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -172,18 +180,18 @@
         <option value="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/temp.html" />
         <option value="$PROJECT_DIR$/event_scheduling/models.py" />
         <option value="$PROJECT_DIR$/event_scheduling/static/event_scheduling/less/material-compile.less" />
-        <option value="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/create_date.js" />
-        <option value="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.js" />
         <option value="$PROJECT_DIR$/schsite/settings.py" />
         <option value="$PROJECT_DIR$/event_scheduling/utils.py" />
-        <option value="$PROJECT_DIR$/event_scheduling/urls.py" />
-        <option value="$PROJECT_DIR$/event_scheduling/static/event_scheduling/css/style.css" />
-        <option value="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/base_site.html" />
-        <option value="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/create_date.html" />
         <option value="$PROJECT_DIR$/event_scheduling/views.py" />
-        <option value="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/plan_detail.html" />
-        <option value="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/index.html" />
         <option value="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/index.js" />
+        <option value="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/create_date.html" />
+        <option value="$PROJECT_DIR$/event_scheduling/urls.py" />
+        <option value="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/index.html" />
+        <option value="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/base_site.html" />
+        <option value="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.js" />
+        <option value="$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/create_date.js" />
+        <option value="$PROJECT_DIR$/event_scheduling/static/event_scheduling/css/style.css" />
+        <option value="$PROJECT_DIR$/event_scheduling/templates/event_scheduling/plan_detail.html" />
       </list>
     </option>
   </component>
@@ -699,15 +707,16 @@
     <frame x="-1608" y="-8" width="1616" height="916" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23491655" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2355584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294621" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32953104" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843792" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32931727" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13543004" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17363751" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17870723" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -715,7 +724,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32953104" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -740,10 +748,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
-          <folding>
-            <element signature="e#707#756#0#HTML" expanded="true" />
-            <element signature="e#1345#1434#0#HTML" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -751,7 +756,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-          <folding />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -984,13 +991,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/create_date.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33277592">
-          <caret line="103" column="16" selection-start-line="103" selection-start-column="14" selection-end-line="103" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/css/bootstrap.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2676282">
@@ -1044,34 +1044,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="30" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/event_scheduling/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/event_scheduling/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="58" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/event_scheduling/templates/event_scheduling/base_site.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1086,49 +1062,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.js">
+    <entry file="file://$PROJECT_DIR$/event_scheduling/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.6923075">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/event_scheduling/templates/event_scheduling/create_date.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.851852">
-          <caret line="48" column="10" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
           <folding>
-            <element signature="e#1948#2068#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/event_scheduling/templates/event_scheduling/plan_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.4074074">
-          <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="33" selection-end-column="22" />
-          <folding>
-            <element signature="e#707#756#0#HTML" expanded="true" />
-            <element signature="e#1345#1434#0#HTML" expanded="true" />
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/event_scheduling/templates/event_scheduling/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.464286">
-          <caret line="73" column="26" selection-start-line="73" selection-start-column="26" selection-end-line="73" selection-end-column="26" />
-          <folding>
-            <element signature="e#3777#3877#0#HTML" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="41.214287">
+          <caret line="9" column="62" selection-start-line="9" selection-start-column="62" selection-end-line="9" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/event_scheduling/templates/event_scheduling/base_site.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.607143">
+          <caret line="30" column="16" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.8846154">
+          <caret line="222" column="7" selection-start-line="222" selection-start-column="7" selection-end-line="222" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/create_date.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.8846154">
+          <caret line="22" column="36" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54632586">
-          <caret line="21" column="98" selection-start-line="21" selection-start-column="98" selection-end-line="21" selection-end-column="98" />
+        <state vertical-scroll-proportion="-2.6538463">
+          <caret line="5" column="70" selection-start-line="5" selection-start-column="70" selection-end-line="5" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.6538463">
+          <caret line="71" column="1" selection-start-line="71" selection-start-column="1" selection-end-line="71" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/event_scheduling/templates/event_scheduling/create_date.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.071429">
+          <caret line="27" column="0" selection-start-line="26" selection-start-column="29" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#429#543#0#HTML" expanded="true" />
+            <element signature="e#784#898#0#HTML" expanded="true" />
+            <element signature="e#1137#1243#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/event_scheduling/templates/event_scheduling/plan_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14788732">
+          <caret line="54" column="50" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
           <folding />
         </state>
       </provider>

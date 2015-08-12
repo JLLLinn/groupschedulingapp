@@ -21,10 +21,6 @@ function init() {
     //FastClick.attach(document.body);
     $.material.init();
     FastClick.attach(document.body);
-    $("#planALink").on("click", function () {
-            window.open("http://" + location.host);
-        }
-    );
     initEventTitle();
     initDatePicker();
     initNameCreate();

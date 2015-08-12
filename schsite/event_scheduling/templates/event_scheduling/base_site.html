@@ -4,17 +4,18 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="为你们的聚会咪挺（Meeting）找共同时间！"/>
+    <meta name="description" content="被单儿使用简洁的一步到位的方式，为你们的活动，聚会，咪挺（Meeting）寻找共同时间。 他是一个平台网站APP。"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="聚吧">
+    <meta name="apple-mobile-web-app-title" content="被单儿">
     <meta http-equiv="cleartype" content="on">
+    <link rel="shortcut icon" type="image/png" href="{% static 'event_scheduling/images/favicon.ico' %}"/>
     {# TODO Needs to be traslated #}
-    <title>{% block title %}{{ site_title|default:_('聚吧') }}{% endblock %}</title>
+    <title>{% block title %}{{ site_title|default:_('被单儿') }}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'event_scheduling/css/bootstrap.min.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'event_scheduling/css/material.min.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'event_scheduling/css/ripples.min.css' %}"/>
@@ -27,6 +28,10 @@
 <body>
 
 {% block body %}{% endblock %}
+<a id="planALink" target="_blank" href="{% url 'event_scheduling:index' %}"><strong>BD</strong> 被单儿
+        {#        <small style="font-size:0.7em; color:#888888;">出品</small>#}
+</a>
+
 
 <script src="{% static 'event_scheduling/js/jquery-1.11.3.min.js' %}"></script>
 <script src="{% static 'event_scheduling/js/bootstrap.min.js' %}"></script>
