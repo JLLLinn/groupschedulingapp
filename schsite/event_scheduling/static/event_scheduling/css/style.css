@@ -2,7 +2,7 @@ body, button {
     background-color: #FFFFFF;
 }
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4{
-    font-family: 'Helvetica Neue',Helvetica,Arial,"Microsoft YaHei", "STXihei", sans-serif;
+    font-family: 'Helvetica Neue',Helvetica,Arial,"Microsoft YaHei","微软雅黑", "STXihei","华文细黑", sans-serif;
 }
 #homeContainer {
     margin-top: 10px;
