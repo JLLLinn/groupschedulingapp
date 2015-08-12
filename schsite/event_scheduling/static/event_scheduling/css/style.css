@@ -2,7 +2,7 @@ body, button {
     background-color: #FFFFFF;
 }
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4{
-    font-family: "Microsoft YaHei", "STXihei", sans-serif;
+    font-family: 'Helvetica Neue',Helvetica,Arial,"Microsoft YaHei", "STXihei", sans-serif;
 }
 #homeContainer {
     margin-top: 10px;
@@ -25,7 +25,7 @@ a:hover {
 }
 
 .page-title {
-    font-family: "Microsoft YaHei", "STXihei", sans-serif;
+    /*font-family: "Microsoft YaHei", "STXihei", sans-serif;*/
     margin-top: 0px;
     /*border-bottom: 1px solid rgba(255, 255, 255, .12);*/
 }
