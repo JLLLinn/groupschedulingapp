@@ -63,6 +63,23 @@ def get_plan(request, event_hid):
         raise Http404("Oops, 这里啥都木有。。。")
 
 
+@ensure_csrf_cookie
+def set_precise_time_for_dates(request, event_hid):
+    event_primary_keys = hashids.decode(event_hid)
+    if len(event_primary_keys) >= 1:
+        event = get_object_or_404(Event, pk=event_primary_keys[0])
+        context_obj = {
+            "event": event,
+            "event_hid": event_hid,
+            "MIN_NAME_LENGTH": MIN_NAME_LENGTH,
+            "MIN_CELL_WIDTH": MIN_CELL_WIDTH,
+
+        }
+        return render(request, 'event_scheduling/set_precise_time_for_dates.html', context_obj)
+    else:
+        raise Http404("Oops, 这里啥都木有。。。")
+
+
 def add_whole_day(request):
     """
      Create a whole day event, handles post

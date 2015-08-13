@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^save-eut/', views.save_eut, name='save_eut'),
     url(r'^delete-eut/', views.delete_eut, name='delete_eut'),
     url(r'^send-email/', views.send_email, name='send_email'),
+    url(r'^set-precise-time-for-dates/(?P<event_hid>[\w]+)/', views.set_precise_time_for_dates, name='set_precise_time_for_dates'),
     url(r'^(?P<event_hid>[\w]+)/', views.get_plan, name='fetch_plan')
 ]
