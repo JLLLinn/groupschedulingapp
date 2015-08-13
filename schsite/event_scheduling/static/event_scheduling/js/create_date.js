@@ -38,9 +38,10 @@ function init() {
 }
 function initDateTypeSelectors() {
     $(".date-type-selector").on('click', function () {
-        $(".date-type-selector").removeClass("date-type-selector-selected");
-        $(".date-type-selector").removeClass("date-type-selector-unselected");
-        $(".date-type-selector").not(this).addClass("date-type-selector-unselected");
+        var $date = $(".date-type-selector");
+        $date.removeClass("date-type-selector-selected");
+        $date.removeClass("date-type-selector-unselected");
+        $date.not(this).addClass("date-type-selector-unselected");
         $(this).addClass("date-type-selector-selected");
         time_type = $(this).attr("data-time-type");
     });
@@ -120,9 +121,20 @@ function ajaxSubmitForm() {
         "event_title": title,
         "dates": dates,
         "organizer_name": organizer_name,
-        "time_type" : time_type
+        "time_type": time_type
     };
-    $.post(add_whole_day_url, obj, function (data) {
+    var post_url = "";
+    if (time_type == TIME_TYPE_WHOLE_DAY_TIME) {
+        post_url = add_whole_day_url;
+    } else if (time_type == TIME_TYPE_PRECISE_TIME_TIME) {
+        post_url = add_dates_for_precise_time_event_url;
+    } else if (time_type == TIME_TYPE_MORNING_AFTERNOON_EVENING_TIME) {
+        return;
+        //TODO
+    } else {
+        alert("Congrats, you found a error, please be so kind and let the administrator know using the send message button on the first page ")
+    }
+    $.post(post_url, obj, function (data) {
         console.log(data);
         if (typeof(Storage) !== "undefined") {
             localStorage.setItem(data['event_hashid'], data['eventusertimeslots_hashid']);

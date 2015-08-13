@@ -10,7 +10,8 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 
 from event_scheduling import utils
 from event_scheduling.models import Event, Timeslot
-from event_scheduling.utils import init_whole_day_event, get_euts, save_eut_to_model, delete_eut_by_id
+from event_scheduling.utils import init_whole_day_event, get_euts, save_eut_to_model, delete_eut_by_id, \
+    init_precise_time_event
 from event_scheduling.hashids import Hashids
 
 DATE_STR_SPLITTER = ","
@@ -28,12 +29,12 @@ hashids = Hashids(salt=SALT)
 
 # Create your views here.
 @ensure_csrf_cookie
-def index(request):
+def index_html(request):
     return render(request, 'event_scheduling/index.html')
 
 
 @ensure_csrf_cookie
-def create_date(request):
+def create_date_html(request):
     context_obj = {
         "TIME_TYPE_WHOLE_DAY_TIME": Timeslot.WHOLE_DAY_TIME,
         "TIME_TYPE_MORNING_AFTERNOON_EVENING_TIME": Timeslot.MORNING_AFTERNOON_EVENING_TIME,
@@ -47,7 +48,7 @@ def create_date(request):
 
 
 @ensure_csrf_cookie
-def get_plan(request, event_hid):
+def plan_detail_html(request, event_hid):
     event_primary_keys = hashids.decode(event_hid)
     if len(event_primary_keys) >= 1:
         event = get_object_or_404(Event, pk=event_primary_keys[0])
@@ -64,7 +65,7 @@ def get_plan(request, event_hid):
 
 
 @ensure_csrf_cookie
-def set_precise_time_for_dates(request, event_hid):
+def set_precise_time_html(request, event_hid):
     #TODO
     event_primary_keys = hashids.decode(event_hid)
     if len(event_primary_keys) >= 1:
@@ -74,12 +75,12 @@ def set_precise_time_for_dates(request, event_hid):
             "event": event,
             "event_hid": event_hid
         }
-        return render(request, 'event_scheduling/set_precise_time_for_dates.html', context_obj)
+        return render(request, 'event_scheduling/set_precise_time.html', context_obj)
     else:
         raise Http404("Oops, 这里啥都木有。。。")
 
 
-def add_whole_day(request):
+def add_dates_for_whole_day_event(request):
     """
      Create a whole day event, handles post
         1. create a user (the organizer)
@@ -113,11 +114,10 @@ def add_whole_day(request):
 
 def add_dates_for_precise_time_event(request):
     """
-    Create a precise time event, handles post
+    Create a precise time event, handles post, similar to add_dates_for_whole_day_event
     :param request:
     :return:
     """
-    #TODO
     if request.method == 'POST' and request.is_ajax():
         title = request.POST.get('event_title', False)
         date_raw_post = request.POST.get('dates', False)
@@ -128,7 +128,7 @@ def add_dates_for_precise_time_event(request):
         dates = []
         for date_str in date_strs:
             dates.append(datetime.datetime.strptime(date_str, "%m/%d/%Y").date())
-        event_primary_key, eventusertimeslots_primary_key = init_whole_day_event(title, dates,
+        event_primary_key, eventusertimeslots_primary_key = init_precise_time_event(title, dates,
                                                                                  organizer_name)
         event_hashid = hashids.encode(event_primary_key)
         eventusertimeslots_hashid = hashids.encode(eventusertimeslots_primary_key)

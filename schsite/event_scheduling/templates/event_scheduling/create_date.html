@@ -58,7 +58,7 @@
             </div>
             <div class="col-xs-4">
                 <button class="date-type-selector date-type-selector-unselected btn dark-bg-primary"
-                        data-time-type={{ TIME_TYPE_MORNING_AFTERNOON_EVENING_TIME }} style="">早.中.晚
+                        data-time-type={{ TIME_TYPE_MORNING_AFTERNOON_EVENING_TIME }} style="">早 &middot; 中 &middot; 晚
                 </button>
             </div>
             <div class="col-xs-4">
@@ -77,7 +77,8 @@
 
 {% block additionaljs %}
     <script>
-        var add_whole_day_url = "{% url 'event_scheduling:add_whole_day' %}";
+        var add_whole_day_url = "{% url 'event_scheduling:add_dates_for_whole_day_event' %}";
+        var add_dates_for_precise_time_event_url = "{% url 'event_scheduling:add_dates_for_precise_time_event' %}";
         var DATE_STR_SPLITTER = "{{ DATE_STR_SPLITTER }}";
         var MAX_TITLE_LENGTH = {{ MAX_TITLE_LENGTH }};
         var MIN_TITLE_LENGTH = {{ MIN_TITLE_LENGTH }};

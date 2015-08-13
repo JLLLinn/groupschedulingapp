@@ -5,7 +5,7 @@
 {% endblock %}
 {% block body %}
     <div class="container" id="homeContainer">
-
+        set_precise_time
 
 
     </div>
@@ -15,7 +15,6 @@
 
 {% block additionaljs %}
     <script>
-        var add_whole_day_url = "{% url 'event_scheduling:add_whole_day' %}";
         var TIME_TYPE_PRECISE_TIME_TIME = {{ TIME_TYPE_PRECISE_TIME_TIME }};
 
     </script>

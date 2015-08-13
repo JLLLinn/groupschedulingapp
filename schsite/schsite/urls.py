@@ -17,7 +17,6 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-	
-	url(r'^', include('event_scheduling.urls', namespace="event_scheduling")),
-    url(r'^internal/admin/', include(admin.site.urls)),
+    url(r'^internal/admin/$', include(admin.site.urls)),
+    url(r'^', include('event_scheduling.urls', namespace="event_scheduling")),
 ]

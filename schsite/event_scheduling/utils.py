@@ -17,6 +17,22 @@ def init_whole_day_event(event_title, dates, organizer_name):
     :param dates: the dates of the event 
     :return: return the initiated primary key of the event, or false/None if unsuccessful
     """
+    return init_event(dates, event_title, organizer_name, Timeslot.WHOLE_DAY_TIME)
+
+
+def init_precise_time_event(event_title, dates, organizer_name):
+    return init_event(dates, event_title, organizer_name, Timeslot.PRECISE_TIME_TIME)
+
+
+def init_event(dates, event_title, organizer_name, time_type):
+    """
+    This only init the dates, doesn't care about hte time now
+    :param dates:
+    :param event_title:
+    :param organizer_name:
+    :param time_type:
+    :return:
+    """
     if (len(dates) == 0):
         logging.error("Error, Dates has a length of 0")
         return None
@@ -24,7 +40,7 @@ def init_whole_day_event(event_title, dates, organizer_name):
     for date in dates:
         # Returns a tuple of (object, created),
         # where object is the retrieved or created object and created is a boolean specifying whether a new object was created.
-        obj, created = Timeslot.objects.get_or_create(time_type=Timeslot.WHOLE_DAY_TIME, date=date)
+        obj, created = Timeslot.objects.get_or_create(time_type=time_type, date=date)
         date_objs.append(obj)
     # u = User.objects.create(name=organizer_name)
     event = Event.objects.create(name=event_title)
