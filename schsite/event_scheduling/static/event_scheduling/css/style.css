@@ -1,9 +1,11 @@
 body, button {
     background-color: #FFFFFF;
 }
-body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4{
-    font-family: 'Helvetica Neue',Helvetica,Arial,"Microsoft YaHei","微软雅黑", "STXihei","华文细黑", sans-serif;
+
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, "Microsoft YaHei", "微软雅黑", "STXihei", "华文细黑", sans-serif;
 }
+
 #homeContainer {
     margin-top: 10px;
 }
@@ -39,14 +41,14 @@ a:hover {
     padding: 4px;
     font-size: 1.5em;
     border-width: 0px 0px 1px 0px;
-    border-color: rgba(0,0,0,.38);
+    border-color: rgba(0, 0, 0, .38);
     border-style: solid;
     background-color: inherit;
     border-radius: 0px;
 
 }
 
-.titleCreate{
+.titleCreate {
     border: 0px;
     width: 100%;
     padding: 4px;
@@ -357,43 +359,49 @@ input.datesCheck + * {
     background-color: #ff4081;
 }
 
-
-
 .btn-material-pink-A100.btn-flat:not(.btn-link) {
-  color: #ff80ab;
+    color: #ff80ab;
 }
+
 .btn-material-pink-A100:not(.btn-link):not(.btn-flat) {
-  background-color: #ff80ab;
-  color: rgba(255, 255, 255, 1);
+    background-color: #ff80ab;
+    color: rgba(255, 255, 255, 1);
 }
+
 .btn-material-pink-A100:not(.btn-link):not(.btn-flat) {
-  background-color: #ff80ab;
-  color: rgba(255, 255, 255, 1);
+    background-color: #ff80ab;
+    color: rgba(255, 255, 255, 1);
 }
+
 .btn-material-pink-A100:hover:not(.btn-link):not(.btn-flat) {
-  background-color: #ff94b8;
+    background-color: #ff94b8;
 }
+
 .btn-material-pink-A100:active:not(.btn-link):not(.btn-flat) {
-  background-color: #ff9fbf;
+    background-color: #ff9fbf;
 }
+
 .btn-material-pink-A100.active:not(.btn-link):not(.btn-flat) {
-  background-color: #ff9fbf;
+    background-color: #ff9fbf;
 }
+
 .btn-material-pink-A100.btn-flat:hover:not(.btn-ink) {
-  background-color: rgba(255, 128, 171, 0.2);
+    background-color: rgba(255, 128, 171, 0.2);
 }
+
 .open > .dropdown-toggle.btn-material-pink-A100 {
-  background-color: #ff80ab;
+    background-color: #ff80ab;
 }
+
 .open > .dropdown-toggle.btn-material-pink-A100 {
-  background-color: #ff80ab;
+    background-color: #ff80ab;
 }
 
 /*.noUi-handle{*/
-    /*width: 20px;*/
-    /*height: 20px;*/
-    /*top: -9px;*/
-    /*cursor: pointer;*/
+/*width: 20px;*/
+/*height: 20px;*/
+/*top: -9px;*/
+/*cursor: pointer;*/
 /*}*/
 
 .date-type-selector {
@@ -401,23 +409,34 @@ input.datesCheck + * {
     margin-top: 0px;
     padding-right: 0px;
     padding-left: 0px;
-    width:100%;
+    width: 100%;
 }
 
 .date-type-selector-unselected {
     background-color: rgba(255, 128, 171, 0.2) !important;
 }
+
 .date-type-selector-unselected:hover {
     background-color: #ff9fbf !important;
 }
+
 .date-type-selector-selected {
     background-color: #ff80ab !important;
 }
+
 .date-type-selector-selected:hover {
     background-color: #ff80ab !important;
 }
 
-
-.date-picker-panel{
+.date-picker-panel {
     margin-bottom: 15px;
+}
+
+.set-precise-time-cell {
+    padding: 30px;
+    padding-bottom: 30px;
+}
+
+.set-precise-time-cell:nth-child(even) {
+    background-color: #c5cae9;
 }

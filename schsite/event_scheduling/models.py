@@ -1,3 +1,4 @@
+# coding=utf-8
 from datetime import time
 
 from django.db import models
@@ -25,7 +26,7 @@ class Timeslot(models.Model):
     MORNING_AFTERNOON_EVENING_TIME = 1
     PRECISE_TIME_TIME = 2
     TIME_TYPE_CHOICES = (
-        (WHOLE_DAY_TIME, '全天'),
+        (WHOLE_DAY_TIME, "全天"),
         (MORNING_AFTERNOON_EVENING_TIME, '早中晚'),
         (PRECISE_TIME_TIME, '精确时间')
     )

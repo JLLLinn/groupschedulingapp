@@ -42,7 +42,6 @@ function init() {
             }
         }
     });
-    $("#eventTitle").html(event_name);
     document.title = event_name + " | " + document.title;
     initLocalStorage();
     initDatesLayout();

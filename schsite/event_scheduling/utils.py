@@ -21,6 +21,13 @@ def init_whole_day_event(event_title, dates, organizer_name):
 
 
 def init_precise_time_event(event_title, dates, organizer_name):
+    """
+    Similar as above
+    :param event_title:
+    :param dates:
+    :param organizer_name:
+    :return:
+    """
     return init_event(dates, event_title, organizer_name, Timeslot.PRECISE_TIME_TIME)
 
 
