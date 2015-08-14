@@ -2,60 +2,86 @@
 {% load staticfiles %}
 {% block additionalcss %}
     {#    <link rel="stylesheet" type="text/css" href="{% static 'event_scheduling/css/nouislider.min.css' %}"/>#}
+    <link type="text/css" href="{% static 'event_scheduling/css/bootstrap-timepicker.min.css' %}"/>
 {% endblock %}
 {% block body %}
-    <div class="container" id="homeContainer">
-    <br>
+    <div class="container text-center" id="homeContainer">
+        <br>
+
         <div class="row">
             <div class="col-xs-12" style="padding-left:4px; padding-right:4px; margin-top:6px; margin-bottom:6px;">
                 <div id="eventTitle">{{ event.name }}</div>
             </div>
         </div>
-        <br>
-        {% for timeslot in event.get_timeslots_ordered %}
-        <div class="row light-bg-primary " style="" data-timeslot-key={{ timeslot.pk }}>
-            <div class="col-xs-4 set-precise-time-cell">
-                周三 2015-8-14
-            </div>
-            <div class="col-xs-4 set-precise-time-cell"">
-                something
-            </div>
-            <div class="col-xs-4 set-precise-time-cell"">
-                someother
-            </div>
-            <div class="col-xs-4 col-xs-offset-4 set-precise-time-cell"">
-                someother
-            </div>
-        </div>
-    {% endfor %}
 
+        <div id="dates-div">
+            {% regroup event.get_timeslots_ordered by get_date_str as timeslot_by_date %}
+
+            {% for get_date_str in timeslot_by_date %}
+                <div class="row light-bg-primary date-row">
+                    <div class="col-xs-12 col-md-4 col-lg-2 text-center" style=" padding-top: 20px;">
+                        <span class="date-str">{{ get_date_str.grouper }}</span>
+                    </div>
+                    <div class="col-md-8 col-lg-10">
+                        {% for item in get_date_str.list %}
+                            <div class="col-xs-6 col-md-6 col-lg-2 set-precise-time-cell form-group">
+                                <input type="text" class="text-center timepicker-input form-control" placeholder="输入时间"
+                                       data-hint="智能识别" value="{{ item.get_time_str }}"
+                                       data-timeslot-key="{{ item.pk }}" data-day-index="{{ forloop.counter0 }}">
+                            </div>
+                        {% endfor %}
+                        <div class="col-xs-6 col-md-6 col-lg-2 set-precise-time-cell form-group text-center">
+                            <button class="btn btn-fab btn-fab-mini btn-raised btn-material-pink-A200 add-time-slot" data-day-index="{{ forloop.counter0 }}"><i
+                                    class="mdi-content-add" ></i></button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button id="submit-timeslots" class="btn btn-raised btn-material-pink">提交</button>
 
     </div>
 
+
+
+    <script>
+        var days = [
+            {% regroup event.get_timeslots_ordered by get_date_str as timeslot_by_date %}
+            {% for get_date_str in timeslot_by_date %}
+                {
+                    "date":{{ get_date_str.grouper }}
+                },
+            {% endfor %}
+        ]
+    </script>
 
 {% endblock %}
 
 {% block additionaljs %}
     <script>
-        var get_eut_url = "{%  url 'event_scheduling:get_euts_for_event'  event_hid %}";
+        var set_times_for_precise_time_event_url = "{%  url 'event_scheduling:set_times_for_precise_time_event'  event_hid %}";
         var TIME_TYPE_PRECISE_TIME_TIME = {{ TIME_TYPE_PRECISE_TIME_TIME }};
         var event_name = "{{ event.name }}";
-        var dates = [
-            {% for timeslot in event.get_timeslots_ordered %}
-                {
-                    "timeslot_key":{{ timeslot.pk }},
-                    "date": "{{ timeslot.get_date_str }}",
-                    "time": "{{ timeslot.get_time_str }}",
-                    "time_type": "{{ timeslot.time_type }}"
-                },
-            {% endfor %}
-        ]
+{#        var dates = [#}
+{#            {% for timeslot in event.get_timeslots_ordered %}#}
+{#                {#}
+{#                    "timeslot_key":{{ timeslot.pk }},#}
+{#                    "date": "{{ timeslot.get_date_str }}",#}
+{#                    "time": "{{ timeslot.get_time_str }}",#}
+{#                    "time_type": "{{ timeslot.time_type }}"#}
+{#                },#}
+{#            {% endfor %}#}
+{#        ]#}
+
 
     </script>
     <script src="{% static 'event_scheduling/js/bootstrap-datepicker.min.js' %}"></script>
     <script src="{% static 'event_scheduling/js/bootstrap-datepicker.zh-CN.min.js' %}"></script>
     <script src="{% static 'event_scheduling/js/fastclick.js' %}"></script>
     <script src="{% static 'event_scheduling/js/velocity.min.js' %}"></script>
+    <script src="{% static 'event_scheduling/js/moment.min.js' %}"></script>
+    <script src="{% static 'event_scheduling/js/moment-zh-cn.js' %}"></script>
+    <script src="{% static 'event_scheduling/js/bootstrap-timepicker.min.js' %}"></script>
     <script src="{% static 'event_scheduling/js/set_precise_time.js' %}"></script>
 
 {% endblock %}

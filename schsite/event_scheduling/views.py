@@ -3,7 +3,9 @@ import json
 import logging
 
 from django.core.urlresolvers import reverse
+
 from django.shortcuts import render, get_object_or_404
+
 from django.http import Http404, JsonResponse, HttpResponse
 
 from django.views.decorators.csrf import ensure_csrf_cookie
@@ -66,7 +68,7 @@ def plan_detail_html(request, event_hid):
 
 @ensure_csrf_cookie
 def set_precise_time_html(request, event_hid):
-    #TODO
+    # TODO
     event_primary_keys = hashids.decode(event_hid)
     if len(event_primary_keys) >= 1:
         event = get_object_or_404(Event, pk=event_primary_keys[0])
@@ -129,7 +131,7 @@ def add_dates_for_precise_time_event(request):
         for date_str in date_strs:
             dates.append(datetime.datetime.strptime(date_str, "%m/%d/%Y").date())
         event_primary_key, eventusertimeslots_primary_key = init_precise_time_event(title, dates,
-                                                                                 organizer_name)
+                                                                                    organizer_name)
         event_hashid = hashids.encode(event_primary_key)
         eventusertimeslots_hashid = hashids.encode(eventusertimeslots_primary_key)
         response_obj = {
@@ -233,5 +235,53 @@ def send_email(request):
             return HttpResponse("OK")
         else:
             raise Http404("Oops, No Content")
+    else:
+        raise Http404("Oops, 这里啥都木有。。。")
+
+
+def set_times_for_precise_time_event(request, event_hid):
+    """
+    This will take the event hid, update the timeslots for the event.
+    for each time slot, I will (and must) have the date and start time:
+        1. if date or start time is empty, I jump over it
+        2. try get the timeslot based on the date and start time
+            a. if get it, then get the id and save to timeslot_list
+            b. if failed, then create one and save id to timeslot_list
+        3. set the new timeslot_list to the users timeslot list based on the eut that I have
+        4. set the timeslot_list to the event's timeslots
+
+    :param request:
+    :param event_hid:
+    :return:
+    """
+    if request.method == 'POST' and request.is_ajax():
+        #getting the self eut pk
+        self_eut_hid = request.POST.get('eut_hid', False)
+        if self_eut_hid:
+            # It is a returning user
+            self_eut_primary_keys = hashids.decode(self_eut_hid)
+            if len(self_eut_primary_keys) >= 1:
+                self_eut_primary_key = self_eut_primary_keys[0]
+            else:
+                raise Http404(
+                    "Oops, smart guy/gal, your localstorage seems to be changed :) <br> Well,you can choose to delete that row and proceed or restore what you changed :P ")
+        else:
+            self_eut_primary_key = None
+        #getting the event pk
+        event_primary_keys = hashids.decode(event_hid)
+        if len(event_primary_keys) >= 1:
+            event_primary_key = event_primary_keys[0]
+        else:
+            raise Http404("Oops, 这里啥都木有。。。")
+        #getting the timeslots to update
+        timeslot_str_json = request.POST.get('timeslot_str_json', False)
+        if timeslot_str_json:
+            timeslot_str_arr = json.loads(timeslot_str_json)
+        else:
+            raise Http404("Expecting timeslots but nothing given")
+
+        #by now I should have the self eut_primary key, the event pk and the timeslot array
+        #TODO
+
     else:
         raise Http404("Oops, 这里啥都木有。。。")

@@ -7,6 +7,8 @@ urlpatterns = [
     url(r'^create-date$', views.create_date_html, name='create_date'),
     url(r'^add/whole-day$', views.add_dates_for_whole_day_event, name='add_dates_for_whole_day_event'),
     url(r'^add/precise-time-dates$', views.add_dates_for_precise_time_event, name='add_dates_for_precise_time_event'),
+    url(r'^set/precise-time-times/(?P<event_hid>[\w]+)/$', views.set_times_for_precise_time_event,
+        name='set_times_for_precise_time_event'),
     url(r'^get-euts/(?P<event_hid>[\w]+)/$', views.get_euts_for_event, name='get_euts_for_event'),
     url(r'^save-eut/$', views.save_eut, name='save_eut'),
     url(r'^delete-eut/$', views.delete_eut, name='delete_eut'),

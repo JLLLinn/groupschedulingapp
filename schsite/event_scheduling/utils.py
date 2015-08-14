@@ -47,7 +47,8 @@ def init_event(dates, event_title, organizer_name, time_type):
     for date in dates:
         # Returns a tuple of (object, created),
         # where object is the retrieved or created object and created is a boolean specifying whether a new object was created.
-        obj, created = Timeslot.objects.get_or_create(time_type=time_type, date=date)
+        obj, created = Timeslot.objects.get_or_create(time_type=time_type, date=date, start_time__isnull=True,
+                                                      end_time__isnull=True)
         date_objs.append(obj)
     # u = User.objects.create(name=organizer_name)
     event = Event.objects.create(name=event_title)

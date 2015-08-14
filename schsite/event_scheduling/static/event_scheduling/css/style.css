@@ -433,10 +433,19 @@ input.datesCheck + * {
 }
 
 .set-precise-time-cell {
-    padding: 30px;
-    padding-bottom: 30px;
+    padding-top :20px;
+    margin-bottom: 0px;
+}
+.date-row{
+    padding-top: 20px;
+}
+.form-control-wrapper .hint{
+    position: inherit;
 }
 
-.set-precise-time-cell:nth-child(even) {
-    background-color: #c5cae9;
+.form-control-wrapper{
+    min-height:50px;
 }
+/*.set-precise-time-cell:nth-child(even) {*/
+    /*background-color: #c5cae9;*/
+/*}*/
