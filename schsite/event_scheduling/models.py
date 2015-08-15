@@ -55,7 +55,7 @@ class Timeslot(models.Model):
             else:
                 return ""
         elif self.time_type == self.PRECISE_TIME_TIME:
-            if self.start_time:
+            if self.start_time is not None:
                 return self.start_time.strftime("%I:%M %p")
             else:
                 return ""
@@ -65,7 +65,7 @@ class Timeslot(models.Model):
         return self.date.strftime("%Y/%m/%d")
 
     def __str__(self):
-        return self.date.strftime("%y/%m/%d") + " " + self.get_time_str()
+        return self.get_date_str() + " " + self.get_time_str()
 
 
 class Event(models.Model):

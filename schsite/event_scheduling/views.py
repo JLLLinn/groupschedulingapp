@@ -3,7 +3,6 @@ import json
 import logging
 
 from django.core.urlresolvers import reverse
-
 from django.shortcuts import render, get_object_or_404
 
 from django.http import Http404, JsonResponse, HttpResponse
@@ -255,33 +254,36 @@ def set_times_for_precise_time_event(request, event_hid):
     :return:
     """
     if request.method == 'POST' and request.is_ajax():
-        #getting the self eut pk
-        self_eut_hid = request.POST.get('eut_hid', False)
+        # getting the self eut pk
+        self_eut_hid = request.POST.get('self_eut_hid', False)
         if self_eut_hid:
             # It is a returning user
-            self_eut_primary_keys = hashids.decode(self_eut_hid)
-            if len(self_eut_primary_keys) >= 1:
-                self_eut_primary_key = self_eut_primary_keys[0]
+            self_eut_pks = hashids.decode(self_eut_hid)
+            if len(self_eut_pks) >= 1:
+                self_eut_pk = self_eut_pks[0]
             else:
                 raise Http404(
                     "Oops, smart guy/gal, your localstorage seems to be changed :) <br> Well,you can choose to delete that row and proceed or restore what you changed :P ")
         else:
-            self_eut_primary_key = None
-        #getting the event pk
+            self_eut_pk = None
+        # getting the event pk
         event_primary_keys = hashids.decode(event_hid)
         if len(event_primary_keys) >= 1:
-            event_primary_key = event_primary_keys[0]
+            event_pk = event_primary_keys[0]
         else:
             raise Http404("Oops, 这里啥都木有。。。")
-        #getting the timeslots to update
+        # getting the timeslots to update
         timeslot_str_json = request.POST.get('timeslot_str_json', False)
         if timeslot_str_json:
             timeslot_str_arr = json.loads(timeslot_str_json)
         else:
             raise Http404("Expecting timeslots but nothing given")
 
-        #by now I should have the self eut_primary key, the event pk and the timeslot array
-        #TODO
-
+        # by now I should have the self eut_primary key, the event pk and the timeslot array
+        # The util func will take it from here
+        if utils.set_precise_timeslots_for_event_to_model(event_pk, timeslot_str_arr, self_eut_pk):
+            return HttpResponse("ok")
+        else:
+            return Http404("Failed to set the precise time")
     else:
         raise Http404("Oops, 这里啥都木有。。。")

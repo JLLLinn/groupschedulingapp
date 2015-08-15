@@ -1,6 +1,10 @@
 import logging
+import datetime
+from django.core.exceptions import MultipleObjectsReturned
 
 from django.core.mail import send_mail
+
+from django.shortcuts import get_object_or_404
 
 from event_scheduling.hashids import Hashids
 from event_scheduling.models import Timeslot, Event, EventUserTimeslots
@@ -40,7 +44,7 @@ def init_event(dates, event_title, organizer_name, time_type):
     :param time_type:
     :return:
     """
-    if (len(dates) == 0):
+    if len(dates) == 0:
         logging.error("Error, Dates has a length of 0")
         return None
     date_objs = []
@@ -58,14 +62,14 @@ def init_event(dates, event_title, organizer_name, time_type):
     return event.pk, eut.pk
 
 
-def get_euts(event_id, SALT, self_eut_id=None):
+def get_euts(event_id, salt, self_eut_id=None):
     """
     Get eventUserTimeslots entries by event id
     :param event_id: the event id
     :param self_eut_id: if yes, then will put this entry under the "self" section of the returning array, other wise treat all of them the same
     :return:a list, or None if cannot find and eut on that event
     """
-    hashids = Hashids(salt=SALT)
+    hashids = Hashids(salt=salt)
     euts = EventUserTimeslots.objects.filter(event__pk=event_id)
     normal_euts = []
     self_euts = []
@@ -106,18 +110,64 @@ def save_eut_to_model(display_user_name, timeslots, event_pk, is_organizer, eut_
     timeslot_objs = Timeslot.objects.filter(pk__in=timeslots)
     try:
         # try get and update
-        obj = EventUserTimeslots.objects.get(pk=eut_pk)
-        obj.display_user_name = display_user_name
-        obj.is_organizer = is_organizer
-        obj.save()
-        obj.timeslots = timeslot_objs
-        return obj.pk
+        eut_obj = EventUserTimeslots.objects.get(pk=eut_pk)
+        eut_obj.display_user_name = display_user_name
+        eut_obj.is_organizer = is_organizer
+        eut_obj.save()
+        eut_obj.timeslots = timeslot_objs
+        return eut_obj.pk
     except EventUserTimeslots.DoesNotExist:
-        event_obj = Event.objects.get(pk=event_pk)
-        obj = EventUserTimeslots.objects.create(display_user_name=display_user_name, is_organizer=is_organizer,
+        event_obj = get_object_or_404(Event, pk=event_pk)
+        eut_obj = EventUserTimeslots.objects.create(display_user_name=display_user_name, is_organizer=is_organizer,
                                                 event=event_obj)
-        obj.timeslots = timeslot_objs
-        return obj.pk
+        eut_obj.timeslots = timeslot_objs
+        return eut_obj.pk
+
+
+def set_precise_timeslots_for_event_to_model(event_pk, timeslot_str_arr, self_eut_pk=None):
+    """
+    for each time slot, I will (and must) have the date and start time:
+        1. if date or start time is empty, I jump over it
+        2. try get the timeslot based on the date and start time
+            a. if get it, then get the id and save to timeslot_list
+            b. if failed, then create one and save id to timeslot_list
+        3. set the new timeslot_list to the users timeslot list based on the eut that I have
+        4. set the timeslot_list to the event's timeslots
+
+    :param event_pk:
+    :param timeslot_str_arr:
+        format of it:
+        [
+            {
+                "time_str": time_str,
+                "date_str": date_str
+            },
+            {
+                "time_str": time_str,
+                "date_str": date_str
+            },
+            ...
+        ]
+
+    :param self_eut_pk:
+    :return: True if success, None if failed
+    """
+    event_obj = get_object_or_404(Event, pk=event_pk)
+    timeslot_objs = []
+    for date_time_obj in timeslot_str_arr:
+        logger.error(date_time_obj)
+        date = datetime.datetime.strptime(date_time_obj['date_str'], "%Y/%m/%d").date()
+        time = datetime.datetime.strptime(date_time_obj['time_str'], "%I:%M %p").time()
+        timeslot_obj, created = Timeslot.objects.get_or_create(date = date, time_type = Timeslot.PRECISE_TIME_TIME, start_time=time)
+        assert isinstance(timeslot_obj, object)
+        timeslot_objs.append(timeslot_obj)
+
+    event_obj.timeslots = timeslot_objs
+    if self_eut_pk:
+        eut_obj = get_object_or_404(EventUserTimeslots, pk=self_eut_pk)
+        eut_obj.timeslots = timeslot_objs
+    return True
+
 
 
 def delete_eut_by_id(eut_id):

@@ -1,0 +1,93 @@
+ERROR 2015-08-15 15:10:21,646 base 2323 4372410368 Internal Server Error: /set/precise-time-times/R2/
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/views.py", line 284, in set_times_for_precise_time_event
+    if utils.set_precise_timeslots_for_event_to_model(event_pk, timeslot_str_arr, self_eut_pk):
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/utils.py", line 158, in set_precise_timeslots_for_event_to_model
+    date = datetime.datetime.strptime(date_time_obj['date_str'], "%m/%d/%Y").date()
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/_strptime.py", line 500, in _strptime_datetime
+    tt, fraction = _strptime(data_string, format)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/_strptime.py", line 337, in _strptime
+    (data_string, format))
+ValueError: time data '2015/08/16' does not match format '%m/%d/%Y'
+ERROR 2015-08-15 15:11:23,600 base 2427 4372348928 Internal Server Error: /set/precise-time-times/R2/
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/views.py", line 284, in set_times_for_precise_time_event
+    if utils.set_precise_timeslots_for_event_to_model(event_pk, timeslot_str_arr, self_eut_pk):
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/utils.py", line 158, in set_precise_timeslots_for_event_to_model
+    date = datetime.datetime.strptime(date_time_obj['date_str'], "%Y/%m/%d/").date()
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/_strptime.py", line 500, in _strptime_datetime
+    tt, fraction = _strptime(data_string, format)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/_strptime.py", line 337, in _strptime
+    (data_string, format))
+ValueError: time data '2015/08/16' does not match format '%Y/%m/%d/'
+ERROR 2015-08-15 15:12:04,168 base 2434 4372348928 Internal Server Error: /set/precise-time-times/R2/
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/views.py", line 284, in set_times_for_precise_time_event
+    if utils.set_precise_timeslots_for_event_to_model(event_pk, timeslot_str_arr, self_eut_pk):
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/utils.py", line 159, in set_precise_timeslots_for_event_to_model
+    time = datetime.datetime.strptime(date_time_obj['time_str'], "%-I:%M %p").time()
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/_strptime.py", line 500, in _strptime_datetime
+    tt, fraction = _strptime(data_string, format)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/_strptime.py", line 329, in _strptime
+    (bad_directive, format)) from None
+ValueError: '-' is a bad directive in format '%-I:%M %p'
+ERROR 2015-08-15 15:12:21,641 base 2439 4372410368 Internal Server Error: /set/precise-time-times/R2/
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/views.py", line 284, in set_times_for_precise_time_event
+    if utils.set_precise_timeslots_for_event_to_model(event_pk, timeslot_str_arr, self_eut_pk):
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/utils.py", line 158, in set_precise_timeslots_for_event_to_model
+    date = datetime.datetime.strptime(date_time_obj['date_str'], "%Y/%m/%d").date()
+KeyError: 'date_str'
+ERROR 2015-08-15 15:15:12,046 base 2449 4373614592 Internal Server Error: /set/precise-time-times/R2/
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/views.py", line 284, in set_times_for_precise_time_event
+    if utils.set_precise_timeslots_for_event_to_model(event_pk, timeslot_str_arr, self_eut_pk):
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/utils.py", line 159, in set_precise_timeslots_for_event_to_model
+    date = datetime.datetime.strptime(date_time_obj['date_str'], "%Y/%m/%d").date()
+KeyError: 'date_str'
+ERROR 2015-08-15 15:15:35,995 utils 2454 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/16'}
+ERROR 2015-08-15 15:15:36,001 utils 2454 4372348928 {'time_str': '1:00 PM'}
+ERROR 2015-08-15 15:15:36,001 base 2454 4372348928 Internal Server Error: /set/precise-time-times/R2/
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/views.py", line 284, in set_times_for_precise_time_event
+    if utils.set_precise_timeslots_for_event_to_model(event_pk, timeslot_str_arr, self_eut_pk):
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/utils.py", line 159, in set_precise_timeslots_for_event_to_model
+    date = datetime.datetime.strptime(date_time_obj['date_str'], "%Y/%m/%d").date()
+KeyError: 'date_str'
+ERROR 2015-08-15 15:18:01,049 utils 2454 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/16'}
+ERROR 2015-08-15 15:18:01,052 utils 2454 4372348928 {'time_str': '1:00 PM', 'date_str': '2015/08/16'}
+ERROR 2015-08-15 15:18:01,066 utils 2454 4372348928 {'time_str': '1:00 PM', 'date_str': '2015/08/30'}
+ERROR 2015-08-15 15:24:30,814 utils 2481 4372348928 {'date_str': '2015/08/16', 'time_str': '12:00 AM'}
+ERROR 2015-08-15 15:24:30,832 utils 2481 4372348928 {'date_str': '2015/08/16', 'time_str': '1:00 PM'}
+ERROR 2015-08-15 15:24:30,834 utils 2481 4372348928 {'date_str': '2015/08/16', 'time_str': '3:00 PM'}
+ERROR 2015-08-15 15:24:30,839 utils 2481 4372348928 {'date_str': '2015/08/16', 'time_str': '4:00 PM'}
+ERROR 2015-08-15 15:24:30,843 utils 2481 4372348928 {'date_str': '2015/08/30', 'time_str': '1:00 PM'}
+ERROR 2015-08-15 15:24:48,329 utils 2481 4372348928 {'date_str': '2015/08/16', 'time_str': '12:00 AM'}
+ERROR 2015-08-15 15:24:48,330 utils 2481 4372348928 {'date_str': '2015/08/16', 'time_str': '1:00 PM'}
+ERROR 2015-08-15 15:24:48,332 utils 2481 4372348928 {'date_str': '2015/08/16', 'time_str': '3:00 PM'}
+ERROR 2015-08-15 15:24:48,334 utils 2481 4372348928 {'date_str': '2015/08/16', 'time_str': '4:00 PM'}
+ERROR 2015-08-15 15:24:48,336 utils 2481 4372348928 {'date_str': '2015/08/16', 'time_str': '11:00 AM'}
+ERROR 2015-08-15 15:24:48,347 utils 2481 4372348928 {'date_str': '2015/08/16', 'time_str': '10:00 AM'}
+ERROR 2015-08-15 15:24:48,351 utils 2481 4372348928 {'date_str': '2015/08/30', 'time_str': '1:00 PM'}
+ERROR 2015-08-15 15:26:02,684 utils 2481 4372348928 {'date_str': '2015/08/16', 'time_str': '12:00 AM'}
+ERROR 2015-08-15 15:26:02,686 utils 2481 4372348928 {'date_str': '2015/08/16', 'time_str': '10:00 AM'}
+ERROR 2015-08-15 15:26:02,688 utils 2481 4372348928 {'date_str': '2015/08/16', 'time_str': '11:00 AM'}
+ERROR 2015-08-15 15:26:02,691 utils 2481 4372348928 {'date_str': '2015/08/16', 'time_str': '1:00 PM'}
+ERROR 2015-08-15 15:26:02,692 utils 2481 4372348928 {'date_str': '2015/08/16', 'time_str': '3:00 PM'}
+ERROR 2015-08-15 15:26:02,694 utils 2481 4372348928 {'date_str': '2015/08/16', 'time_str': '4:00 PM'}
+ERROR 2015-08-15 15:26:02,695 utils 2481 4372348928 {'date_str': '2015/08/30', 'time_str': '1:00 PM'}
+ERROR 2015-08-15 15:26:02,697 utils 2481 4372348928 {'date_str': '2015/08/30', 'time_str': '11:45 AM'}
+ERROR 2015-08-15 15:26:02,708 utils 2481 4372348928 {'date_str': '2015/08/30', 'time_str': '11:15 AM'}
+ERROR 2015-08-15 15:26:02,714 utils 2481 4372348928 {'date_str': '2015/08/30', 'time_str': '8:00 PM'}

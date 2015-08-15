@@ -53,18 +53,45 @@ function initMoments() {
 
 function initUIHandlers() {
     $(".add-time-slot").on('click', function () {
-        var $html = $('<div class=\'col-xs-6 col-md-6 col-lg-2 set-precise-time-cell form-group\'> <input type=\'text\' class=\' text-center timepicker-input form-control\' placeholder=\'输入时间\' data-hint=\'智能识别\' data-day-index=' + $(this).attr("data-day-index") + '></div>');
+        var $html = $('<div class=\'col-xs-6 col-md-6 col-lg-2 set-precise-time-cell form-group\'> <input type=\'text\' class=\' text-center timepicker-input form-control\' placeholder=\'输入时间\' data-hint=\'智能识别\' data-date=' + $(this).attr("data-date") + '></div>');
         $html.insertBefore($(this).parent());
         initTimePickers();
         $.material.init();
     });
-    $("#submit-timeslots").on('click',function(){
-        //TODO
+    $("#submit-timeslots").on('click', function () {
+        submitNewEventTimesToServer();
     })
 }
 
-function initSelfEutFromStorage(){
-     if (typeof(Storage) !== "undefined") {
-         self_eut_hid = localStorage.getItem(event_hid);
-     }
+function initSelfEutFromStorage() {
+    if (typeof(Storage) !== "undefined") {
+        self_eut_hid = localStorage.getItem(event_hid);
+    }
+}
+
+function submitNewEventTimesToServer() {
+    timeslot_str_arr = [];
+    $(".timepicker-input").each(function () {
+        var time_str = $(this).val();
+        if (typeof time_str !== 'undefined' && time_str != "") {
+            var date_str = $(this).attr("data-date");
+            var date_time_obj = {
+                "time_str": time_str,
+                "date_str": date_str
+            };
+            timeslot_str_arr.push(date_time_obj);
+        }
+    });
+    var post_obj = {
+        "timeslot_str_json": JSON.stringify(timeslot_str_arr)
+    };
+    if (self_eut_hid) {
+        post_obj['self_eut_hid'] = self_eut_hid;
+    }
+    console.log(timeslot_str_arr);
+    $.post(set_times_for_precise_time_event_url, post_obj, function(response){
+        console.log(response);
+        alert("done");
+    })
+
 }
