@@ -495,3 +495,9 @@ input.datesCheck + * {
 /*.set-precise-time-cell:nth-child(even) {*/
 /*background-color: #c5cae9;*/
 /*}*/
+
+input[type="text"]{
+   -moz-box-sizing:    border-box;
+   -webkit-box-sizing: border-box;
+    box-sizing:        border-box;
+}
