@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '=frw2vy*8_(cw*bgo3)36(r*^6xdx5fp!952z4zp+gg6)5xnc!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["beidanr.com", "www.beidanr.com"]
 
 
 # Application definition
@@ -128,23 +128,20 @@ LOGGING = {
         },
     },
     'handlers': {
-        'file': {
-            'class': 'logging.FileHandler',
-            'filename': 'logs/log.log',
-            'formatter': 'verbose'
-        },
         'console': {
             'class': 'logging.StreamHandler',
         },
     },
     'loggers': {
         'django': {
-            'handlers': ['console', 'file'],
+            'handlers': ['console'],
             'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
         },
         'event_scheduling': {
-            'handlers': ['console', 'file'],
+            'handlers': ['console'],
             'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
         },
     },
 }
+
+PREPEND_WWW = True
