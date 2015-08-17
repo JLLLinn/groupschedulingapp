@@ -4,7 +4,6 @@ import logging
 
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
-
 from django.http import Http404, JsonResponse, HttpResponse
 
 from django.views.decorators.csrf import ensure_csrf_cookie
@@ -16,7 +15,8 @@ from event_scheduling.utils import init_whole_day_event, get_euts, save_eut_to_m
 from event_scheduling.hashids import Hashids
 
 DATE_STR_SPLITTER = ","
-MIN_CELL_WIDTH = 50
+MIN_CELL_WIDTH = 48
+MIN_WIDE_CELL_WIDTH = 80
 MAX_TITLE_LENGTH = 40
 MIN_TITLE_LENGTH = 3
 MIN_NAME_LENGTH = 2
@@ -54,10 +54,14 @@ def plan_detail_html(request, event_hid):
     if len(event_primary_keys) >= 1:
         event = get_object_or_404(Event, pk=event_primary_keys[0])
         context_obj = {
+            "TIME_TYPE_WHOLE_DAY_TIME": Timeslot.WHOLE_DAY_TIME,
+            "TIME_TYPE_MORNING_AFTERNOON_EVENING_TIME": Timeslot.MORNING_AFTERNOON_EVENING_TIME,
+            "TIME_TYPE_PRECISE_TIME_TIME": Timeslot.PRECISE_TIME_TIME,
             "event": event,
             "event_hid": event_hid,
             "MIN_NAME_LENGTH": MIN_NAME_LENGTH,
             "MIN_CELL_WIDTH": MIN_CELL_WIDTH,
+            "MIN_WIDE_CELL_WIDTH":MIN_WIDE_CELL_WIDTH
 
         }
         return render(request, 'event_scheduling/plan_detail.html', context_obj)
@@ -136,7 +140,7 @@ def add_dates_for_precise_time_event(request):
         response_obj = {
             'event_hashid': event_hashid,
             'eventusertimeslots_hashid': eventusertimeslots_hashid,
-            'url': reverse("event_scheduling:set_precise_time_for_dates", args=(event_hashid,))
+            'url': reverse("event_scheduling:set_precise_time_html", args=(event_hashid,))
         }
         return JsonResponse(response_obj)
     else:
@@ -282,7 +286,11 @@ def set_times_for_precise_time_event(request, event_hid):
         # by now I should have the self eut_primary key, the event pk and the timeslot array
         # The util func will take it from here
         if utils.set_precise_timeslots_for_event_to_model(event_pk, timeslot_str_arr, self_eut_pk):
-            return HttpResponse("ok")
+            response_obj = {
+                'response' : "OK",
+                'url': reverse("event_scheduling:fetch_plan", args=(event_hid,))
+            }
+            return JsonResponse(response_obj)
         else:
             return Http404("Failed to set the precise time")
     else:

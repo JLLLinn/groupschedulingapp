@@ -34,6 +34,7 @@ function initTimePickers() {
     $('.timepicker-input').timepicker(timepicker_setup_obj);
 }
 
+
 function initMoments() {
     moment.locale('zh-cn');
     $.each($('.date-str'), function (index, date_str_div) {
@@ -53,14 +54,34 @@ function initMoments() {
 
 function initUIHandlers() {
     $(".add-time-slot").on('click', function () {
-        var $html = $('<div class=\'col-xs-6 col-md-6 col-lg-2 set-precise-time-cell form-group\'> <input type=\'text\' class=\' text-center timepicker-input form-control\' placeholder=\'输入时间\' data-hint=\'智能识别\' data-date=' + $(this).attr("data-date") + '></div>');
+        var $html = $("<div class='col-xs-6 col-md-6 col-lg-2 set-precise-time-cell'>\
+                                <div class='input-group'>\
+                                    <input type='text' class='text-center timepicker-input form-control form-control-pink-A200'\
+                                           placeholder='输入时间' data-hint='智能识别,空白默认全天' data-date='" + $(this).attr("data-date") + "'>\
+                                    <span class='input-group-addon' style='padding:0px; padding-bottom: 15px;'>\
+                                        <i class='icon-btn mdi-content-clear delete-time-slot'></i>\
+                                    </span>\
+                                </div>\
+                        </div>");
         $html.insertBefore($(this).parent());
         initTimePickers();
         $.material.init();
     });
+    $(".delete-time-slot").on('click', function () {
+        $(this).closest(".set-precise-time-cell").velocity("fadeOut", {duration: 500}).promise().done(function () {
+            $(this).remove();
+        });
+    });
     $("#submit-timeslots").on('click', function () {
         submitNewEventTimesToServer();
-    })
+    });
+    //$(".timepicker-input").on("input paste", function () {
+    //    console.log("got");
+    //    if ($(this).val() == "") {
+    //        console.log("blank");
+    //        $(this).next(".hint").text(空白默认为全天);
+    //    }
+    //});
 }
 
 function initSelfEutFromStorage() {
@@ -73,7 +94,7 @@ function submitNewEventTimesToServer() {
     timeslot_str_arr = [];
     $(".timepicker-input").each(function () {
         var time_str = $(this).val();
-        if (typeof time_str !== 'undefined' && time_str != "") {
+        if (typeof time_str !== 'undefined') {
             var date_str = $(this).attr("data-date");
             var date_time_obj = {
                 "time_str": time_str,
@@ -89,9 +110,8 @@ function submitNewEventTimesToServer() {
         post_obj['self_eut_hid'] = self_eut_hid;
     }
     console.log(timeslot_str_arr);
-    $.post(set_times_for_precise_time_event_url, post_obj, function(response){
-        console.log(response);
-        alert("done");
-    })
+    $.post(set_times_for_precise_time_event_url, post_obj, function (response) {
+        window.location.href = response['url'];
+    });
 
 }

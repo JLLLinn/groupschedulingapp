@@ -105,7 +105,9 @@ function initDatePicker() {
         e.stopPropagation(); // <--- here
     }).on("changeDate", function (e) {
         dates = $("#datepicker").datepicker('getFormattedDate');
+
         date_selected_count = e.dates.length;
+        updateDatesCount(date_selected_count);
         checkState();
     });
 
@@ -197,7 +199,7 @@ function checkState() {
         });
     } else if ((!titleProblems) && (!dateProblems)) {
         // $("#whatToDo").html("&#9654; Tap next when done");
-        $("#whatToDo").text("选择了 " + date_selected_count + " 天");
+        $("#whatToDo").text("▼ 选择时间与类型 ▼");
         allDoneCreate_id.prop("disabled", false);
         allDoneCreate_id.off();
         allDoneCreate_id.on("click", function () {
@@ -208,4 +210,15 @@ function checkState() {
 
 function blinkSomething($el) {
     $el.velocity("fadeIn", {duration: 200}).velocity("fadeOut", {duration: 200}).velocity("fadeIn", {duration: 200}).velocity("fadeOut", {duration: 200}).velocity("fadeIn", {duration: 200});
+}
+
+function updateDatesCount(date_selected_count) {
+  if(date_selected_count > 0) {
+    $("#dateCount").html("选择了 " + date_selected_count + " 天");
+
+  }
+  else {
+    $("#dateCount").html("未选择时间");
+
+  }
 }

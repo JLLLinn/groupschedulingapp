@@ -12,25 +12,32 @@
             <div class="col-xs-12" style="padding-left:4px; padding-right:4px; margin-top:6px; margin-bottom:6px;">
 
                 <div id="whatToDo" style="margin-top:2px;display:none;">&#9660; Set your name</div>
-                <button id="cantGo" class="btn btn-sm btn-warning" style="display:none; color: rgba(255,255,255,1);">
-                    不能去
+                <button id="cantGo" class="btn btn-sm btn-warning " style="display:none; color:rgba(255,255,255,1)">
+                    没有时间
                 </button>
-                <button id="allDone" class="btn btn-sm btn-success" style="display:none; color: rgba(255,255,255,1);">
+                <button id="allDone" class="btn btn-sm btn-success " style="display:none;color:rgba(255,255,255,1)">
                     提交
                 </button>
-                <button id="edit" class="btn btn-sm btn-info" style="display:none; color: rgba(255,255,255,1);">编辑
+                <button id="edit" class="btn btn-sm btn-info" style="color:rgba(255,255,255,1)">编辑
                 </button>
 
             </div>
         </div>
 
-        <div class="row">
 
-            <div class="col-xs-3 shadow-z-2 " style="padding-left:4px; padding-right:0; ">
-                <div class="col-xs-3" id="loaderDiv"
+        <div class="row">
+            <div class="col-xs-3" style="padding: 0px">
+                <div id="loaderDiv"
                      style="width:100%; margin:0px; padding-left:0px; padding-right:0; z-index:51;height:3px;">
                     &nbsp;
                 </div>
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="col-xs-3 shadow-z-2 " style="padding-left:4px; padding-right:0; ">
+
                 <table id="leftNames">
                     <tr>
                         <td id="firstMonth"></td>
@@ -42,7 +49,7 @@
                 </table>
             </div>
             <div class="col-xs-9" style="padding-left:4px; padding-right:4px;">
-                <div id="rightScroller" style="padding-top: 3px">
+                <div id="rightScroller" style="">
                     <table id="rightDates">
                         <tr id="dateInserter"></tr>
                     </table>
@@ -50,8 +57,8 @@
 
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-8" style="">
+        <div class="row" style="margin-top: 24px">
+            <div class="col-xs-12" style="">
                 <div class="" style="display:none;padding-left:4px;" id="linkMessage">
 
 
@@ -65,8 +72,11 @@
 
                 </div>
             </div>
-            <div class="col-xs-4" style="padding-right:4px;">
-                <button class="btn btn-sm btn-success" id="shareLink" style="color: rgba(255,255,255,1);">复制链接发给朋友
+            <div class="col-xs-12" style="padding-right:4px;">
+                <a id="set-precise-time-btn" class="btn btn-sm btn-flat btn-material-pink-A200 bottom-op-btn" href="{% url 'event_scheduling:set_precise_time_html' event_hid %}"
+                   style="display:none;">编辑时间
+                </a>
+                <button class="btn btn-sm btn-flat btn-material-pink-A200 bottom-op-btn" id="shareLink">复制链接发给朋友
                 </button>
             </div>
         </div>
@@ -95,9 +105,14 @@
         var get_eut_url = "{%  url 'event_scheduling:get_euts_for_event'  event_hid %}";
         var save_eut_url = "{% url 'event_scheduling:save_eut' %}";
         var delete_eut_url = "{% url 'event_scheduling:delete_eut' %}";
+        var TIME_TYPE_PRECISE_TIME_TIME = {{ TIME_TYPE_PRECISE_TIME_TIME }};
+        var TIME_TYPE_MORNING_AFTERNOON_EVENING_TIME = {{TIME_TYPE_MORNING_AFTERNOON_EVENING_TIME}};
+        var TIME_TYPE_WHOLE_DAY_TIME = {{TIME_TYPE_WHOLE_DAY_TIME}};
+
         var event_hid = "{{ event_hid }}";
         var MIN_NAME_LENGTH = {{ MIN_NAME_LENGTH }};
         var MIN_CELL_WIDTH = {{ MIN_CELL_WIDTH }};
+        var MIN_WIDE_CELL_WIDTH = {{ MIN_WIDE_CELL_WIDTH }};
         var event_name =
                 "{{ event.name }}";
         var dates = [

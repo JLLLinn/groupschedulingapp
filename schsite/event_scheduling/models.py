@@ -39,7 +39,7 @@ class Timeslot(models.Model):
     start_time = models.TimeField(null=True)
 
     # A Timeslot can have an end time
-    end_time = models.TimeField(null=True)
+    end_time = models.TimeField(blank=True,null=True)
 
     # get the string represent the time (only time but not date)
     def get_time_str(self):
@@ -53,12 +53,12 @@ class Timeslot(models.Model):
             elif self.start_time == self.EVENING:
                 return "晚上"
             else:
-                return ""
+                return "全天"
         elif self.time_type == self.PRECISE_TIME_TIME:
             if self.start_time is not None:
                 return self.start_time.strftime("%I:%M %p")
             else:
-                return ""
+                return "全天"
 
     # get the string representation of the date part
     def get_date_str(self):

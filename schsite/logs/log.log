@@ -91,3 +91,255 @@ ERROR 2015-08-15 15:26:02,695 utils 2481 4372348928 {'date_str': '2015/08/30', '
 ERROR 2015-08-15 15:26:02,697 utils 2481 4372348928 {'date_str': '2015/08/30', 'time_str': '11:45 AM'}
 ERROR 2015-08-15 15:26:02,708 utils 2481 4372348928 {'date_str': '2015/08/30', 'time_str': '11:15 AM'}
 ERROR 2015-08-15 15:26:02,714 utils 2481 4372348928 {'date_str': '2015/08/30', 'time_str': '8:00 PM'}
+ERROR 2015-08-16 00:26:59,325 base 704 4372840448 Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 119, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Library/Python/2.7/site-packages/django/core/urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "/Library/Python/2.7/site-packages/django/core/urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/Library/Python/2.7/site-packages/django/core/urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/schsite/urls.py", line 21, in <module>
+    url(r'^', include('event_scheduling.urls', namespace="event_scheduling")),
+  File "/Library/Python/2.7/site-packages/django/conf/urls/__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/urls.py", line 3, in <module>
+    from . import views
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/views.py", line 65
+SyntaxError: Non-ASCII character '\xe8' in file /Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/views.py on line 65, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details
+ERROR 2015-08-16 00:27:00,267 base 704 4377047040 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "/Library/Python/2.7/site-packages/django/middleware/common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "/Library/Python/2.7/site-packages/django/core/urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "/Library/Python/2.7/site-packages/django/core/urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "/Library/Python/2.7/site-packages/django/core/urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "/Library/Python/2.7/site-packages/django/core/urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/Library/Python/2.7/site-packages/django/core/urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/schsite/urls.py", line 21, in <module>
+    url(r'^', include('event_scheduling.urls', namespace="event_scheduling")),
+  File "/Library/Python/2.7/site-packages/django/conf/urls/__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/urls.py", line 3, in <module>
+    from . import views
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/views.py", line 65
+SyntaxError: Non-ASCII character '\xe8' in file /Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/views.py on line 65, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details
+ERROR 2015-08-16 00:30:01,384 utils 754 4373626880 {'date_str': '2015/08/15', 'time_str': '12:00 AM'}
+ERROR 2015-08-16 00:30:01,389 utils 754 4373626880 {'date_str': '2015/08/15', 'time_str': '1:00 PM'}
+ERROR 2015-08-16 00:30:01,394 utils 754 4373626880 {'date_str': '2015/08/19', 'time_str': '12:00 AM'}
+ERROR 2015-08-16 00:30:01,398 utils 754 4373626880 {'date_str': '2015/08/19', 'time_str': '2:00 PM'}
+ERROR 2015-08-16 00:30:01,402 utils 754 4373626880 {'date_str': '2015/08/27', 'time_str': '8:00 AM'}
+ERROR 2015-08-16 00:42:25,981 utils 798 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/15'}
+ERROR 2015-08-16 00:42:25,995 utils 798 4372348928 {'time_str': '1:00 PM', 'date_str': '2015/08/15'}
+ERROR 2015-08-16 00:42:25,997 utils 798 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/19'}
+ERROR 2015-08-16 00:42:25,998 utils 798 4372348928 {'time_str': '2:00 PM', 'date_str': '2015/08/19'}
+ERROR 2015-08-16 00:42:26,000 utils 798 4372348928 {'time_str': '8:00 AM', 'date_str': '2015/08/27'}
+ERROR 2015-08-16 00:42:26,002 utils 798 4372348928 {'time_str': '', 'date_str': '2015/08/27'}
+ERROR 2015-08-16 00:42:41,220 utils 798 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/15'}
+ERROR 2015-08-16 00:42:41,222 utils 798 4372348928 {'time_str': '1:00 PM', 'date_str': '2015/08/15'}
+ERROR 2015-08-16 00:42:41,224 utils 798 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/19'}
+ERROR 2015-08-16 00:42:41,226 utils 798 4372348928 {'time_str': '2:00 PM', 'date_str': '2015/08/19'}
+ERROR 2015-08-16 00:42:41,228 utils 798 4372348928 {'time_str': '', 'date_str': '2015/08/27'}
+ERROR 2015-08-16 00:42:41,230 utils 798 4372348928 {'time_str': '8:00 AM', 'date_str': '2015/08/27'}
+ERROR 2015-08-16 00:42:41,232 utils 798 4372348928 {'time_str': '', 'date_str': '2015/08/27'}
+ERROR 2015-08-16 00:42:41,234 utils 798 4372348928 {'time_str': '', 'date_str': '2015/08/27'}
+ERROR 2015-08-16 00:43:01,778 utils 798 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/15'}
+ERROR 2015-08-16 00:43:01,781 utils 798 4372348928 {'time_str': '1:00 PM', 'date_str': '2015/08/15'}
+ERROR 2015-08-16 00:43:01,785 utils 798 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/19'}
+ERROR 2015-08-16 00:43:01,788 utils 798 4372348928 {'time_str': '2:00 PM', 'date_str': '2015/08/19'}
+ERROR 2015-08-16 00:43:01,789 utils 798 4372348928 {'time_str': '', 'date_str': '2015/08/19'}
+ERROR 2015-08-16 00:43:01,792 utils 798 4372348928 {'time_str': '', 'date_str': '2015/08/27'}
+ERROR 2015-08-16 00:43:01,795 utils 798 4372348928 {'time_str': '8:00 AM', 'date_str': '2015/08/27'}
+WARNING 2015-08-16 01:03:59,964 base 798 4372348928 Not Found: /less/_mixins.less
+ERROR 2015-08-16 08:47:02,495 utils 1651 4373721088 {'time_str': '3:00 AM', 'date_str': '2015/08/22'}
+ERROR 2015-08-16 08:47:02,515 utils 1651 4373721088 {'time_str': '12:00 AM', 'date_str': '2015/08/22'}
+ERROR 2015-08-16 08:47:02,521 utils 1651 4373721088 {'time_str': '', 'date_str': '2015/08/22'}
+ERROR 2015-08-16 08:47:02,523 utils 1651 4373721088 {'time_str': '4:00 AM', 'date_str': '2015/08/29'}
+ERROR 2015-08-16 08:47:02,527 utils 1651 4373721088 {'time_str': '12:00 AM', 'date_str': '2015/08/29'}
+ERROR 2015-08-16 08:47:02,531 utils 1651 4373721088 {'time_str': '5:00 AM', 'date_str': '2015/08/30'}
+ERROR 2015-08-16 08:47:02,535 utils 1651 4373721088 {'time_str': '12:00 AM', 'date_str': '2015/08/30'}
+ERROR 2015-08-17 03:20:53,557 utils 3039 4373889024 {'time_str': '12:00 AM', 'date_str': '2015/08/19'}
+ERROR 2015-08-17 03:20:53,572 utils 3039 4373889024 {'time_str': '1:00 PM', 'date_str': '2015/08/27'}
+ERROR 2015-08-17 03:22:15,131 utils 3039 4373889024 {'time_str': '12:00 AM', 'date_str': '2015/08/20'}
+ERROR 2015-08-17 03:22:15,144 utils 3039 4373889024 {'time_str': '2:00 PM', 'date_str': '2015/08/20'}
+ERROR 2015-08-17 03:22:15,149 utils 3039 4373889024 {'time_str': '12:00 AM', 'date_str': '2015/08/21'}
+ERROR 2015-08-17 03:22:15,152 utils 3039 4373889024 {'time_str': '12:00 AM', 'date_str': '2015/08/21'}
+ERROR 2015-08-17 03:22:15,155 utils 3039 4373889024 {'time_str': '12:00 AM', 'date_str': '2015/08/22'}
+ERROR 2015-08-17 03:22:15,157 utils 3039 4373889024 {'time_str': '1:00 PM', 'date_str': '2015/08/22'}
+ERROR 2015-08-17 03:22:15,160 utils 3039 4373889024 {'time_str': '2:00 AM', 'date_str': '2015/08/22'}
+ERROR 2015-08-17 03:22:15,164 utils 3039 4373889024 {'time_str': '12:00 AM', 'date_str': '2015/09/05'}
+WARNING 2015-08-17 03:58:37,963 base 3141 4372410368 Not Found: /IX/
+WARNING 2015-08-17 03:58:38,109 base 3141 4379906048 Not Found: /favicon.ico
+ERROR 2015-08-17 04:06:36,236 utils 3141 4372410368 {'time_str': '12:00 AM', 'date_str': '2015/08/20'}
+ERROR 2015-08-17 04:06:36,240 utils 3141 4372410368 {'time_str': '3:00 AM', 'date_str': '2015/08/20'}
+ERROR 2015-08-17 04:06:36,244 utils 3141 4372410368 {'time_str': '12:00 AM', 'date_str': '2015/08/21'}
+ERROR 2015-08-17 04:06:36,246 utils 3141 4372410368 {'time_str': '11:00 PM', 'date_str': '2015/08/21'}
+ERROR 2015-08-17 04:06:36,249 utils 3141 4372410368 {'time_str': '4:00 AM', 'date_str': '2015/08/29'}
+ERROR 2015-08-17 04:06:36,251 utils 3141 4372410368 {'time_str': '12:00 AM', 'date_str': '2015/08/29'}
+ERROR 2015-08-17 04:06:36,253 utils 3141 4372410368 {'time_str': '11:00 PM', 'date_str': '2015/09/06'}
+ERROR 2015-08-17 04:06:36,259 utils 3141 4372410368 {'time_str': '12:30 AM', 'date_str': '2015/10/11'}
+ERROR 2015-08-17 04:06:36,262 utils 3141 4372410368 {'time_str': '12:00 AM', 'date_str': '2015/10/11'}
+ERROR 2015-08-17 04:06:36,267 utils 3141 4372410368 {'time_str': '12:30 AM', 'date_str': '2015/11/07'}
+ERROR 2015-08-17 04:06:36,272 utils 3141 4372410368 {'time_str': '12:00 AM', 'date_str': '2015/11/07'}
+ERROR 2015-08-17 04:06:36,276 utils 3141 4372410368 {'time_str': '12:00 AM', 'date_str': '2015/11/08'}
+ERROR 2015-08-17 04:22:12,455 base 3215 4372348928 Internal Server Error: /8Y/
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/template/defaulttags.py", line 501, in render
+    current_app=current_app)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/core/urlresolvers.py", line 579, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/core/urlresolvers.py", line 496, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for 'schsite.set_precise_time_html' with arguments '('8Y',)' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/utils/decorators.py", line 110, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/views.py", line 65, in plan_detail_html
+    return render(request, 'event_scheduling/plan_detail.html', context_obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/shortcuts.py", line 67, in render
+    template_name, context, request=request, using=using)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/template/loader.py", line 99, in render_to_string
+    return template.render(context, request)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/template/backends/django.py", line 74, in render
+    return self.template.render(context)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/template/base.py", line 209, in render
+    return self._render(context)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/template/base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/template/loader_tags.py", line 135, in render
+    return compiled_parent._render(context)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/template/base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/template/defaulttags.py", line 507, in render
+    six.reraise(*exc_info)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/utils/six.py", line 659, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/template/defaulttags.py", line 493, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/core/urlresolvers.py", line 579, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/core/urlresolvers.py", line 496, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for 'set_precise_time_html' with arguments '('8Y',)' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+ERROR 2015-08-17 04:31:10,408 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/20'}
+ERROR 2015-08-17 04:31:10,421 utils 3303 4372348928 {'time_str': '3:00 AM', 'date_str': '2015/08/20'}
+ERROR 2015-08-17 04:31:10,423 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/21'}
+ERROR 2015-08-17 04:31:10,424 utils 3303 4372348928 {'time_str': '11:00 PM', 'date_str': '2015/08/21'}
+ERROR 2015-08-17 04:31:10,427 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/29'}
+ERROR 2015-08-17 04:31:10,429 utils 3303 4372348928 {'time_str': '4:00 AM', 'date_str': '2015/08/29'}
+ERROR 2015-08-17 04:31:10,432 utils 3303 4372348928 {'time_str': '11:00 PM', 'date_str': '2015/09/06'}
+ERROR 2015-08-17 04:31:10,435 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/10/11'}
+ERROR 2015-08-17 04:31:10,438 utils 3303 4372348928 {'time_str': '12:30 AM', 'date_str': '2015/10/11'}
+ERROR 2015-08-17 04:31:10,440 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/11/07'}
+ERROR 2015-08-17 04:31:10,443 utils 3303 4372348928 {'time_str': '12:30 AM', 'date_str': '2015/11/07'}
+ERROR 2015-08-17 04:31:10,445 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/11/08'}
+ERROR 2015-08-17 04:32:11,360 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/20'}
+ERROR 2015-08-17 04:32:11,363 utils 3303 4372348928 {'time_str': '3:00 AM', 'date_str': '2015/08/20'}
+ERROR 2015-08-17 04:32:11,365 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/21'}
+ERROR 2015-08-17 04:32:11,368 utils 3303 4372348928 {'time_str': '11:00 PM', 'date_str': '2015/08/21'}
+ERROR 2015-08-17 04:32:11,370 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/29'}
+ERROR 2015-08-17 04:32:11,372 utils 3303 4372348928 {'time_str': '4:00 AM', 'date_str': '2015/08/29'}
+ERROR 2015-08-17 04:32:11,374 utils 3303 4372348928 {'time_str': '11:00 PM', 'date_str': '2015/09/06'}
+ERROR 2015-08-17 04:32:11,375 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/10/11'}
+ERROR 2015-08-17 04:32:11,377 utils 3303 4372348928 {'time_str': '12:30 AM', 'date_str': '2015/10/11'}
+ERROR 2015-08-17 04:32:11,379 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/11/07'}
+ERROR 2015-08-17 04:32:11,381 utils 3303 4372348928 {'time_str': '12:30 AM', 'date_str': '2015/11/07'}
+ERROR 2015-08-17 04:32:11,384 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/11/08'}
+ERROR 2015-08-17 04:36:58,969 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/20'}
+ERROR 2015-08-17 04:36:58,980 utils 3303 4372348928 {'time_str': '3:00 AM', 'date_str': '2015/08/20'}
+ERROR 2015-08-17 04:36:58,983 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/21'}
+ERROR 2015-08-17 04:36:58,985 utils 3303 4372348928 {'time_str': '11:00 PM', 'date_str': '2015/08/21'}
+ERROR 2015-08-17 04:36:58,987 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/29'}
+ERROR 2015-08-17 04:36:58,989 utils 3303 4372348928 {'time_str': '4:00 AM', 'date_str': '2015/08/29'}
+ERROR 2015-08-17 04:36:58,991 utils 3303 4372348928 {'time_str': '11:00 PM', 'date_str': '2015/09/06'}
+ERROR 2015-08-17 04:36:58,993 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/10/11'}
+ERROR 2015-08-17 04:36:58,996 utils 3303 4372348928 {'time_str': '12:30 AM', 'date_str': '2015/10/11'}
+ERROR 2015-08-17 04:36:58,997 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/11/07'}
+ERROR 2015-08-17 04:36:59,000 utils 3303 4372348928 {'time_str': '12:30 AM', 'date_str': '2015/11/07'}
+ERROR 2015-08-17 04:36:59,002 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/11/08'}
+WARNING 2015-08-17 05:00:59,636 base 3303 4372348928 Not Found: /apple-touch-icon-120x120-precomposed.png
+WARNING 2015-08-17 05:00:59,673 base 3303 4372348928 Not Found: /apple-touch-icon-120x120.png
+WARNING 2015-08-17 05:00:59,708 base 3303 4372348928 Not Found: /apple-touch-icon.png
+WARNING 2015-08-17 05:00:59,777 base 3303 4372348928 Not Found: /apple-touch-icon.png
+ERROR 2015-08-17 05:25:50,075 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/20'}
+ERROR 2015-08-17 05:25:50,081 utils 3303 4372348928 {'time_str': '3:00 AM', 'date_str': '2015/08/20'}
+ERROR 2015-08-17 05:25:50,084 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/21'}
+ERROR 2015-08-17 05:25:50,086 utils 3303 4372348928 {'time_str': '11:00 PM', 'date_str': '2015/08/21'}
+ERROR 2015-08-17 05:25:50,088 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/08/29'}
+ERROR 2015-08-17 05:25:50,090 utils 3303 4372348928 {'time_str': '4:00 AM', 'date_str': '2015/08/29'}
+ERROR 2015-08-17 05:25:50,092 utils 3303 4372348928 {'time_str': '11:00 PM', 'date_str': '2015/09/06'}
+ERROR 2015-08-17 05:25:50,094 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/10/11'}
+ERROR 2015-08-17 05:25:50,097 utils 3303 4372348928 {'time_str': '12:30 AM', 'date_str': '2015/10/11'}
+ERROR 2015-08-17 05:25:50,099 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/11/07'}
+ERROR 2015-08-17 05:25:50,100 utils 3303 4372348928 {'time_str': '12:30 AM', 'date_str': '2015/11/07'}
+ERROR 2015-08-17 05:25:50,102 utils 3303 4372348928 {'time_str': '12:00 AM', 'date_str': '2015/11/08'}
+ERROR 2015-08-17 10:02:37,363 base 4163 4372611072 Internal Server Error: /add/precise-time-dates
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/views.py", line 141, in add_dates_for_precise_time_event
+    'url': reverse("event_scheduling:set_precise_time_for_dates", args=(event_hashid,))
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/core/urlresolvers.py", line 579, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/core/urlresolvers.py", line 496, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for 'set_precise_time_for_dates' with arguments '('31',)' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+ERROR 2015-08-17 10:03:46,294 base 4163 4372611072 Internal Server Error: /add/precise-time-dates
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jiaxinlin/Developer/groupschedulingapp/schsite/event_scheduling/views.py", line 141, in add_dates_for_precise_time_event
+    'url': reverse("event_scheduling:set_precise_time_for_dates", args=(event_hashid,))
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/core/urlresolvers.py", line 579, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/django/core/urlresolvers.py", line 496, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for 'set_precise_time_for_dates' with arguments '('G3',)' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+WARNING 2015-08-17 12:33:16,602 base 4922 4373721088 Not Found: /favicon.ico
+WARNING 2015-08-17 13:07:45,127 base 5105 4377665536 Not Found: /set-precise-time-for-dates/3x/
+WARNING 2015-08-17 13:10:25,894 base 5105 4372410368 Not Found: /set-precise-time-for-dates/3x/
+WARNING 2015-08-17 13:10:34,186 base 5105 4372410368 Not Found: /create-date/2x/
+WARNING 2015-08-17 13:10:37,311 base 5105 4377665536 Not Found: /create-date/
+ERROR 2015-08-17 14:50:51,056 utils 5105 4372410368 {'time_str': '12:00 AM', 'date_str': '2015/08/19'}
+ERROR 2015-08-17 14:50:51,069 utils 5105 4372410368 {'time_str': '12:00 AM', 'date_str': '2015/08/21'}
+ERROR 2015-08-17 14:50:51,073 utils 5105 4372410368 {'time_str': '12:00 AM', 'date_str': '2015/08/22'}
+ERROR 2015-08-17 14:50:51,075 utils 5105 4372410368 {'time_str': '12:00 AM', 'date_str': '2015/08/23'}
+ERROR 2015-08-17 14:50:51,078 utils 5105 4372410368 {'time_str': '12:00 AM', 'date_str': '2015/08/27'}
+ERROR 2015-08-17 14:50:51,083 utils 5105 4372410368 {'time_str': '12:00 AM', 'date_str': '2015/08/28'}
+ERROR 2015-08-17 14:50:51,088 utils 5105 4372410368 {'time_str': '12:00 AM', 'date_str': '2015/08/30'}

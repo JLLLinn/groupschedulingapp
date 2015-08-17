@@ -51,7 +51,6 @@ a:hover {
 .titleCreate {
     border: 0px;
     width: 100%;
-    padding: 4px;
     font-size: 1.2em;
     color: #000;
     background-color: inherit;
@@ -86,7 +85,7 @@ a:hover {
 #planALink {
     text-align: center;
     position: fixed;
-    background-color: #ff80ab;
+    background-color: #FF80ab;
     color: rgba(255, 255, 255, 1.0);
     top: 0px;
     padding: 0px 6px 4px 6px;
@@ -119,7 +118,7 @@ a:hover {
 #whatToDo {
     color: rgb(255, 255, 255);
     float: left;
-    background-color: #ff80ab;
+    background-color: #c5cae9;
     padding: 4px;
     border-radius: 3px 3px 3px 3px;
     height: 28px;
@@ -163,7 +162,7 @@ col:nth-child(2n+3) {
 }
 
 #rightDates td {
-    min-width: 50px;
+    min-width: 48px;
 }
 
 #leftNames, #rightDates {
@@ -253,14 +252,19 @@ col:nth-child(2n+3) {
 }
 
 #shareLink {
-    margin-top: 48px;
-    float: right;
+
 }
 
 col.highestCol {
     border-style: ridge;
     border-width: 1px;
     border-color: green;
+}
+
+col.daySeparator {
+    border-left-style: dashed;
+    border-left-color: rgba(0, 0, 0, 0.12);
+    border-left-width: 1px;
 }
 
 #dateCount {
@@ -433,19 +437,61 @@ input.datesCheck + * {
 }
 
 .set-precise-time-cell {
-    padding-top :20px;
+    padding: 15px 0px;
     margin-bottom: 0px;
 }
-.date-row{
-    padding-top: 20px;
+
+.date-row {
+    padding-top: 5px;
 }
-.form-control-wrapper .hint{
+
+.form-control-wrapper .hint {
     position: inherit;
 }
 
-.form-control-wrapper{
-    min-height:50px;
+.form-control-wrapper {
+    min-height: 50px;
+}
+
+.icon-btn {
+    font-size: inherit;
+    font-weight: 800;
+    color: rgba(0, 0, 0, 0.30);
+    cursor: pointer !important;
+    padding-left: 0px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.icon-btn:hover {
+    color: #757575;
+}
+
+.icon-btn-lg-center {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 1.7em;
+}
+
+.bottom-op-btn {
+    float: right;
+    /*color: rgba(255,255,255,1) !important;*/
+}
+
+.form-control-pink-A200 {
+    background-image: linear-gradient(#ff80ab, #ff80ab), linear-gradient(#d2d2d2, #d2d2d2) !important;
+}
+
+.form-control-pink-muted-A200{
+ background-image: linear-gradient(#ff80ab, #ff80ab) !important;
+}
+
+.form-control-wrapper .hint{
+    font-size: 70%;
 }
 /*.set-precise-time-cell:nth-child(even) {*/
-    /*background-color: #c5cae9;*/
+/*background-color: #c5cae9;*/
 /*}*/

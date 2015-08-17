@@ -157,9 +157,12 @@ def set_precise_timeslots_for_event_to_model(event_pk, timeslot_str_arr, self_eu
     for date_time_obj in timeslot_str_arr:
         logger.error(date_time_obj)
         date = datetime.datetime.strptime(date_time_obj['date_str'], "%Y/%m/%d").date()
-        time = datetime.datetime.strptime(date_time_obj['time_str'], "%I:%M %p").time()
-        timeslot_obj, created = Timeslot.objects.get_or_create(date = date, time_type = Timeslot.PRECISE_TIME_TIME, start_time=time)
-        assert isinstance(timeslot_obj, object)
+        try:
+            time = datetime.datetime.strptime(date_time_obj['time_str'], "%I:%M %p").time()
+            timeslot_obj, created = Timeslot.objects.get_or_create(date = date, time_type = Timeslot.PRECISE_TIME_TIME, start_time=time)
+        except ValueError:
+            timeslot_obj, created = Timeslot.objects.get_or_create(date = date, time_type = Timeslot.PRECISE_TIME_TIME, start_time__isnull = True)
+
         timeslot_objs.append(timeslot_obj)
 
     event_obj.timeslots = timeslot_objs

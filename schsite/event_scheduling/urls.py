@@ -14,6 +14,6 @@ urlpatterns = [
     url(r'^delete-eut/$', views.delete_eut, name='delete_eut'),
     url(r'^send-email/$', views.send_email, name='send_email'),
     url(r'^set-precise-time-for-dates/(?P<event_hid>[\w]+)/$', views.set_precise_time_html,
-        name='set_precise_time_for_dates'),
+        name='set_precise_time_html'),
     url(r'^(?P<event_hid>[\w]+)/$', views.plan_detail_html, name='fetch_plan')
 ]

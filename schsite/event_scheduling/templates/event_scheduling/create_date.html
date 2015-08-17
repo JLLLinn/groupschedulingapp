@@ -10,12 +10,12 @@
         <div class="row">
             <div class="col-xs-8">
                 <div class="" style=" margin-top:6px; margin-bottom:6px;">
-                    <input type="text" placeholder="点击输入事件标题" id="eventTitleCreate" class="form-control titleCreate"
-                           style="display: inline-block;background-image:  linear-gradient(#FF80AB,#FF80AB),linear-gradient(#d2d2d2,#d2d2d2)">
+                    <input type="text" placeholder="点击输入事件标题" id="eventTitleCreate" class="form-control-pink-A200 form-control titleCreate"
+                           style="display: inline-block;">
                 </div>
                 <div class="" style=" margin-top:6px; margin-bottom:6px;">
-                    <input type="text" placeholder="名字" id="organizerNameCreate" class="form-control titleCreate"
-                           style="display: inline-block;background-image:  linear-gradient(#FF80AB,#FF80AB),linear-gradient(#d2d2d2,#d2d2d2)">
+                    <input type="text" placeholder="名字" id="organizerNameCreate" class="form-control-pink-A200 form-control titleCreate"
+                           style="display: inline-block;">
                 </div>
             </div>
 
@@ -25,7 +25,7 @@
                          style="width:100%; margin:0px; padding-left:0px; padding-right:0; z-index:51;height:3px; margin-top: -3px">
                         &nbsp;</div>
                     <button id="allDoneCreate" class="btn btn-raise btn-material-pink-A200"
-                            style="width:100%;float:right; height:72px;margin:0;padding-top: 0px;padding-bottom: 0px;">
+                            style="width:100%;float:right; height:72px;margin:0;padding-top: 0px;padding-bottom: 0px;padding-left: 28px">
                         <i id="allDoneCreate" class="mdi-action-done visible-xs"></i><span class="hidden-xs">继续</span>
                     </button>
 
@@ -42,8 +42,9 @@
             <div class="col-xs-12">
                 <div class="date-picker-panel panel panel-default">
                     <div class="panel-heading" id="pickerHeader">
-                        时间
-                        <div id="dateCount"></div>
+                        <span class="light-bg-secondary"><i class="mdi-action-today" style="font-size: 1em"></i> 时间</span>
+
+                        <div class="light-bg-secondary" id="dateCount">未选择时间</div>
                     </div>
                     <div id="datepicker"></div>
                 </div>
@@ -51,17 +52,17 @@
         </div>
 
         <div class="row text-center">
-            <div class="col-xs-4">
+            <div class="col-xs-6">
                 <button class="date-type-selector date-type-selector-unselected btn dark-bg-primary "
                         data-time-type={{ TIME_TYPE_WHOLE_DAY_TIME }} style="">全天活动
                 </button>
             </div>
-            <div class="col-xs-4">
-                <button class="date-type-selector date-type-selector-unselected btn dark-bg-primary"
-                        data-time-type={{ TIME_TYPE_MORNING_AFTERNOON_EVENING_TIME }} style="">早 &middot; 中 &middot; 晚
-                </button>
-            </div>
-            <div class="col-xs-4">
+{#            <div class="col-xs-4">#}
+{#                <button class="date-type-selector date-type-selector-unselected btn dark-bg-primary"#}
+{#                        data-time-type={{ TIME_TYPE_MORNING_AFTERNOON_EVENING_TIME }} style="">早 &middot; 中 &middot; 晚#}
+{#                </button>#}
+{#            </div>#}
+            <div class="col-xs-6">
                 <button class="date-type-selector date-type-selector-unselected btn  dark-bg-primary "
                         data-time-type={{ TIME_TYPE_PRECISE_TIME_TIME }} style="">精确时间
                 </button>

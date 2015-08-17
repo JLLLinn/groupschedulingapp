@@ -181,7 +181,7 @@ function initUIHandlers() {
 
     });
     $("#shareLink").on("click", function () {
-        prompt("复制如下链接发给朋友让他们来选择时间：", window.location.href);
+        prompt("复制如下链接发给朋友让他们来选择时间：", window.location.hostname + "/" + event_hid);
     });
     $("#allDone").on("click", function () {
         if (tryRenderStatus(STATUS_ALL_DONE)) {
@@ -422,6 +422,7 @@ function initEutRows(euts) {
         initOthersRows(normal_eut);
     });
 }
+
 function initEuts() {
     var obj = {};
     if (state.mode == STATE_MODE_RETURN_NORMAL_USER) {
@@ -440,6 +441,18 @@ function initEuts() {
 function initMoment() {
     moment.locale('zh-cn');
     $.each(dates, function (index, date) {
+        //if (date['time_type'] == TIME_TYPE_WHOLE_DAY_TIME) {
+        //    moment_dates.push(moment(date['date'], "YYYY/MM/DD"));
+        //    console.log(moment(date['date'], "YYYY/MM/DD"));
+        //} else if (date['time_type'] == TIME_TYPE_PRECISE_TIME_TIME) {
+        //    if(date['time'] == ""){
+        //        moment_dates.push(moment(date['date'], "YYYY/MM/DD"));
+        //    } else {
+        //        moment_dates.push(moment(date['date'] + " " + date['time'], "YYYY/MM/DD h:m a"));
+        //    }
+        //
+        //    console.log(moment(date['date'] + " " + date['time'], "YYYY/MM/DD h:m a"));
+        //}
         moment_dates.push(moment(date['date'], "YYYY/MM/DD"));
     });
 }
@@ -471,26 +484,56 @@ function initDatesLayout() {
             if (moment_dates[i].month() != moment_dates[i - 1].month()) {
                 //new month
                 cols += "<col>";
-
             }
-
         }
     }
     var $rightDates = $("#rightDates");
     $rightDates.prepend(cols);
+    var lastDay = dates[0]['date'];
+    var addDaySeparator = false;
+    var justAddedMonthSeparator = false;
+    var monthSeparatorCounter = 0;
+    var needLargerWidth = false;
     for (i = 0; i < moment_dates.length; i++) {
         //add month header seperator
+        justAddedMonthSeparator = false;
         var $dateInserter = $("#dateInserter");
         if (i > 0) {
             if (moment_dates[i].month() != moment_dates[i - 1].month()) {
                 //new month
                 var newMonth = moment_dates[i].format("MMMM") + "<br/>" + moment_dates[i].format("YYYY");
                 $dateInserter.append("<td class='monthSeperator'>" + newMonth + "</td>");
+                justAddedMonthSeparator = true;
+                monthSeparatorCounter++;
             }
 
         }
-        var ms = moment_dates[i].format("ddd") + "<br/>" + moment_dates[i].format("Do");
+
+        if (dates[i]['time_type'] == TIME_TYPE_PRECISE_TIME_TIME || dates[i]['time_type'] == TIME_TYPE_MORNING_AFTERNOON_EVENING_TIME) {
+            var ms = moment_dates[i].format("ddd") + " " + moment_dates[i].format("Do");
+            needLargerWidth = true;
+            addDaySeparator = true;
+            ms += "<br/>" + dates[i]['time'];
+            $("#dateInserter").css("height", "65px");
+            $("#firstMonth").css("height", "65px");
+            if (dates[i]['time_type'] == TIME_TYPE_PRECISE_TIME_TIME) {
+                showSetPreciseTimeBtn();
+            }
+        } else {
+            var ms = moment_dates[i].format("ddd") + "<br/>" + moment_dates[i].format("Do");
+        }
+        if (dates[i]['date'] != lastDay && addDaySeparator && !justAddedMonthSeparator) {
+            var $newDayCol = $("col:nth-child(" + (i + monthSeparatorCounter + 1) + ")");
+            $newDayCol.addClass("daySeparator");
+        }
+
+        lastDay = dates[i]['date'];
         $dateInserter.append("<td>" + ms + "</td>");
+
+    }
+    if (needLargerWidth) {
+        MIN_CELL_WIDTH = MIN_WIDE_CELL_WIDTH;
+        $("#rightDates").find("td").css("min-width", MIN_CELL_WIDTH);
     }
 
     var tr = "<tr>";
@@ -512,15 +555,6 @@ function initDatesLayout() {
 
     var tdWidth = $(".tdDate").last().width();
     console.log("tdWidth:" + tdWidth);
-    /*if (tdWidth < (MIN_CELL_WIDTH+20)) {
-     console.log("Stretch Mode");
-     var $rightScroller = $("#rightScroller");
-     $rightScroller.css("width", "100%");
-     $rightScroller.css("overflow-x", "scroll");
-
-     var newWidther = moment_dates.length * (MIN_CELL_WIDTH+20);
-     $rightDates.css("width", newWidther + "px");
-     }*/
     if (tdWidth <= MIN_CELL_WIDTH) {
         console.log("Stretch Mode");
         //should show indicator here
@@ -528,18 +562,21 @@ function initDatesLayout() {
         $rightScroller.css("width", "100%");
         $rightScroller.css("overflow-x", "scroll");
     }
+}
 
+function showSetPreciseTimeBtn() {
+    $("#set-precise-time-btn").show();
 }
 function whatToDoManagement() {
     var whatToDo = $("#whatToDo");
     if (state.yourName.length == 0) {
-        whatToDo.text("▼ 输入名字");
+        whatToDo.text(" ▼ 输入名字 ");
         whatToDo.show();
     } else if (!(state.yourName.length >= MIN_NAME_LENGTH)) {
-        whatToDo.text("▼ 名字长度需要大于 " + MIN_NAME_LENGTH.toString());
+        whatToDo.text(" ▼ 名字长度需要大于 " + MIN_NAME_LENGTH.toString() + " ");
         whatToDo.show();
     } else if (state.yesDates.length == 0) {
-        whatToDo.text("▼ 选择日期或选择不能去");
+        whatToDo.text(" ▼ 选择日期或选择没有时间 ");
         whatToDo.show();
     } else {
         whatToDo.hide();
