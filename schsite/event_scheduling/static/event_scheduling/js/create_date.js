@@ -183,7 +183,7 @@ function checkState() {
         nameProblems = true;
 
     } else if (date_selected_count <= 0) {
-        message = "▼ 选择可供朋友们选择的时间 ▼";
+        message = "▼ 选择可供朋友们选择的日期与类型 ▼";
         dateProblems = true;
     }
 
@@ -199,7 +199,7 @@ function checkState() {
         });
     } else if ((!titleProblems) && (!dateProblems)) {
         // $("#whatToDo").html("&#9654; Tap next when done");
-        $("#whatToDo").text("▼ 选择时间与类型 ▼");
+        $("#whatToDo").text("继续选择日期或点击继续");
         allDoneCreate_id.prop("disabled", false);
         allDoneCreate_id.off();
         allDoneCreate_id.on("click", function () {

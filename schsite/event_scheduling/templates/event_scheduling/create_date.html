@@ -37,21 +37,7 @@
         </div>
         <br>
         <br>
-
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="date-picker-panel panel panel-default">
-                    <div class="panel-heading" id="pickerHeader">
-                        <span class="light-bg-secondary"><i class="mdi-action-today" style="font-size: 1em"></i> 时间</span>
-
-                        <div class="light-bg-secondary" id="dateCount">未选择时间</div>
-                    </div>
-                    <div id="datepicker"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row text-center">
+        <div class="row text-center" style="margin-bottom: 4px">
             <div class="col-xs-6">
                 <button class="date-type-selector date-type-selector-unselected btn dark-bg-primary "
                         data-time-type={{ TIME_TYPE_WHOLE_DAY_TIME }} style="">全天活动
@@ -64,11 +50,25 @@
 {#            </div>#}
             <div class="col-xs-6">
                 <button class="date-type-selector date-type-selector-unselected btn  dark-bg-primary "
-                        data-time-type={{ TIME_TYPE_PRECISE_TIME_TIME }} style="">精确时间
+                        data-time-type={{ TIME_TYPE_PRECISE_TIME_TIME }} style="">时段活动
                 </button>
             </div>
 
         </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="date-picker-panel panel panel-default">
+                    <div class="panel-heading" id="pickerHeader">
+                        <span class="light-bg-secondary"><i class="mdi-action-today" style="font-size: 1em"></i> 活动日期</span>
+
+                        <div class="light-bg-secondary" id="dateCount">未选择时间</div>
+                    </div>
+                    <div id="datepicker"></div>
+                </div>
+            </div>
+        </div>
+
+
 
 
     </div>

@@ -25,7 +25,7 @@ SECRET_KEY = '=frw2vy*8_(cw*bgo3)36(r*^6xdx5fp!952z4zp+gg6)5xnc!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["beidanr.com", "www.beidanr.com"]
+ALLOWED_HOSTS = ['beidanr.com', 'www.beidanr.com']
 
 
 # Application definition
@@ -83,6 +83,7 @@ DATABASES = {
         'PASSWORD': 'root',
         'HOST': '127.0.0.1',
         'PORT': '3306',
+        'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
 
