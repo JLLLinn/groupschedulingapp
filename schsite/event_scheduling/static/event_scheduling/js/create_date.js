@@ -119,12 +119,17 @@ function ajaxSubmitForm() {
 
     var title = $('#eventTitleCreate').val();
     var organizer_name = $('#organizerNameCreate').val();
+
     var obj = {
         "event_title": title,
         "dates": dates,
         "organizer_name": organizer_name,
         "time_type": time_type
     };
+    var description = $('#descriptionCreate').val();
+    if(description != ""){
+        obj['description'] = description;
+    }
     var post_url = "";
     if (time_type == TIME_TYPE_WHOLE_DAY_TIME) {
         post_url = add_whole_day_url;

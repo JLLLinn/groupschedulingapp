@@ -97,6 +97,7 @@ def add_dates_for_whole_day_event(request):
         title = request.POST.get('event_title', False)
         date_raw_post = request.POST.get('dates', False)
         organizer_name = request.POST.get('organizer_name', False)
+        description = request.POST.get('description', False)
         if not (title and date_raw_post and organizer_name):
             raise Http404("Oops, 这里啥都木有。。。")
         date_strs = date_raw_post.split(DATE_STR_SPLITTER)
@@ -104,7 +105,7 @@ def add_dates_for_whole_day_event(request):
         for date_str in date_strs:
             dates.append(datetime.datetime.strptime(date_str, "%m/%d/%Y").date())
         event_primary_key, eventusertimeslots_primary_key = init_whole_day_event(title, dates,
-                                                                                 organizer_name)
+                                                                                 organizer_name,description)
         event_hashid = hashids.encode(event_primary_key)
         eventusertimeslots_hashid = hashids.encode(eventusertimeslots_primary_key)
         response_obj = {
@@ -127,6 +128,7 @@ def add_dates_for_precise_time_event(request):
         title = request.POST.get('event_title', False)
         date_raw_post = request.POST.get('dates', False)
         organizer_name = request.POST.get('organizer_name', False)
+        description = request.POST.get('description', False)
         if not (title and date_raw_post and organizer_name):
             raise Http404("Oops, 这里啥都木有。。。")
         date_strs = date_raw_post.split(DATE_STR_SPLITTER)
@@ -134,7 +136,7 @@ def add_dates_for_precise_time_event(request):
         for date_str in date_strs:
             dates.append(datetime.datetime.strptime(date_str, "%m/%d/%Y").date())
         event_primary_key, eventusertimeslots_primary_key = init_precise_time_event(title, dates,
-                                                                                    organizer_name)
+                                                                                    organizer_name,description)
         event_hashid = hashids.encode(event_primary_key)
         eventusertimeslots_hashid = hashids.encode(eventusertimeslots_primary_key)
         response_obj = {

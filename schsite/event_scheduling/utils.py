@@ -14,17 +14,17 @@ __author__ = 'jiaxinlin'
 logger = logging.getLogger(__name__)
 
 
-def init_whole_day_event(event_title, dates, organizer_name):
+def init_whole_day_event(event_title, dates, organizer_name,description):
     """
     It initiates a whole day event
     :param event_title: The event title
     :param dates: the dates of the event 
     :return: return the initiated primary key of the event, or false/None if unsuccessful
     """
-    return init_event(dates, event_title, organizer_name, Timeslot.WHOLE_DAY_TIME)
+    return init_event(dates, event_title, organizer_name, description,Timeslot.WHOLE_DAY_TIME)
 
 
-def init_precise_time_event(event_title, dates, organizer_name):
+def init_precise_time_event(event_title, dates, organizer_name,description):
     """
     Similar as above
     :param event_title:
@@ -32,10 +32,10 @@ def init_precise_time_event(event_title, dates, organizer_name):
     :param organizer_name:
     :return:
     """
-    return init_event(dates, event_title, organizer_name, Timeslot.PRECISE_TIME_TIME)
+    return init_event(dates, event_title, organizer_name, description,Timeslot.PRECISE_TIME_TIME)
 
 
-def init_event(dates, event_title, organizer_name, time_type):
+def init_event(dates, event_title, organizer_name, description, time_type):
     """
     This only init the dates, doesn't care about hte time now
     :param dates:
@@ -56,7 +56,10 @@ def init_event(dates, event_title, organizer_name, time_type):
         date_objs.append(obj)
     # u = User.objects.create(name=organizer_name)
     event = Event.objects.create(name=event_title)
+    if description and description != "":
+        event.description = description
     event.timeslots.add(*date_objs)
+    event.save()
     eut = EventUserTimeslots.objects.create(display_user_name=organizer_name, event=event, is_organizer=True)
     eut.timeslots.add(*date_objs)
     return event.pk, eut.pk

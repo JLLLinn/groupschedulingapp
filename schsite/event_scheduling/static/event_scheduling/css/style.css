@@ -33,16 +33,17 @@ a:hover {
 }
 
 #eventTitle {
-    text-align: center;
+    /*text-align: center;*/
     color: #000000;
     opacity: .87;
-    border: 0px;
+    font-weight: 400;
+    /*border: 0px;*/
     width: 100%;
-    padding: 4px;
-    font-size: 1.5em;
-    border-width: 0px 0px 1px 0px;
-    border-color: rgba(0, 0, 0, .38);
-    border-style: solid;
+    /*padding: 4px;*/
+    font-size: 2em;
+    /*border-width: 0px 0px 1px 0px;*/
+    /*border-color: rgba(0, 0, 0, .38);*/
+    /*border-style: solid;*/
     background-color: inherit;
     border-radius: 0px;
 
@@ -417,11 +418,12 @@ input.datesCheck + * {
 }
 
 .date-type-selector-unselected {
-    background-color: rgba(255, 128, 171, 0.2) !important;
+    color:#ff80ab !important;
+    /*background-color: rgba(255, 128, 171, 0.4) !important;*/
 }
 
 .date-type-selector-unselected:hover {
-    background-color: #ff9fbf !important;
+    background-color: rgba(255, 128, 171, 0.2) !important;
 }
 
 .date-type-selector-selected {
