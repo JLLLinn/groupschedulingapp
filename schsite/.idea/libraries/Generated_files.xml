@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/set_precise_time.min.js" />
+        <item url="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/moment-zh-cn.min.js" />
+        <item url="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/moment-with-locales.min.min.js" />
+        <item url="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.min.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/set_precise_time.min.js" />
+      <root url="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/moment-zh-cn.min.js" />
+      <root url="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/moment-with-locales.min.min.js" />
+      <root url="file://$PROJECT_DIR$/event_scheduling/static/event_scheduling/js/plan_detail.min.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>

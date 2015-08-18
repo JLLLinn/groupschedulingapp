@@ -123,13 +123,10 @@
                 <div class="modal-body">
                     <div class="input-group">
 
-                        <span class="input-group-addon" id="basic-addon1"><i class="mdi-content-content-copy"></i></span>
+                        <span class="input-group-addon"><i class="mdi-content-content-copy"></i></span>
                         <input id="url-text" class="form-control-pink-A200 form-control"  style="">
                     </div>
                 </div>
-                {#                <div class="modal-footer">#}
-                {#                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>#}
-                {#                </div>#}
                 <div class="col-xs-12" id="loaderDiv"
                      style="width:100%; margin:0px; padding-left:0px; padding-right:0; z-index:51;height:3px; bottom:0px">
                     &nbsp;
@@ -171,7 +168,8 @@
     <script src="{% static 'event_scheduling/js/bootstrap-datepicker.zh-CN.min.js' %}"></script>
     <script src="{% static 'event_scheduling/js/fastclick.js' %}"></script>
     <script src="{% static 'event_scheduling/js/velocity.min.js' %}"></script>
-    <script src="{% static 'event_scheduling/js/moment-with-locales.min.js' %}"></script>
-    <script src="{% static 'event_scheduling/js/plan_detail.js' %}"></script>
+    <script src="{% static 'event_scheduling/js/moment.min.js' %}"></script>
+    <script src="{% static 'event_scheduling/js/moment-zh-cn.js' %}"></script>
+    <script src="{% static 'event_scheduling/js/plan_detail.min.js' %}"></script>
 
 {% endblock %}

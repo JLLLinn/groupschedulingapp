@@ -58,7 +58,19 @@ class Timeslot(models.Model):
             if self.start_time is not None:
                 return self.start_time.strftime("%I:%M %p")
             else:
-                return "全天"
+                return ""
+
+    def get_start_time_str(self):
+        if self.start_time is not None:
+            return self.start_time.strftime("%I:%M %p")
+        else:
+            return ""
+
+    def get_end_time_str(self):
+        if self.end_time is not None:
+            return self.end_time.strftime("%I:%M %p")
+        else:
+            return ""
 
     # get the string representation of the date part
     def get_date_str(self):

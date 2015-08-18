@@ -30,22 +30,33 @@
                     </div>
                     <div class="col-md-8 col-lg-10">
                         {% for item in get_date_str.list %}
-                            <div class="col-xs-6 col-md-6 col-lg-2 set-precise-time-cell">
-                                <div class="input-group">
-
-                                    <input type="text"
-                                           class=" text-center timepicker-input form-control form-control-pink-A200"
-                                           placeholder="输入时间" data-hint="智能识别，空白默认全天" value="{{ item.get_time_str }}"
-                                           data-date="{{ get_date_str.grouper }}" style="">
+                            <div class="timeslot-group">
+                                <div class="col-xs-6 col-md-6 col-lg-2 set-precise-time-cell">
+                                    <div class="input-group">
+                                        <input type="text"
+                                               class=" text-center timepicker-input start-time form-control form-control-pink-A200"
+                                               placeholder="开始时间" data-hint="智能识别,空白默认全天"
+                                               value="{{ item.get_start_time_str }}"
+                                               data-date="{{ get_date_str.grouper }}" style="">
+                                    <span class="input-group-addon" style="padding:0px; padding-bottom: 15px;">
+                                        <i class="icon-btn-connector mdi-content-remove "></i>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-md-6 col-lg-2 set-precise-time-cell">
+                                    <div class="input-group">
+                                        <input type="text"
+                                               class=" text-center timepicker-input end-time form-control form-control-pink-A200"
+                                               placeholder="结束时间" data-hint="智能识别,可留白"
+                                               value="{{ item.get_end_time_str }}"
+                                               data-date="{{ get_date_str.grouper }}" style="">
                                     <span class="input-group-addon" style="padding:0px; padding-bottom: 15px;">
                                         <i class="icon-btn mdi-content-clear delete-time-slot"></i>
                                     </span>
+                                    </div>
                                 </div>
-
-
                             </div>
                         {% endfor %}
-
                         <div class="col-xs-6 col-md-6 col-lg-2 set-precise-time-cell form-group text-center"
                              style=" padding-top: 9px;">
                             <i class="mdi-content-add icon-btn-lg-center icon-btn add-time-slot"
@@ -54,7 +65,7 @@
                     </div>
                 </div>
             {% endfor %}
-        <button id="submit-timeslots" class="btn btn-raised btn-material-pink-A200">提交</button>
+            <button id="submit-timeslots" class="btn btn-raised btn-material-pink-A200">提交</button>
         </div>
 
 

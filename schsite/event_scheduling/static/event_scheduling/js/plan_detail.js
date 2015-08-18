@@ -518,17 +518,22 @@ function initDatesLayout() {
         }
 
         if (dates[i]['time_type'] == TIME_TYPE_PRECISE_TIME_TIME || dates[i]['time_type'] == TIME_TYPE_MORNING_AFTERNOON_EVENING_TIME) {
-            var ms = moment_dates[i].format("ddd") + " " + moment_dates[i].format("Do");
+            var ms = moment_dates[i].format("Do") + " " + moment_dates[i].format("ddd");
             needLargerWidth = true;
             addDaySeparator = true;
-            ms += "<br/>" + dates[i]['time'];
+            if (dates[i]['time'] == "") {
+                ms += "<br/>" + '全天';
+            } else {
+                ms += "<br/>" + dates[i]['time'];
+            }
+
             $("#dateInserter").css("height", "65px");
             $("#firstMonth").css("height", "65px");
             if (dates[i]['time_type'] == TIME_TYPE_PRECISE_TIME_TIME) {
                 showSetPreciseTimeBtn();
             }
         } else {
-            var ms = moment_dates[i].format("ddd") + "<br/>" + moment_dates[i].format("Do");
+            var ms = moment_dates[i].format("Do") + "<br/>" + moment_dates[i].format("ddd");
         }
         if (dates[i]['date'] != lastDay && addDaySeparator && !justAddedMonthSeparator) {
             var $newDayCol = $("col:nth-child(" + (i + monthSeparatorCounter + 1) + ")");
@@ -550,8 +555,6 @@ function initDatesLayout() {
         //add seperator
         if (i > 0) {
             if (moment_dates[i].month() != moment_dates[i - 1].month()) {
-                //new month
-                //  var newMonth = moment(vals.pdates[i]).format("MMM") + "<br/>" + moment(vals.pdates[i]).format("YY");
                 tr += "<td class='monthSeperator'></td>";
             }
         }
