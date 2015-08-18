@@ -181,7 +181,15 @@ function initUIHandlers() {
 
     });
     $("#shareLink").on("click", function () {
-        prompt("复制如下链接发给朋友让他们来选择时间：", window.location.hostname + "/" + event_hid);
+        //prompt("复制如下链接发给朋友让他们来选择时间：", window.location.hostname + "/" + event_hid);
+
+        $('#url-text').val(window.location.hostname + "/" + event_hid);
+
+        $('#urlModal').modal("show");
+        var url_text = document.getElementById("url-text");
+        url_text.setSelectionRange(0, url_text.value.length);
+
+        //$('#url-text').select();
     });
     $("#allDone").on("click", function () {
         if (tryRenderStatus(STATUS_ALL_DONE)) {

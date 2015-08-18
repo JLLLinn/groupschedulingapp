@@ -9,9 +9,9 @@
             </div>
         </div>
         {% if event.description %}
-        <div class="row light-bg-secondary" style="padding-left: 4px;">
-            {{ event.description }}
-        </div>
+            <div class="row light-bg-secondary" style="padding-left: 4px;">
+                {{ event.description }}
+            </div>
         {% endif %}
         <div class="row">
             <hr style="margin-right: 4px;margin-top: 5px;margin-left: 4px;">
@@ -103,6 +103,36 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     <button id="confirm-btn" type="button" class="btn btn-material-pink-A200" data-dismiss="modal">确认
                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" id="urlModal" style="vertical-align: middle">
+
+        <div class="modal-dialog  modal-sm" style="">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        复制该链接发给朋友，让他们来选择时间
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+
+                        <span class="input-group-addon" id="basic-addon1"><i class="mdi-content-content-copy"></i></span>
+                        <input id="url-text" class="form-control-pink-A200 form-control"  style="">
+                    </div>
+                </div>
+                {#                <div class="modal-footer">#}
+                {#                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>#}
+                {#                </div>#}
+                <div class="col-xs-12" id="loaderDiv"
+                     style="width:100%; margin:0px; padding-left:0px; padding-right:0; z-index:51;height:3px; bottom:0px">
+                    &nbsp;
                 </div>
             </div>
         </div>
