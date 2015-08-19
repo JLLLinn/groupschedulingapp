@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '=frw2vy*8_(cw*bgo3)36(r*^6xdx5fp!952z4zp+gg6)5xnc!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-PREPEND_WWW=True
-ALLOWED_HOSTS = ['beidanr.com', 'www.beidanr.com']
+DEBUG = True
+PREPEND_WWW=False
+ALLOWED_HOSTS = ['beidanr.com', 'www.beidanr.com','127.0.0.1']
 
 
 # Application definition
