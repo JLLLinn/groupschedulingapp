@@ -66,21 +66,8 @@
             </div>
         </div>
         <div class="row" style="margin-top: 24px">
-            <div class="col-xs-12" style="">
-                <div class="" style="display:none;padding-left:4px;" id="linkMessage">
 
-
-                    <div id="urlMessage"><strong>现在做什么？</strong> 复制本页链接或者点击“复制链接”，然后分享给朋友。收藏本页，重新进入时就可以看到朋友们的投票了。
-                    </div>
-
-                    <!-- <div style="float:right; width:10%">
-                    <i class="mdi-content-clear" style="margin-top:12px; margin-left:6px; text-align:center;" id="closeIcon"></i>
-                    </div> -->
-                    <!-- </div> -->
-
-                </div>
-            </div>
-            <div class="col-xs-12" style="padding-right:4px;">
+            <div class="col-xs-12  col-md-5 col-md-push-7" style="padding-right:4px;">
                 <a id="set-precise-time-btn" class="btn btn-sm btn-flat btn-material-pink-A200 bottom-op-btn"
                    href="{% url 'event_scheduling:set_precise_time_html' event_hid %}"
                    style="display:none;">编辑时间
@@ -88,6 +75,22 @@
                 <button class="btn btn-sm btn-flat btn-material-pink-A200 bottom-op-btn" id="shareLink">复制链接发给朋友
                 </button>
             </div>
+            <div class="col-xs-12 col-md-7 col-md-pull-5" style="">
+                <div class="row visible-xs">
+                    <br>
+                </div>
+                <div class="light-bg-disabled-hint" style="font-size:.92em;padding-left:4px;margin: 14px 1px;"
+                     id="linkMessage">
+                    <strong id="whatsnext">&middot; 接下来做什么</strong>
+                    <span id="whatsnextcontent">
+                        <br><i class="mdi-content-content-copy" style="font-size:1.2em"></i>复制本页链接或者点击“复制链接”并分享给朋友以便他们选择时间。
+                         <br><i class="mdi-action-bookmark-outline" style="font-size:1.2em"></i>收藏本页，重新进入时就可以看到朋友们的投票了。投票最多的时间将以绿色边框显示。
+                    </span>
+
+
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -116,7 +119,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="modal-title">
-                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                         复制该链接发给朋友，让他们来选择时间
                     </div>
                 </div>
@@ -124,7 +127,7 @@
                     <div class="input-group">
 
                         <span class="input-group-addon"><i class="mdi-content-content-copy"></i></span>
-                        <input id="url-text" class="form-control-pink-A200 form-control"  style="">
+                        <input id="url-text" class="form-control-pink-A200 form-control" style="">
                     </div>
                 </div>
                 <div class="col-xs-12" id="loaderDiv"

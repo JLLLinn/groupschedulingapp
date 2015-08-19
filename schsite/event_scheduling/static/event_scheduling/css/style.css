@@ -272,12 +272,6 @@ col.daySeparator {
     float: right;
 }
 
-#urlMessage {
-    margin-top: 32px;
-    font-size: 1em;
-    padding: 3px;
-}
-
 input.datesCheck + * {
     pointer-events: none;
 }
@@ -418,7 +412,7 @@ input.datesCheck + * {
 }
 
 .date-type-selector-unselected {
-    color:#ff80ab !important;
+    color: #ff80ab !important;
     /*background-color: rgba(255, 128, 171, 0.4) !important;*/
 }
 
@@ -487,24 +481,25 @@ input.datesCheck + * {
     background-image: linear-gradient(#ff80ab, #ff80ab), linear-gradient(#d2d2d2, #d2d2d2) !important;
 }
 
-.form-control-pink-muted-A200{
- background-image: linear-gradient(#ff80ab, #ff80ab) !important;
+.form-control-pink-muted-A200 {
+    background-image: linear-gradient(#ff80ab, #ff80ab) !important;
 }
 
-.form-control-wrapper .hint{
+.form-control-wrapper .hint {
     font-size: 70%;
 }
+
 /*.set-precise-time-cell:nth-child(even) {*/
 /*background-color: #c5cae9;*/
 /*}*/
 
-input[type="text"]{
-   -moz-box-sizing:    border-box;
-   -webkit-box-sizing: border-box;
-    box-sizing:        border-box;
+input[type="text"] {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-.icon-btn-connector{
+.icon-btn-connector {
     font-size: inherit;
     font-weight: 800;
     color: rgba(0, 0, 0, 0.15);
@@ -516,4 +511,26 @@ input[type="text"]{
 
 .problematic-time-input {
     background-color: rgba(197, 202, 233, 0.40);
+}
+
+#whatsnextcontent {
+    visibility: hidden;
+}
+
+#whatsnext:hover + #whatsnextcontent {
+    visibility: visible;
+}
+
+#whatsnext {
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 768px) {
+    #whatsnextcontent {
+        visibility: visible;
+    }
+
+    #whatsnext {
+        text-decoration: none;
+    }
 }

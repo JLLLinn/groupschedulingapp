@@ -25,15 +25,17 @@
 
     {% block additionalcss %}{% endblock %}
     <link rel="stylesheet" type="text/css" href="{% static 'event_scheduling/css/style.css' %}"/>
-    <script>
-        var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?8969868f32a52f49755fdabec294d889";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
+    {% if DEBUG == False %}
+        <script>
+            var _hmt = _hmt || [];
+            (function () {
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?8969868f32a52f49755fdabec294d889";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
+    {% endif %}
 
 </head>
 <body>
