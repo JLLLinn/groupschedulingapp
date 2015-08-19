@@ -521,10 +521,12 @@ function initDatesLayout() {
             var ms = moment_dates[i].format("Do") + " " + moment_dates[i].format("ddd");
             needLargerWidth = true;
             addDaySeparator = true;
-            if (dates[i]['time'] == "") {
+            if (dates[i]['start_time'] == "") {
                 ms += "<br/>" + '全天';
+            } else if(dates[i]['end_time'] == "") {
+                ms += "<br/>" + dates[i]['start_time'];
             } else {
-                ms += "<br/>" + dates[i]['time'];
+                ms += "<br/>" + dates[i]['start_time']+"<br/>"+dates[i]['end_time'];
             }
 
             $("#dateInserter").css("height", "65px");

@@ -30,14 +30,13 @@
                     </div>
                     <div class="col-md-8 col-lg-10">
                         {% for item in get_date_str.list %}
-                            <div class="timeslot-group">
+                            <div class="timeslot-group" data-date="{{ get_date_str.grouper }}">
                                 <div class="col-xs-6 col-md-6 col-lg-2 set-precise-time-cell">
                                     <div class="input-group">
                                         <input type="text"
                                                class=" text-center timepicker-input start-time form-control form-control-pink-A200"
                                                placeholder="开始时间" data-hint="智能识别,空白默认全天"
-                                               value="{{ item.get_start_time_str }}"
-                                               data-date="{{ get_date_str.grouper }}" style="">
+                                               value="{{ item.get_start_time_str }}">
                                     <span class="input-group-addon" style="padding:0px; padding-bottom: 15px;">
                                         <i class="icon-btn-connector mdi-content-remove "></i>
                                     </span>
@@ -48,8 +47,7 @@
                                         <input type="text"
                                                class=" text-center timepicker-input end-time form-control form-control-pink-A200"
                                                placeholder="结束时间" data-hint="智能识别,可留白"
-                                               value="{{ item.get_end_time_str }}"
-                                               data-date="{{ get_date_str.grouper }}" style="">
+                                               value="{{ item.get_end_time_str }}">
                                     <span class="input-group-addon" style="padding:0px; padding-bottom: 15px;">
                                         <i class="icon-btn mdi-content-clear delete-time-slot"></i>
                                     </span>
@@ -70,7 +68,6 @@
 
 
     </div>
-
 
 
     <script>

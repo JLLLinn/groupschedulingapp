@@ -156,7 +156,8 @@
                 {
                     "timeslot_key":{{ timeslot.pk }},
                     "date": "{{ timeslot.get_date_str }}",
-                    "time": "{{ timeslot.get_time_str }}",
+                    "start_time": "{{ timeslot.get_start_time_str }}",
+                    "end_time": "{{ timeslot.get_end_time_str }}",
                     "time_type": "{{ timeslot.time_type }}"
                 },
             {% endfor %}
