@@ -1,7 +1,6 @@
 import datetime
 import json
 import logging
-from schsite import settings
 
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
@@ -27,15 +26,12 @@ DEFAULT_TO_EMAILS = ['craiglin1992@gmail.com']
 
 logger = logging.getLogger(__name__)
 hashids = Hashids(salt=SALT)
-base_context_obj = {
-    "DEBUG": settings.DEBUG
-}
 
 
 # Create your views here.
 @ensure_csrf_cookie
 def index_html(request):
-    return render(request, 'event_scheduling/index.html', base_context_obj)
+    return render(request, 'event_scheduling/index.html')
 
 
 @ensure_csrf_cookie
@@ -49,7 +45,6 @@ def create_date_html(request):
         "MIN_TITLE_LENGTH": MIN_TITLE_LENGTH,
         "MIN_NAME_LENGTH": MIN_NAME_LENGTH,
     }
-    context_obj.update(base_context_obj)
     return render(request, 'event_scheduling/create_date.html', context_obj)
 
 
@@ -66,10 +61,9 @@ def plan_detail_html(request, event_hid):
             "event_hid": event_hid,
             "MIN_NAME_LENGTH": MIN_NAME_LENGTH,
             "MIN_CELL_WIDTH": MIN_CELL_WIDTH,
-            "MIN_WIDE_CELL_WIDTH": MIN_WIDE_CELL_WIDTH
+            "MIN_WIDE_CELL_WIDTH":MIN_WIDE_CELL_WIDTH
 
         }
-        context_obj.update(base_context_obj)
         return render(request, 'event_scheduling/plan_detail.html', context_obj)
     else:
         raise Http404("Oops, 这里啥都木有。。。")
@@ -86,7 +80,6 @@ def set_precise_time_html(request, event_hid):
             "event": event,
             "event_hid": event_hid
         }
-        context_obj.update(base_context_obj)
         return render(request, 'event_scheduling/set_precise_time.html', context_obj)
     else:
         raise Http404("Oops, 这里啥都木有。。。")
@@ -112,7 +105,7 @@ def add_dates_for_whole_day_event(request):
         for date_str in date_strs:
             dates.append(datetime.datetime.strptime(date_str, "%m/%d/%Y").date())
         event_primary_key, eventusertimeslots_primary_key = init_whole_day_event(title, dates,
-                                                                                 organizer_name, description)
+                                                                                 organizer_name,description)
         event_hashid = hashids.encode(event_primary_key)
         eventusertimeslots_hashid = hashids.encode(eventusertimeslots_primary_key)
         response_obj = {
@@ -143,7 +136,7 @@ def add_dates_for_precise_time_event(request):
         for date_str in date_strs:
             dates.append(datetime.datetime.strptime(date_str, "%m/%d/%Y").date())
         event_primary_key, eventusertimeslots_primary_key = init_precise_time_event(title, dates,
-                                                                                    organizer_name, description)
+                                                                                    organizer_name,description)
         event_hashid = hashids.encode(event_primary_key)
         eventusertimeslots_hashid = hashids.encode(eventusertimeslots_primary_key)
         response_obj = {
@@ -296,7 +289,7 @@ def set_times_for_precise_time_event(request, event_hid):
         # The util func will take it from here
         if utils.set_precise_timeslots_for_event_to_model(event_pk, timeslot_str_arr, self_eut_pk):
             response_obj = {
-                'response': "OK",
+                'response' : "OK",
                 'url': reverse("event_scheduling:fetch_plan", args=(event_hid,))
             }
             return JsonResponse(response_obj)
